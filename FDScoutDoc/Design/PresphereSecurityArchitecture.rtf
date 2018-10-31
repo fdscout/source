@@ -1,0 +1,61 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\margl1440\margr1440\vieww26420\viewh19280\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\fs28 \cf0 Presphere Security Architecture\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+1.  Groups\
+	Application users will be divided into two groups:\
+	
+\b Client
+\b0  - real business users of Presphere.\
+	
+\b Support
+\b0  - Axiom SPS (ASPS) employees, including IT team and clinical team, who support the applications.  \
+\
+2. Organizations\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	\uc0\u8226 	}Organization is the top level contractual client unit.  Each time a new customer is signed onto Presphere, a corresponding organization needs to be created.  Under organization, there could be multiple pharmacies, locations, branches.  \
+{\listtext	\uc0\u8226 	}All the sub units under a organization will have the same drug access and configurations.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+3.  Roles\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls2\ilvl0\cf0 {\listtext	\uc0\u8226 	}Access to Presphere is completely role-based.\
+{\listtext	\uc0\u8226 	}Same set of roles will apply to both client group and support group.   \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ri-3984\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 4.  Menu items\
+	In Presphere, access to different modules will be managed by controls (links, buttons).  But optimally should be validated by server side to make sure the request is authentic.  \
+\
+5.  Each form will include a randomly generated token.   This token will be associated with user session, invalidated once the form is submitted and processed.  Forms submitted with invalid token will be logged with information including submission time, session ID, and client IP address.\
+\
+	<s:form>\
+		<s:hidden name=\'93token\'94/>\
+	</s:form>\
+6.  Add following tabs in System Setup: \
+	Pharmacy, \
+		- name\
+		- phone\
+		- address ( place holder for now)\
+		- organization (1 to 1 relationship between pharmacy and organization) \
+	User, \
+	 - add user\
+	 - assign role\
+	 - change user status \
+	 - pharmacy (cross ref is defined in separate table). 	Clinical Manager should only be able to see user info within his/her pharmacy.  Support team should be able to see all users grouped by pharmacy and/or organization.\
+	\
+\
+	 \
+	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 	}

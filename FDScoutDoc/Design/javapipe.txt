@@ -1,0 +1,59 @@
+New Hosting Package Information
+Hosting Package: Tomcat Entry - 5GB - US
+Domain: presphere.com
+First Payment Amount: $9.00 USD
+Recurring Amount: $9.00 USD
+Billing Cycle: Monthly
+Next Due Date: 04/05/2018
+
+SiteWorx Control Panel Login Details
+
+Login: deerhill@gmail.com
+Password: 1Ue4Aeun25
+Domain: presphere.com
+SiteWorx Control Panel URL: https://jpcloudusa018.nshostserver.net:2443/siteworx
+You may go ahead and login to your SiteWorx to setup MySQL databases and email accounts.
+
+Server Name: jpcloudusa018.nshostserver.net
+Server IP: 207.244.103.195
+
+Tomcate Information
+
+Your private Tomcat is setup for presphere.com. 
+
+Your temporary preview link for your container until your domain name has fully propagated:
+http://jpcloudusa018.nshostserver.net:33306
+
+Once your domain has propagated fully, you will no longer need to use the temporary url and port.
+(If no port is list above you will receive another email with the port number)
+
+Upload files to presphere.com/tomcat/webapps/ROOT/ or you may create your own webapp in the webapps directory.
+
+Heres a link to our JAVA knowledgebase articles. JAVA hosting KB
+If you're new to tomcat hosting please read this. New to Tomcat in the Cloud
+
+SHELL Login Information
+
+SSH: jpcloudusa018.nshostserver.net
+Username: prespher
+Password: 1Ue4Aeun25
+
+Domain Registration
+
+If you registered a domain, please allow 12 to 24 hours for DNS propagation.
+
+If you are using an existing domain with your new hosting account, you will need to update its nameservers to the ones listed below:
+
+Nameserver 1: ns1.nshostserver.net
+Nameserver 2: ns2.nshostserver.net
+Nameserver 3: ns3.nshostserver.net
+If you are using a 3rd party DNS, then simply update your A records to 207.244.103.195
+
+Email Settings
+
+For email accounts that you setup, you should use the following connection details in your email client:
+
+POP3 Host Address: mail.presphere.com
+SMTP Host Address: mail.presphere.com
+Username: The full email address you are checking email for
+Password: As specified by you when you setup emails in your control panel.
