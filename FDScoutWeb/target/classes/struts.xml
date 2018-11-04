@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.reload" value="false" /> 
+    <constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.convention.result.path" value="/" />
+
+	<package name="com.presphere.default" namespace="/" extends="struts-default,json-default">
+	      <result-types>
+	            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+				<result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult" /> 
+			</result-types>
+		    <interceptors>
+		    	<interceptor name="httpSessionInterceptor" class="com.presphere.web.interceptor.HttpSessionInterceptor"/>
+			<interceptor name="userRequestInterceptor" class="com.presphere.web.interceptor.UserRequestInterceptor"/> 	
+			<interceptor name="scheduledRequestInterceptor" class="com.presphere.web.interceptor.ScheduledRequestInterceptor"/>
+				
+				<interceptor-stack name="presphereGenericStack">  
+					<interceptor-ref name="params"/>
+					<interceptor-ref name="httpSessionInterceptor"/>
+		        </interceptor-stack>               	
+		    </interceptors>
+	
+			<global-results>
+				 <result name="javaLangException" type="chain">
+					<param name="actionName">logJavaLangException</param>
+				</result>
+				 <result name="managedError" type="chain">
+					<param name="actionName">logJavaLangException</param>
+				</result>
+				 <result name="securityError" type="chain">
+					<param name="actionName">securityError</param>
+				</result>
+				
+			</global-results>
+			 
+			<global-exception-mappings>
+			 	<exception-mapping exception="org.apache.struts.register.exceptions.SecurityBreachException" result="securityerror"/>
+			  	<exception-mapping exception="java.lang.Exception" result="javaLangException" />
+			  	<exception-mapping exception="java.lang.NullPointerException" result="javaLangException" />
+			</global-exception-mappings>
+
+	</package>
+	
+</struts>

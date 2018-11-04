@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.presphere.core.context.CoreContext;
+import com.fdscout.core.context.CoreContext;
 
 
 public class WebContext extends CoreContext{

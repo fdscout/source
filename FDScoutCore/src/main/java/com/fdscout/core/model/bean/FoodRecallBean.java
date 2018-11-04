@@ -4,7 +4,7 @@ import com.fdscout.core.model.entity.Address;
 import com.fdscout.core.model.entity.Product;
 import com.fdscout.core.model.entity.Recall;
 
-public class FoodRecallBean extends FDScoutBean {
+public class FoodRecallBean extends CoreBean {
 	private Recall recall;
 	private Address address;
 	private Product product;
