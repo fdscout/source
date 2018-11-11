@@ -16,15 +16,15 @@ import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
 
 @ResultPath(value="/")
-//@InterceptorRef(value="coreGenericStack")
-@ParentPackage(value ="com.core.default")
+//@InterceptorRef(value="fdscoutGenericStack")
+@ParentPackage(value ="com.fdscout.default")
 public class GatewayAction extends FDScoutAction {
 	private static final long serialVersionUID = 8324749017672128806L;
 	private PortalAccessLogService portalAccessLogService;
 	private BrowserConfigService browserConfigService;
 	
-    @Action(value="/start", results={@Result(name="success", type="tiles", location="portalMainTemplate"),
-    									 @Result(name="browserError", type="tiles", location="browserNotSupportedTemplate")})
+//    @Action(value="/start", results={@Result(name="success", type="tiles", location="testTemplate")})
+    @Action(value="/start", results={@Result(name="success",  location="/jsp/test.jsp")})
 	public String showGatewayPage() {
 		try {
 			WebContext.getServletRequest().getRemoteAddr();

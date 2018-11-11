@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+<!-- gateway  -->
+	<definition name="testTemplate" template="/jsp/test.jsp">
+	</definition>
+	
+<!-- 	<definition name="portalMainStaffTrainingsTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
+<!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/staffTrainingConfirmationMain.jsp"/> -->
+<!-- 	</definition> -->
+	
+<!-- 	<definition name="portalMainTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
+<!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/portalLogin.jsp"/> -->
+<!-- 	</definition>	 -->
+	
+<!-- 	<definition name="browserNotSupportedTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
+<!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/unsupportedBrowser.jsp"/> -->
+<!-- 	</definition> -->
+	
+<!-- 	<definition name="portalMainOtpTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
+<!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/otpValidation.jsp"/> -->
+<!-- 	</definition> -->
+<!-- end of gateway -->
+
+<!-- search -->
+<!-- 	<definition name="searchWithResult" template="/jsp/dashboard/search/searchWindowTemplate.jsp"> -->
+<!-- 		<put-attribute name="searchResult" value="/jsp/dashboard/search/searchResult.jsp"/> -->
+<!-- 		<put-attribute name="searchButton" value="/jsp/dashboard/search/searchAllButton.jsp"/> -->
+<!-- 	</definition>		 -->
+<!-- 	<definition name="searchWithEmptyResult" template="/jsp/dashboard/search/searchWindowTemplate.jsp"> -->
+<!-- 		<put-attribute name="searchResult" value="/jsp/dashboard/search/emptyResult.jsp"/> -->
+<!-- 		<put-attribute name="searchButton" value="/jsp/dashboard/search/searchAllButton.jsp"/> -->
+<!-- 	</definition>		 -->
+
+<!-- 	<definition name="searchPrescriberWithResult" template="/jsp/dashboard/search/searchWindowTemplate.jsp"> -->
+<!-- 		<put-attribute name="searchResult" value="/jsp/dashboard/search/searchResult.jsp"/> -->
+<!-- 		<put-attribute name="searchButton" value="/jsp/dashboard/search/searchPrescriberButton.jsp"/> -->
+<!-- 	</definition>		 -->
+<!-- end of search -->
+	
+<!-- setup template -->
+<!-- 	<definition name="pageBody" template="/jsp/template/contentTemplate.jsp"/> -->
+
+<!-- 	<definition name="contentTemplate" extends="pageBody"> -->
+<!-- 		<put-attribute name="adhocNotification" value="/jsp/template/defaultAdhocNotification.jsp"/> -->
+<!-- 	</definition>	 -->
+	
+<!-- 	<definition name="settingContentTemplate" extends="contentTemplate"> -->
+<!-- 		<put-attribute name="pageTitle" value="/jsp/setup/dropDownMenu.jsp"/> -->
+<!-- 		<put-attribute name="contentPanel" value="/jsp/setup/setupContent.jsp"/> -->
+<!-- 	</definition>	 -->
+	
+<!-- 	<definition name="myPreferencesContentTemplate" extends="contentTemplate"> -->
+<!-- 		<put-attribute name="pageTitle" value="/jsp/myPreference/dropDownMenu.jsp"/> -->
+<!-- 		<put-attribute name="contentPanel" value="/jsp/setup/setupContent.jsp"/> -->
+<!-- 	</definition> -->
+	
+<!-- 	<definition name="staffAvailablityContentTemplate" extends="contentTemplate"> -->
+<!-- 		<put-attribute name="pageTitle" value="/jsp/myPreference/timeoff/dropDownMenu.jsp"/> -->
+<!-- 		<put-attribute name="contentPanel" value="/jsp/myPreference/timeoff/searchAvailableStaff.jsp"/> -->
+<!-- 	</definition> -->
+	
+<!-- end of setup template -->
+
+<!-- User template -->
+<!-- 	<definition name="presphereTemplate" template="/jsp/template/presphereTemplate.jsp"> -->
+<!-- 		<put-attribute name="javascriptFile" value="/jsp/template/javascriptInsert.jsp"/> -->
+<!-- 		<put-attribute name="bottomPanel" value="/jsp/template/bottomPannel.jsp"/> -->
+<!-- 	</definition> -->
+
+
+	<!-- app entry point - dashboard  -->
+<!-- 	<definition name="dashboardTemplate" extends="presphereTemplate"> -->
+<!-- 		<put-attribute name="mainPanel" type="definition" value="dashboardContentTemplate" > -->
+<!-- 		</put-attribute>  -->
+<!-- 	</definition> -->
+	
+	<!--  dashboard  -->
+<!-- 	<definition name="dashboardContentTemplate"  extends="pageBody"> -->
+<!-- 		<put-attribute name="pageTitle" value="/jsp/dashboard/dropDownMenu.jsp"/> -->
+<!-- 		<put-attribute name="adhocNotification" value="/jsp/template/defaultAdhocNotification.jsp"/> -->
+<!-- 		<put-attribute name="contentPanel"> -->
+<!-- 			<definition  template="/jsp/template/contentPanelForClient.jsp"> -->
+<!-- 				<put-attribute name="panelArea"  value="/jsp/dashboard/dashboardContent.jsp"/> -->
+<!-- 				<put-attribute name="dockArea" value="/jsp/dashboard/dockArea.jsp"/> -->
+<!-- 				<put-attribute name="artifactArea" value="/jsp/dashboard/artifactArea.jsp"/> -->
+<!-- 			</definition> -->
+<!-- 		</put-attribute> -->
+<!-- 	</definition> -->
+	
+	<!-- patient profile -->
+<!-- 	<definition name="patientProfileContentTemplate"  extends="pageBody"> -->
+<!-- 		<put-attribute name="pageTitle" value="/jsp/patient/dropDownMenu.jsp"/> -->
+<!-- 		<put-attribute name="adhocNotification" value="/jsp/patient/summary/headLineDiv.jsp"/> -->
+<!-- 		<put-attribute name="contentPanel"> -->
+<!-- 			<definition  template="/jsp/template/contentPanelForClient.jsp"> -->
+<!-- 				<put-attribute name="panelArea" value="/jsp/patient/contentArea.jsp"/> -->
+<!-- 				<put-attribute name="dockArea" value="/jsp/patient/dockArea.jsp"/> -->
+<!-- 				<put-attribute name="artifactArea" value="/jsp/patient/artifactArea.jsp"/> -->
+<!-- 			</definition> -->
+<!-- 		</put-attribute> -->
+<!-- 	</definition>	 -->
+	
+	<!-- provider profile -->
+<!-- 	<definition name="prescriberProfileContentTemplate"  extends="pageBody"> -->
+<!-- 		<put-attribute name="pageTitle" value="/jsp/prescriber/dropDownMenu.jsp"/> -->
+<!-- 		<put-attribute name="adhocNotification" value="/jsp/prescriber/summary/headLineDiv.jsp"/> -->
+<!-- 		<put-attribute name="contentPanel"> -->
+<!-- 			<definition  template="/jsp/template/contentPanelForClient.jsp"> -->
+<!-- 				<put-attribute name="panelArea" value="/jsp/prescriber/profileContent.jsp"/> -->
+<!-- 				<put-attribute name="dockArea" value="/jsp/patient/dockArea.jsp"/> -->
+<!-- 				<put-attribute name="artifactArea" value="/jsp/patient/artifactArea.jsp"/> -->
+<!-- 			</definition> -->
+<!-- 		</put-attribute> -->
+<!-- 		<put-attribute name="mainPanelArea" value="/jsp/prescriber/profileContent.jsp"/> -->
+<!-- 	</definition>	 -->
+	
+	
+	<!-- Fill Process  -->	
+<!-- 	<definition name="fillProcessContentTemplate" extends="pageBody"> -->
+<!-- 		<put-attribute name="pageTitle" value="/jsp/fillProcess/dropDownMenu.jsp"/> -->
+<!-- 		<put-attribute name="adhocNotification" value="/jsp/fillProcess/summary/headLineDiv.jsp"/> -->
+<!-- 		<put-attribute name="contentPanel"> -->
+<!-- 			<definition  template="/jsp/template/contentPanelForClient.jsp"> -->
+<!-- 				<put-attribute name="panelArea"  value="/jsp/fillProcess/fillProcessContent.jsp"/> -->
+<!-- 				<put-attribute name="dockArea" value="/jsp/fillProcess/dockArea.jsp"/> -->
+<!-- 				<put-attribute name="artifactArea" value="/jsp/fillProcess/artifactArea.jsp"/> -->
+<!-- 			</definition> -->
+<!-- 		</put-attribute> -->
+<!-- 	</definition>	 -->
+
+<!-- 	<definition name="rxNdcListTemplate" template="/jsp/template/sjgridTemplate.jsp"> -->
+<!-- 		<put-attribute name="jspFile" value="/jsp/fillProcess/rxInfo/rxNdcList.jsp"/> -->
+<!-- 	</definition> -->
+</tiles-definitions>

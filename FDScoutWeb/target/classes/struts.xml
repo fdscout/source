@@ -9,17 +9,17 @@
     <constant name="struts.configuration.xml.reload" value="true" />
 	<constant name="struts.convention.result.path" value="/" />
 
-	<package name="com.presphere.default" namespace="/" extends="struts-default,json-default">
+	<package name="com.fdscout.default" namespace="/" extends="struts-default,json-default">
 	      <result-types>
 	            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
 				<result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult" /> 
 			</result-types>
 		    <interceptors>
-		    	<interceptor name="httpSessionInterceptor" class="com.presphere.web.interceptor.HttpSessionInterceptor"/>
-			<interceptor name="userRequestInterceptor" class="com.presphere.web.interceptor.UserRequestInterceptor"/> 	
-			<interceptor name="scheduledRequestInterceptor" class="com.presphere.web.interceptor.ScheduledRequestInterceptor"/>
+		    	<interceptor name="httpSessionInterceptor" class="com.fdscout.web.interceptor.HttpSessionInterceptor"/>
+			<interceptor name="userRequestInterceptor" class="com.fdscout.web.interceptor.UserRequestInterceptor"/> 	
+			<interceptor name="scheduledRequestInterceptor" class="com.fdscout.web.interceptor.ScheduledRequestInterceptor"/>
 				
-				<interceptor-stack name="presphereGenericStack">  
+				<interceptor-stack name="fdscoutGenericStack">  
 					<interceptor-ref name="params"/>
 					<interceptor-ref name="httpSessionInterceptor"/>
 		        </interceptor-stack>               	
