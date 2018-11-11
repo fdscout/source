@@ -9,10 +9,33 @@ create table ps_data_dictionary (
 ) ENGINE=InnoDB;
 
 
+    create table fdscoutc_dev.fds_address(
+       address_id INT not null auto_increment,
+       street_1 VARCHAR(80),
+       street_2 VARCHAR(80),
+       city VARCHAR(50),
+       state VARCHAR(20),
+       country VARCHAR(20),
+       postal_cd VARCHAR(20),
+       create_time TIMESTAMP default 'CURRENT_TIMESTAMP' not null,
+       primary key (address_id)
+    );
+    create unique index PRIMARY on fdscoutc_dev.fds_address(address_id);
 
 
-
-
+    create table fdscoutc_dev.fds_meta_data(
+       meta_data_id INT not null auto_increment,
+       last_update_dt DATETIME,
+       terms VARCHAR(50),
+       results_skip MEDIUMINT,
+       results_total MEDIUMINT,
+       results_limit MEDIUMINT,
+       license VARCHAR(50),
+       disclaimer VARCHAR(500),
+       create_time TIMESTAMP default 'CURRENT_TIMESTAMP' not null,
+       primary key (meta_data_id)
+    );
+    create unique index PRIMARY on fdscoutc_dev.fds_meta_data(meta_data_id);
 
 
 
@@ -620,28 +643,28 @@ CREATE TABLE presphere.ps_drug_icd_xref (
 
 
 
-CREATE TABLE `ps_browser_config` (
-  `config_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `min_version` varchar(20) DEFAULT NULL,
-  `max_version` varchar(20) NOT NULL,
-  `status_cd` tinyint(1) DEFAULT '1',
-  UNIQUE KEY `unq_browser_config` (`name`,`min_version`,`max_version`),
-  PRIMARY KEY (`config_id`)
+CREATE TABLE ps_browser_config (
+  config_id int(11) NOT NULL AUTO_INCREMENT,
+  name varchar(50) DEFAULT NULL,
+  min_version varchar(20) DEFAULT NULL,
+  max_version varchar(20) NOT NULL,
+  status_cd tinyint(1) DEFAULT '1',
+  UNIQUE KEY unq_browser_config (name,min_version,max_version),
+  PRIMARY KEY (config_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `ps_user_device` (
-  `user_device_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `device_ip` varchar(20) DEFAULT NULL,					
-  `device_type` varchar(30) DEFAULT NULL,
-  `os` varchar(20) DEFAULT NULL,
-  `otp` varchar(120) DEFAULT NULL,					
-  `status_cd` tinyint(4) DEFAULT '1',
-  `create_datetime` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_datetime` datetime DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (`user_device_id`),
-   CONSTRAINT `ps_fk_user_device_user_id` FOREIGN KEY (`user_id`) REFERENCES `ps_user` (`user_id`) ON UPDATE CASCADE
+CREATE TABLE ps_user_device (
+  user_device_id int(11) NOT NULL AUTO_INCREMENT,
+  user_id int(11) DEFAULT NULL,
+  device_ip varchar(20) DEFAULT NULL,					
+  device_type varchar(30) DEFAULT NULL,
+  os varchar(20) DEFAULT NULL,
+  otp varchar(120) DEFAULT NULL,					
+  status_cd tinyint(4) DEFAULT '1',
+  create_datetime datetime DEFAULT CURRENT_TIMESTAMP,
+  update_datetime datetime DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (user_device_id),
+   CONSTRAINT ps_fk_user_device_user_id FOREIGN KEY (user_id) REFERENCES ps_user (user_id) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 use presphere;
@@ -1005,18 +1028,18 @@ create table ps_entity_lock (
 ALTER TABLE ps_entity_lock AUTO_INCREMENT=1001;
 
 
-CREATE TABLE `ps_user_role_queue_xref` (
-  `user_role_id` int(11) NOT NULL,
-  `queue_id` int(11) NOT NULL,
-  `status_cd` tinyint(4) NOT NULL COMMENT '0 - inactive, 1 - active',
-  `create_user_id` int(11) NOT NULL,
-  `update_user_id` int(11) DEFAULT NULL,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  KEY `queue_id` (`queue_id`),
-  KEY `user_role_id` (`user_role_id`),
-  CONSTRAINT `ps_user_role_queue_xref_ibfk_1` FOREIGN KEY (`queue_id`) REFERENCES `ps_queue` (`queue_id`) ON UPDATE CASCADE,
-  CONSTRAINT `ps_user_role_queue_xref_ibfk_2` FOREIGN KEY (`user_role_id`) REFERENCES `ps_user_role` (`user_role_id`) ON UPDATE CASCADE
+CREATE TABLE ps_user_role_queue_xref (
+  user_role_id int(11) NOT NULL,
+  queue_id int(11) NOT NULL,
+  status_cd tinyint(4) NOT NULL COMMENT '0 - inactive, 1 - active',
+  create_user_id int(11) NOT NULL,
+  update_user_id int(11) DEFAULT NULL,
+  create_time datetime DEFAULT CURRENT_TIMESTAMP,
+  update_time datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  KEY queue_id (queue_id),
+  KEY user_role_id (user_role_id),
+  CONSTRAINT ps_user_role_queue_xref_ibfk_1 FOREIGN KEY (queue_id) REFERENCES ps_queue (queue_id) ON UPDATE CASCADE,
+  CONSTRAINT ps_user_role_queue_xref_ibfk_2 FOREIGN KEY (user_role_id) REFERENCES ps_user_role (user_role_id) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
