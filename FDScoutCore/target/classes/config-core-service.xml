@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.1.xsd
+						http://www.springframework.org/schema/util
+						http://www.springframework.org/schema/util/spring-util-4.1.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+						http://www.springframework.org/schema/jee
+						http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+						">	    
+	<util:properties id="coreConfigProperties" location="classpath:/coreConfig.properties"/>
+	<util:properties id="coreMessageProperties" location="classpath:/coreMessage.properties"/>	
+	
+	<bean id="coreDao" class="com.fdscout.core.model.dao.CoreDao" abstract="true">
+			<property name="dataSource" ref="dataSource"/>
+	        <property name="jdbcTemplate">
+				<bean class="org.springframework.jdbc.core.JdbcTemplate">
+			        <property name="dataSource" ref="dataSource"/>
+				</bean>
+	        </property>
+	        <property name="namedParamJdbcTemplate">
+				<bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+			        <constructor-arg ref="dataSource"/>
+				</bean>
+	        </property>
+	        <property name="rowMapper" ref="coreRowMapper"/>
+	       <!--  <property name="paramMap"><util:map/></property>
+	        <property name="keyHolder">
+	        	<bean class="org.springframework.jdbc.support.GeneratedKeyHolder"/>
+	        </property>
+	         -->
+	</bean>
+	
+    <bean id="coreService" class="com.fdscout.core.service.CoreService" abstract="true">
+    	<property name="dao" ref="coreDao"/>
+    	<property name="coreMessageProperties" ref="coreMessageProperties"/>
+    	<property name="coreConfigProperties" ref="coreConfigProperties"/>
+    </bean>
+
+	<bean id="coreRowMapper" class="com.fdscout.core.model.rowmapper.CoreRowMapper" abstract="true"/>
+	
+<!-- ***********************************************************************************************************************
+-->
+
+<!-- 	<bean id="groupTransactionService" class="com.fdscout.core.service.GroupTransactionService"/> -->
+	
+<!-- 	<bean id="userSessionService" class="com.presphere.core.service.UserSessionService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.UserSessionDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.UserSessionRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="portalAccessLogService" class="com.presphere.core.service.PortalAccessLogService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PortalAccessLogDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> --> 
+<!-- 	             <bean class="com.presphere.core.rowmapper.PortalAccessLogRowMapper" parent="presphereRowMapper"/> -->
+<!--  		        </property>  --> 
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="presphereUserService" class="com.presphere.core.service.PresphereUserService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PresphereUserDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PresphereUserRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!--    		<property name="pharmacyUserXrefService" ref="pharmacyUserXrefService" /> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="pharmacyStaffService" class="com.presphere.core.service.PharmacyStaffService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PharmacyStaffDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PharmacyStaffRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="menuTabService" class="com.presphere.core.service.MenuTabService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.MenuTabDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.MenuTabRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="staffTimeOffService" class="com.presphere.core.service.StaffTimeOffService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.StaffTimeOffDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.StaffTimeOffRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="propertyService" class="com.presphere.core.service.PropertyService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PropertyDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PropertyRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="patientDemoInfoService" class="com.presphere.core.service.PatientDemoInfoService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PatientDemoInfoDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PatientDemoInfoRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="patientDrugProfileService" class="com.presphere.core.service.PatientDrugProfileService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PatientDrugProfileDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PatientDrugProfileRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="patientDrugProfileDefService" class="com.presphere.core.service.PatientDrugProfileDefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PatientDrugProfileDefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PatientDrugProfileDefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="patientViewHistoryService" class="com.presphere.core.service.PatientViewHistoryService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PatientViewHistoryDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PatientViewHistoryRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="patientOrgXrefService" class="com.presphere.core.service.PatientOrgXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PatientOrgXrefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PatientOrgXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="phoneService" class="com.presphere.core.service.PhoneService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PhoneDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PhoneRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="patientPhoneXrefService" class="com.presphere.core.service.PatientPhoneXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PatientPhoneXrefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PatientPhoneXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+<!-- 	<bean id="drugService" class="com.presphere.core.service.DrugService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.DrugDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.DrugRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+<!-- 	<bean id="diseaseStateService" class="com.presphere.core.service.DiseaseStateService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.DiseaseStateDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.DiseaseStateRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+<!-- 	<bean id="drugOrgXrefService" class="com.presphere.core.service.DrugOrgXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.DrugOrgXrefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.DrugOrgXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+<!-- 	<bean id="organizationService" class="com.presphere.core.service.OrganizationService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.OrganizationDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.OrganizationRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+	
+<!-- 	<bean id="prescriberDemoInfoService" class="com.presphere.core.service.PrescriberDemoInfoService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PrescriberDemoInfoDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PrescriberDemoInfoRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="prescriberPhoneXrefService" class="com.presphere.core.service.PrescriberPhoneXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PrescriberPhoneXrefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PrescriberPhoneXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="prescriberViewHistoryService" class="com.presphere.core.service.PrescriberViewHistoryService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PrescriberViewHistoryDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PrescriberViewHistoryRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="riskTypeService" class="com.presphere.core.service.RiskTypeService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.RiskTypeDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.RiskTypeRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+	
+<!-- 	<bean id="browserConfigService" class="com.presphere.core.service.BrowserConfigService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.BrowserConfigDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.BrowserConfigRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="userDeviceService" class="com.presphere.core.service.UserDeviceService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.UserDeviceDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.UserDeviceRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+<!-- 	<bean id="icdCodeService" class="com.presphere.core.service.IcdCodeService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.IcdCodeDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.IcdCodeRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+<!-- 	<bean id="drugIcdCodeXrefService" class="com.presphere.core.service.DrugIcdCodeXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.DrugIcdCodeXrefDao" parent="presphereDao"> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>			 -->
+<!-- 	<bean id="payerService" class="com.presphere.core.service.PayerService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PayerDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PayerRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>			 -->
+
+<!-- 	<bean id="drugPayerXrefService" class="com.presphere.core.service.DrugPayerXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.DrugPayerXrefDao" parent="presphereDao"> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+
+<!-- 	<bean id="pbmService" class="com.presphere.core.service.PbmService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PbmDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PbmRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>			 -->
+<!-- 	<bean id="drugPbmXrefService" class="com.presphere.core.service.DrugPbmXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.DrugPbmXrefDao" parent="presphereDao"> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>			 -->
+<!-- 	<bean id="addressService" class="com.presphere.core.service.AddressService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.AddressDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.AddressRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>				 -->
+<!-- 	<bean id="patientAddressXrefService" class="com.presphere.core.service.PatientAddressXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PatientAddressXrefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PatientAddressXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+	
+<!-- 	<bean id="prescriberDrugProfileService" class="com.presphere.core.service.PrescriberDrugProfileService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PrescriberDrugProfileDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PrescriberDrugProfileRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="prescriberDrugProfileDefService" class="com.presphere.core.service.PrescriberDrugProfileDefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PrescriberDrugProfileDefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PrescriberDrugProfileDefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+<!-- 	<bean id="prescriberAddressXrefService" class="com.presphere.core.service.PrescriberAddressXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PrescriberAddressXrefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PrescriberAddressXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>			 -->
+
+<!-- 	<bean id="vendorAuthDefService" class="com.presphere.core.service.VendorAuthDefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.VendorAuthDefDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.VendorAuthDefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="pharmacyService" class="com.presphere.core.service.PharmacyService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PharmacyDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PharmacyRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+	
+<!-- 	<bean id="userRoleService" class="com.presphere.core.service.UserRoleService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.UserRoleDao" parent="presphereDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.UserRoleRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="userRoleXrefService" class="com.presphere.core.service.UserRoleXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.UserRoleXrefDao" parent="presphereDao"> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+
+<!-- 	<bean id="pharmacyUserXrefService" class="com.presphere.core.service.PharmacyUserXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PharmacyUserXrefDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PharmacyUserXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="toteService" class="com.presphere.core.service.ToteService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.ToteDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.ToteRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+
+<!-- 	<bean id="fillMappingService" class="com.presphere.core.service.FillMappingService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.FillMappingDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.FillMappingRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="prescriptionService" class="com.presphere.core.service.PrescriptionService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.PrescriptionDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.PrescriptionRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+
+<!-- 	<bean id="rxHistoryService" class="com.presphere.core.service.RxHistoryService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.RxHistoryDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.RxHistoryRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+
+<!-- 	<bean id="queueService" class="com.presphere.core.service.QueueService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.QueueDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.QueueRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="userRoleQueueXrefService" class="com.presphere.core.service.UserRoleQueueXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.UserRoleQueueXrefDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.UserRoleQueueXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+
+<!-- 	<bean id="ndcService" class="com.presphere.core.service.NdcService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.NdcDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.NdcRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+<!-- 	<bean id="drugIngredientService" class="com.presphere.core.service.DrugIngredientService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.DrugIngredientDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.DrugIngredientRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+<!-- 	<bean id="ndcIngredientXrefService" class="com.presphere.core.service.NdcIngredientXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.NdcIngredientXrefDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.NdcIngredientXrefRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+<!-- 	<bean id="rxNdcService" class="com.presphere.core.service.RxNdcService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.RxNdcDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.RxNdcRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+
+<!-- 	<bean id="trainingService" class="com.presphere.core.service.TrainingService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.TrainingDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.TrainingRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 		    </bean> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="staffTrainingService" class="com.presphere.core.service.StaffTrainingService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.StaffTrainingDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		    			<bean class="com.presphere.core.rowmapper.StaffTrainingRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		    		</property> -->
+<!-- 		    </bean> -->
+<!--    		</property> -->
+<!-- 	</bean>		 -->
+	
+<!-- 	<bean id="trainingRoleXrefService" class="com.presphere.core.service.TrainingRoleXrefService" parent="presphereService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.presphere.core.dao.TrainingRoleXrefDao" parent="presphereDao"/> -->
+<!--    		</property> -->
+<!-- 	</bean>	 -->
+	
+<!-- 	<bean id="entityLockService" class="com.presphere.core.service.EntityLockService" parent="presphereService"> -->
+<!--   		<property name="dao"> -->
+<!--  		    <bean class="com.presphere.core.dao.EntityLockDao" parent="presphereDao"> -->
+<!-- 		    		<property name="rowMapper"> -->
+<!-- 		             <bean class="com.presphere.core.rowmapper.EntityLockRowMapper" parent="presphereRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 		    </bean> -->
+<!-- 		</property>     -->
+<!-- 	</bean>		 -->
+</beans>
