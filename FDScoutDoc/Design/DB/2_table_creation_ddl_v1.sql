@@ -38,7 +38,13 @@ create table ps_data_dictionary (
     create unique index PRIMARY on fdscoutc_dev.fds_meta_data(meta_data_id);
 
 
-
+create table fdscoutc_dev.ps_portal_access_log (
+	 log_id				int NOT NULL AUTO_INCREMENT,
+	 ip_address			varchar(50) not null,
+	 create_time 		DATETIME DEFAULT CURRENT_TIMESTAMP,
+	 PRIMARY KEY (log_id)
+) ENGINE=InnoDB;         
+ALTER TABLE ps_portal_access_log AUTO_INCREMENT=1;
 
 
 
@@ -107,13 +113,7 @@ create table ps_user_session (
 ) ENGINE=InnoDB;         
 
 
-create table ps_portal_access_log (
-	 log_id				int NOT NULL AUTO_INCREMENT,
-	 ip_address			varchar(50) not null,
-	 create_time 		DATETIME DEFAULT CURRENT_TIMESTAMP,
-	 PRIMARY KEY (log_id)
-) ENGINE=InnoDB;         
-ALTER TABLE ps_portal_access_log AUTO_INCREMENT=1;
+
 
 
 
