@@ -1,7 +1,8 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
-import org.json.JSONArray;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -20,7 +21,7 @@ public class JsonImport {
 			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader("c:\\resource\\sample.json"));
 
 			JSONArray metaArray = new JSONArray();
-			metaArray.put(jsonFile.get("meta"));
+			metaArray.add(jsonFile.get("meta"));
 			org.json.simple.JSONObject metaDataObject = (org.json.simple.JSONObject) metaArray.get(0);
 				MetaDataBean metaData = new MetaDataBean();
 				metaData.setLastUpdateDate(FDScoutUtility.getStrToSqlDate((String)metaDataObject.get("last_updated"), "yyyy-MM-dd"));
@@ -43,7 +44,7 @@ public class JsonImport {
 				System.out.println(resultCounts.get("limit"));	
 			
 			JSONArray resultArray = new JSONArray();
-			resultArray.put(jsonFile.get("results"));
+			resultArray.add(jsonFile.get("results"));
 			org.json.simple.JSONArray resultDataArray = (org.json.simple.JSONArray) resultArray.get(0);
 			for (Object result : resultDataArray) {
 				org.json.simple.JSONObject resultObject = (org.json.simple.JSONObject) result;
