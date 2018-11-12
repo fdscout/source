@@ -67,503 +67,524 @@
    		</property>
 	</bean>
 
-<!-- 	<bean id="portalAccessLogService" class="com.fdscout.core.service.PortalAccessLogService" parent="fdscoutService"> -->
+	<bean id="browserConfigService" class="com.fdscout.core.model.service.BrowserConfigService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.BrowserConfigDao" parent="coreDao">
+ 		        <property name="rowMapper">
+		             <bean class="com.fdscout.core.model.rowmapper.BrowserConfigRowMapper" parent="coreRowMapper"/>
+		        </property>
+			</bean>
+   		</property>
+	</bean>	
+
+	<bean id="portalAccessLogService" class="com.fdscout.core.model.service.PortalAccessLogService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.PortalAccessLogDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.PortalAccessLogRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+
+
+<!-- 	<bean id="portalAccessLogService" class="com.fdscout.core.service.PortalAccessLogService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PortalAccessLogDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PortalAccessLogDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> --> 
-<!-- 	             <bean class="com.fdscout.core.rowmapper.PortalAccessLogRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 	             <bean class="com.fdscout.core.rowmapper.PortalAccessLogRowMapper" parent="coreRowMapper"/> -->
 <!--  		        </property>  --> 
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="fdscoutUserService" class="com.fdscout.core.service.fdscoutUserService" parent="fdscoutService"> -->
+<!-- 	<bean id="fdscoutUserService" class="com.fdscout.core.service.fdscoutUserService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.fdscoutUserDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.fdscoutUserDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.fdscoutUserRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.fdscoutUserRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!--    		<property name="pharmacyUserXrefService" ref="pharmacyUserXrefService" /> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="pharmacyStaffService" class="com.fdscout.core.service.PharmacyStaffService" parent="fdscoutService"> -->
+<!-- 	<bean id="pharmacyStaffService" class="com.fdscout.core.service.PharmacyStaffService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PharmacyStaffDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PharmacyStaffDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PharmacyStaffRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PharmacyStaffRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="menuTabService" class="com.fdscout.core.service.MenuTabService" parent="fdscoutService"> -->
+<!-- 	<bean id="menuTabService" class="com.fdscout.core.service.MenuTabService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.MenuTabDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.MenuTabDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.MenuTabRowMapper" parent="fdscoutRowMapper"/> -->
-<!-- 		        </property> -->
-<!-- 			</bean> -->
-<!--    		</property> -->
-<!-- 	</bean> -->
-
-<!-- 	<bean id="staffTimeOffService" class="com.fdscout.core.service.StaffTimeOffService" parent="fdscoutService"> -->
-<!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.StaffTimeOffDao" parent="fdscoutDao"> -->
-<!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.StaffTimeOffRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.MenuTabRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 
-<!-- 	<bean id="propertyService" class="com.fdscout.core.service.PropertyService" parent="fdscoutService"> -->
+<!-- 	<bean id="staffTimeOffService" class="com.fdscout.core.service.StaffTimeOffService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PropertyDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.StaffTimeOffDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PropertyRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.StaffTimeOffRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 
-<!-- 	<bean id="patientDemoInfoService" class="com.fdscout.core.service.PatientDemoInfoService" parent="fdscoutService"> -->
+<!-- 	<bean id="propertyService" class="com.fdscout.core.service.PropertyService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PatientDemoInfoDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PropertyDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientDemoInfoRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PropertyRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 
-<!-- 	<bean id="patientDrugProfileService" class="com.fdscout.core.service.PatientDrugProfileService" parent="fdscoutService"> -->
+<!-- 	<bean id="patientDemoInfoService" class="com.fdscout.core.service.PatientDemoInfoService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PatientDrugProfileDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PatientDemoInfoDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientDrugProfileRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientDemoInfoRowMapper" parent="coreRowMapper"/> -->
+<!-- 		        </property> -->
+<!-- 			</bean> -->
+<!--    		</property> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="patientDrugProfileService" class="com.fdscout.core.service.PatientDrugProfileService" parent="coreService"> -->
+<!--    		<property name="dao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PatientDrugProfileDao" parent="coreDao"> -->
+<!--  		        <property name="rowMapper"> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientDrugProfileRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="patientDrugProfileDefService" class="com.fdscout.core.service.PatientDrugProfileDefService" parent="fdscoutService"> -->
+<!-- 	<bean id="patientDrugProfileDefService" class="com.fdscout.core.service.PatientDrugProfileDefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PatientDrugProfileDefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PatientDrugProfileDefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientDrugProfileDefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientDrugProfileDefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="patientViewHistoryService" class="com.fdscout.core.service.PatientViewHistoryService" parent="fdscoutService"> -->
+<!-- 	<bean id="patientViewHistoryService" class="com.fdscout.core.service.PatientViewHistoryService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PatientViewHistoryDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PatientViewHistoryDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientViewHistoryRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientViewHistoryRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="patientOrgXrefService" class="com.fdscout.core.service.PatientOrgXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="patientOrgXrefService" class="com.fdscout.core.service.PatientOrgXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PatientOrgXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PatientOrgXrefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientOrgXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientOrgXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="phoneService" class="com.fdscout.core.service.PhoneService" parent="fdscoutService"> -->
+<!-- 	<bean id="phoneService" class="com.fdscout.core.service.PhoneService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PhoneDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PhoneDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PhoneRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PhoneRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="patientPhoneXrefService" class="com.fdscout.core.service.PatientPhoneXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="patientPhoneXrefService" class="com.fdscout.core.service.PatientPhoneXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PatientPhoneXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PatientPhoneXrefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientPhoneXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientPhoneXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
-<!-- 	<bean id="drugService" class="com.fdscout.core.service.DrugService" parent="fdscoutService"> -->
+<!-- 	<bean id="drugService" class="com.fdscout.core.service.DrugService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.DrugDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.DrugDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.DrugRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.DrugRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
-<!-- 	<bean id="diseaseStateService" class="com.fdscout.core.service.DiseaseStateService" parent="fdscoutService"> -->
+<!-- 	<bean id="diseaseStateService" class="com.fdscout.core.service.DiseaseStateService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.DiseaseStateDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.DiseaseStateDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.DiseaseStateRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.DiseaseStateRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
-<!-- 	<bean id="drugOrgXrefService" class="com.fdscout.core.service.DrugOrgXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="drugOrgXrefService" class="com.fdscout.core.service.DrugOrgXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.DrugOrgXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.DrugOrgXrefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.DrugOrgXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.DrugOrgXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
-<!-- 	<bean id="organizationService" class="com.fdscout.core.service.OrganizationService" parent="fdscoutService"> -->
+<!-- 	<bean id="organizationService" class="com.fdscout.core.service.OrganizationService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.OrganizationDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.OrganizationDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.OrganizationRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.OrganizationRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
 	
-<!-- 	<bean id="prescriberDemoInfoService" class="com.fdscout.core.service.PrescriberDemoInfoService" parent="fdscoutService"> -->
+<!-- 	<bean id="prescriberDemoInfoService" class="com.fdscout.core.service.PrescriberDemoInfoService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PrescriberDemoInfoDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PrescriberDemoInfoDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberDemoInfoRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberDemoInfoRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="prescriberPhoneXrefService" class="com.fdscout.core.service.PrescriberPhoneXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="prescriberPhoneXrefService" class="com.fdscout.core.service.PrescriberPhoneXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PrescriberPhoneXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PrescriberPhoneXrefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberPhoneXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberPhoneXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="prescriberViewHistoryService" class="com.fdscout.core.service.PrescriberViewHistoryService" parent="fdscoutService"> -->
+<!-- 	<bean id="prescriberViewHistoryService" class="com.fdscout.core.service.PrescriberViewHistoryService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PrescriberViewHistoryDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PrescriberViewHistoryDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberViewHistoryRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberViewHistoryRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="riskTypeService" class="com.fdscout.core.service.RiskTypeService" parent="fdscoutService"> -->
+<!-- 	<bean id="riskTypeService" class="com.fdscout.core.service.RiskTypeService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.RiskTypeDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.RiskTypeDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.RiskTypeRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.RiskTypeRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
 	
-<!-- 	<bean id="browserConfigService" class="com.fdscout.core.service.BrowserConfigService" parent="fdscoutService"> -->
+<!-- 	<bean id="browserConfigService" class="com.fdscout.core.service.BrowserConfigService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.BrowserConfigDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.BrowserConfigDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.BrowserConfigRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.BrowserConfigRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="userDeviceService" class="com.fdscout.core.service.UserDeviceService" parent="fdscoutService"> -->
+<!-- 	<bean id="userDeviceService" class="com.fdscout.core.service.UserDeviceService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.UserDeviceDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.UserDeviceDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.UserDeviceRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.UserDeviceRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
-<!-- 	<bean id="icdCodeService" class="com.fdscout.core.service.IcdCodeService" parent="fdscoutService"> -->
+<!-- 	<bean id="icdCodeService" class="com.fdscout.core.service.IcdCodeService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.IcdCodeDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.IcdCodeDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.IcdCodeRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.IcdCodeRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
-<!-- 	<bean id="drugIcdCodeXrefService" class="com.fdscout.core.service.DrugIcdCodeXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="drugIcdCodeXrefService" class="com.fdscout.core.service.DrugIcdCodeXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.DrugIcdCodeXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.DrugIcdCodeXrefDao" parent="coreDao"> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>			 -->
-<!-- 	<bean id="payerService" class="com.fdscout.core.service.PayerService" parent="fdscoutService"> -->
+<!-- 	<bean id="payerService" class="com.fdscout.core.service.PayerService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PayerDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PayerDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PayerRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PayerRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>			 -->
 
-<!-- 	<bean id="drugPayerXrefService" class="com.fdscout.core.service.DrugPayerXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="drugPayerXrefService" class="com.fdscout.core.service.DrugPayerXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.DrugPayerXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.DrugPayerXrefDao" parent="coreDao"> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 
-<!-- 	<bean id="pbmService" class="com.fdscout.core.service.PbmService" parent="fdscoutService"> -->
+<!-- 	<bean id="pbmService" class="com.fdscout.core.service.PbmService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PbmDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PbmDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PbmRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PbmRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>			 -->
-<!-- 	<bean id="drugPbmXrefService" class="com.fdscout.core.service.DrugPbmXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="drugPbmXrefService" class="com.fdscout.core.service.DrugPbmXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.DrugPbmXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.DrugPbmXrefDao" parent="coreDao"> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>			 -->
-<!-- 	<bean id="addressService" class="com.fdscout.core.service.AddressService" parent="fdscoutService"> -->
+<!-- 	<bean id="addressService" class="com.fdscout.core.service.AddressService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.AddressDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.AddressDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.AddressRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.AddressRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>				 -->
-<!-- 	<bean id="patientAddressXrefService" class="com.fdscout.core.service.PatientAddressXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="patientAddressXrefService" class="com.fdscout.core.service.PatientAddressXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PatientAddressXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PatientAddressXrefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientAddressXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PatientAddressXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
 	
-<!-- 	<bean id="prescriberDrugProfileService" class="com.fdscout.core.service.PrescriberDrugProfileService" parent="fdscoutService"> -->
+<!-- 	<bean id="prescriberDrugProfileService" class="com.fdscout.core.service.PrescriberDrugProfileService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PrescriberDrugProfileDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PrescriberDrugProfileDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberDrugProfileRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberDrugProfileRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="prescriberDrugProfileDefService" class="com.fdscout.core.service.PrescriberDrugProfileDefService" parent="fdscoutService"> -->
+<!-- 	<bean id="prescriberDrugProfileDefService" class="com.fdscout.core.service.PrescriberDrugProfileDefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PrescriberDrugProfileDefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PrescriberDrugProfileDefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberDrugProfileDefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberDrugProfileDefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
-<!-- 	<bean id="prescriberAddressXrefService" class="com.fdscout.core.service.PrescriberAddressXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="prescriberAddressXrefService" class="com.fdscout.core.service.PrescriberAddressXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PrescriberAddressXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PrescriberAddressXrefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberAddressXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriberAddressXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>			 -->
 
-<!-- 	<bean id="vendorAuthDefService" class="com.fdscout.core.service.VendorAuthDefService" parent="fdscoutService"> -->
+<!-- 	<bean id="vendorAuthDefService" class="com.fdscout.core.service.VendorAuthDefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.VendorAuthDefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.VendorAuthDefDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.VendorAuthDefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.VendorAuthDefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="pharmacyService" class="com.fdscout.core.service.PharmacyService" parent="fdscoutService"> -->
+<!-- 	<bean id="pharmacyService" class="com.fdscout.core.service.PharmacyService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PharmacyDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PharmacyDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PharmacyRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PharmacyRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
 	
-<!-- 	<bean id="userRoleService" class="com.fdscout.core.service.UserRoleService" parent="fdscoutService"> -->
+<!-- 	<bean id="userRoleService" class="com.fdscout.core.service.UserRoleService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.UserRoleDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.UserRoleDao" parent="coreDao"> -->
 <!--  		        <property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.UserRoleRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.UserRoleRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="userRoleXrefService" class="com.fdscout.core.service.UserRoleXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="userRoleXrefService" class="com.fdscout.core.service.UserRoleXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.UserRoleXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.UserRoleXrefDao" parent="coreDao"> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
 
-<!-- 	<bean id="pharmacyUserXrefService" class="com.fdscout.core.service.PharmacyUserXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="pharmacyUserXrefService" class="com.fdscout.core.service.PharmacyUserXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PharmacyUserXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PharmacyUserXrefDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PharmacyUserXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PharmacyUserXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="toteService" class="com.fdscout.core.service.ToteService" parent="fdscoutService"> -->
+<!-- 	<bean id="toteService" class="com.fdscout.core.service.ToteService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.ToteDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.ToteDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.ToteRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.ToteRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 
-<!-- 	<bean id="fillMappingService" class="com.fdscout.core.service.FillMappingService" parent="fdscoutService"> -->
+<!-- 	<bean id="fillMappingService" class="com.fdscout.core.service.FillMappingService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.FillMappingDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.FillMappingDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.FillMappingRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.FillMappingRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="prescriptionService" class="com.fdscout.core.service.PrescriptionService" parent="fdscoutService"> -->
+<!-- 	<bean id="prescriptionService" class="com.fdscout.core.service.PrescriptionService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.PrescriptionDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.PrescriptionDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriptionRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.PrescriptionRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 
-<!-- 	<bean id="rxHistoryService" class="com.fdscout.core.service.RxHistoryService" parent="fdscoutService"> -->
+<!-- 	<bean id="rxHistoryService" class="com.fdscout.core.service.RxHistoryService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.RxHistoryDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.RxHistoryDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.RxHistoryRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.RxHistoryRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 
-<!-- 	<bean id="queueService" class="com.fdscout.core.service.QueueService" parent="fdscoutService"> -->
+<!-- 	<bean id="queueService" class="com.fdscout.core.service.QueueService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.QueueDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.QueueDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.QueueRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.QueueRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="userRoleQueueXrefService" class="com.fdscout.core.service.UserRoleQueueXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="userRoleQueueXrefService" class="com.fdscout.core.service.UserRoleQueueXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.UserRoleQueueXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.UserRoleQueueXrefDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.UserRoleQueueXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.UserRoleQueueXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 
-<!-- 	<bean id="ndcService" class="com.fdscout.core.service.NdcService" parent="fdscoutService"> -->
+<!-- 	<bean id="ndcService" class="com.fdscout.core.service.NdcService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.NdcDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.NdcDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.NdcRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.NdcRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
-<!-- 	<bean id="drugIngredientService" class="com.fdscout.core.service.DrugIngredientService" parent="fdscoutService"> -->
+<!-- 	<bean id="drugIngredientService" class="com.fdscout.core.service.DrugIngredientService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.DrugIngredientDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.DrugIngredientDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.DrugIngredientRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.DrugIngredientRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
-<!-- 	<bean id="ndcIngredientXrefService" class="com.fdscout.core.service.NdcIngredientXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="ndcIngredientXrefService" class="com.fdscout.core.service.NdcIngredientXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.NdcIngredientXrefDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.NdcIngredientXrefDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.NdcIngredientXrefRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.NdcIngredientXrefRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
-<!-- 	<bean id="rxNdcService" class="com.fdscout.core.service.RxNdcService" parent="fdscoutService"> -->
+<!-- 	<bean id="rxNdcService" class="com.fdscout.core.service.RxNdcService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.RxNdcDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.RxNdcDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.RxNdcRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.RxNdcRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 			</bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
 
-<!-- 	<bean id="trainingService" class="com.fdscout.core.service.TrainingService" parent="fdscoutService"> -->
+<!-- 	<bean id="trainingService" class="com.fdscout.core.service.TrainingService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.TrainingDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.TrainingDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.TrainingRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.TrainingRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 		    </bean> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="staffTrainingService" class="com.fdscout.core.service.StaffTrainingService" parent="fdscoutService"> -->
+<!-- 	<bean id="staffTrainingService" class="com.fdscout.core.service.StaffTrainingService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.StaffTrainingDao" parent="fdscoutDao"> -->
+<!-- 		    <bean class="com.fdscout.core.dao.StaffTrainingDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		    			<bean class="com.fdscout.core.rowmapper.StaffTrainingRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		    			<bean class="com.fdscout.core.rowmapper.StaffTrainingRowMapper" parent="coreRowMapper"/> -->
 <!-- 		    		</property> -->
 <!-- 		    </bean> -->
 <!--    		</property> -->
 <!-- 	</bean>		 -->
 	
-<!-- 	<bean id="trainingRoleXrefService" class="com.fdscout.core.service.TrainingRoleXrefService" parent="fdscoutService"> -->
+<!-- 	<bean id="trainingRoleXrefService" class="com.fdscout.core.service.TrainingRoleXrefService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
-<!-- 		    <bean class="com.fdscout.core.dao.TrainingRoleXrefDao" parent="fdscoutDao"/> -->
+<!-- 		    <bean class="com.fdscout.core.dao.TrainingRoleXrefDao" parent="coreDao"/> -->
 <!--    		</property> -->
 <!-- 	</bean>	 -->
 	
-<!-- 	<bean id="entityLockService" class="com.fdscout.core.service.EntityLockService" parent="fdscoutService"> -->
+<!-- 	<bean id="entityLockService" class="com.fdscout.core.service.EntityLockService" parent="coreService"> -->
 <!--   		<property name="dao"> -->
-<!--  		    <bean class="com.fdscout.core.dao.EntityLockDao" parent="fdscoutDao"> -->
+<!--  		    <bean class="com.fdscout.core.dao.EntityLockDao" parent="coreDao"> -->
 <!-- 		    		<property name="rowMapper"> -->
-<!-- 		             <bean class="com.fdscout.core.rowmapper.EntityLockRowMapper" parent="fdscoutRowMapper"/> -->
+<!-- 		             <bean class="com.fdscout.core.rowmapper.EntityLockRowMapper" parent="coreRowMapper"/> -->
 <!-- 		        </property> -->
 <!-- 		    </bean> -->
 <!-- 		</property>     -->

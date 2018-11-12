@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context path="/FDScout" docBase="FDScout" crossContext="true" reloadable="true" debug="1">
+
+    <Resource name="jdbc/FDScoutDB" 
+    		  auth="Container" 
+    		  type="javax.sql.DataSource"
+              maxTotal="100" 
+              maxIdle="30" 
+              maxWaitMillis="10000"
+              username="fdscoutc_webuser" 
+              password="Rec4Ana*" 
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://64.20.63.204:3306/fdscoutc_dev"/>
+</Context>

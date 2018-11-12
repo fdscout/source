@@ -55,9 +55,9 @@
 <!--   <listener> -->
 <!--     <listener-class>com.fdscout.context.listener.FDScoutSessionAttributeBindingListener</listener-class> -->
 <!--   </listener> -->
-<!--   <listener> -->
-<!--     <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class> -->
-<!--   </listener> -->
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
   <listener>
     <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
   </listener>

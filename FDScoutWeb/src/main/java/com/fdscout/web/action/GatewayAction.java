@@ -46,12 +46,12 @@ public class GatewayAction extends FDScoutAction {
 		logger.info("Browswer: " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
 		portalAccessLogService.logPortalAccess(WebContext.getServletRequest().getRemoteAddr());
 		//check for browser compatibility.
-		if(!browserConfigService.isThisASupportedBrowserVersion(ua)) {
-			logger.info("Browswer Version Not supported : " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
-			return "browserError";
-		} else {
-			logger.info("Browser version supported...");
-		}
+//		if(!browserConfigService.isThisASupportedBrowserVersion(ua)) {
+//			logger.info("Browswer Version Not supported : " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
+//			return "browserError";
+//		} else {
+//			logger.info("Browser version supported...");
+//		}
 
 		return SUCCESS;
 	}
