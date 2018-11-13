@@ -17,13 +17,13 @@ create table ps_data_dictionary (
        state VARCHAR(20),
        country VARCHAR(20),
        postal_cd VARCHAR(20),
-       create_time TIMESTAMP default 'CURRENT_TIMESTAMP' not null,
+       create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
        primary key (address_id)
     );
     create unique index PRIMARY on fdscoutc_dev.fds_address(address_id);
 
-
-    create table fdscoutc_dev.fds_meta_data(
+drop table fds_meta_data;
+    create table fds_meta_data(
        meta_data_id INT not null auto_increment,
        last_update_dt DATETIME,
        terms VARCHAR(50),
@@ -32,10 +32,10 @@ create table ps_data_dictionary (
        results_limit MEDIUMINT,
        license VARCHAR(50),
        disclaimer VARCHAR(500),
-       create_time TIMESTAMP default 'CURRENT_TIMESTAMP' not null,
+       create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
        primary key (meta_data_id)
     );
-    create unique index PRIMARY on fdscoutc_dev.fds_meta_data(meta_data_id);
+    ALTER TABLE fdscoutc_dev.fds_meta_data AUTO_INCREMENT=1101;
 
 
 	create table fdscoutc_dev.fds_portal_access_log (

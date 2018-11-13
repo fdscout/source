@@ -24,8 +24,8 @@ public class GatewayAction extends FDScoutAction {
 	private PortalAccessLogService portalAccessLogService;
 	private BrowserConfigService browserConfigService;
 	
-//    @Action(value="/start", results={@Result(name="success", type="tiles", location="testTemplate")})
-    @Action(value="/start", results={@Result(name="success",  location="/jsp/test.jsp")})
+    @Action(value="/start", results={@Result(name="success", type="tiles", location="masterTemplate")})
+//    @Action(value="/start", results={@Result(name="success",  location="/jsp/test.jsp")})
 	public String showGatewayPage() {
 		try {
 			WebContext.getServletRequest().getRemoteAddr();

@@ -8,8 +8,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.fdscout.core.context.CoreContext;
 import com.fdscout.core.model.bean.FoodRecallBean;
 import com.fdscout.core.model.bean.MetaDataBean;
+import com.fdscout.core.model.service.MetaDataService;
 import com.fdscout.core.util.CoreUtility;
 
 public class FoodRecallRecordParser {
@@ -30,6 +32,8 @@ public class FoodRecallRecordParser {
 				metaData.setTotalRecordCount((Long)resultCounts.get("total"));
 				metaData.setSkippedRecordCount((Long)resultCounts.get("skip"));
 				metaData.setLimitRecordCount((Long)resultCounts.get("limit"));
+				
+				((MetaDataService)CoreContext.getBean("metaDataService")).save(metaData);
 				
 				System.out.println(metaDataObject.get("last_updated"));	
 				System.out.println(metaDataObject.get("terms"));	

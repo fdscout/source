@@ -1,0 +1,1 @@
+<img src="images/headerphoto.jpg" width="820" height="120" alt="headerphoto" class="no-border" />
