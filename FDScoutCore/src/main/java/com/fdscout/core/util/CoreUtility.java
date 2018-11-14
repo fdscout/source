@@ -12,8 +12,6 @@ import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.fdscout.core.model.bean.PhoneBean;
-
 public class CoreUtility {
 	public static String getRandomRxNumber() {
 		int length = 10;
@@ -94,25 +92,25 @@ public class CoreUtility {
 		return string == null || string.trim().length() == 0;
 	}
 	
-	public static String getFullFormattedPhoneNumber(PhoneBean phone) {
-		StringBuilder phoneNumber = new StringBuilder();
-		if (phone == null) {
-			return "";
-		}
-		if (phone.getNumber().length() == 10) {
-			phoneNumber.append("(" + phone.getNumber().substring(0,3) + ")" + 
-									 phone.getNumber().substring(3,6) + "-" + 
-									 phone.getNumber().substring(6));
-		}
-		else {
-			phoneNumber.append(phone.getNumber());
-		}
-		if (!CoreUtility.isEmpty(phone.getExtention())) {
-			phoneNumber.append(" ext. " + phone.getExtention());
-		}
-		return phoneNumber.toString();
-	}
-	
+//	public static String getFullFormattedPhoneNumber(PhoneBean phone) {
+//		StringBuilder phoneNumber = new StringBuilder();
+//		if (phone == null) {
+//			return "";
+//		}
+//		if (phone.getNumber().length() == 10) {
+//			phoneNumber.append("(" + phone.getNumber().substring(0,3) + ")" + 
+//									 phone.getNumber().substring(3,6) + "-" + 
+//									 phone.getNumber().substring(6));
+//		}
+//		else {
+//			phoneNumber.append(phone.getNumber());
+//		}
+//		if (!CoreUtility.isEmpty(phone.getExtention())) {
+//			phoneNumber.append(" ext. " + phone.getExtention());
+//		}
+//		return phoneNumber.toString();
+//	}
+//	
 	public static String getLogicCodeFromDrugName(String drugName) {
 		if (drugName != null) {
 			String logicCode = drugName.replaceAll(" ", "");

@@ -2,7 +2,7 @@ package com.fdscout.core.model.bean;
 
 import java.sql.Date;
 
-public class MetaDataBean extends CoreBean {
+public abstract class MetaDataBean extends CoreBean {
 	private Date lastUpdateDate;
 	private String terms;
 	private String license;
@@ -10,7 +10,15 @@ public class MetaDataBean extends CoreBean {
 	private long skippedRecordCount;
 	private long totalRecordCount;
 	private long limitRecordCount;
+	private int resultTypeCode;
 	
+	
+	public int getResultTypeCode() {
+		return resultTypeCode;
+	}
+	public void setResultTypeCode(int resultTypeCode) {
+		this.resultTypeCode = resultTypeCode;
+	}
 	public Date getLastUpdateDate() {
 		return lastUpdateDate;
 	}

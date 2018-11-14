@@ -6,8 +6,8 @@ public class MetaDataDao extends CoreDao {
 	protected String buildCreateQuery() {
 		StringBuilder query = new StringBuilder();
 		query.append("insert into fdscoutc_dev.fds_meta_data ");
-		query.append("(meta_data_id, last_update_dt, terms, results_skip, results_total, results_limit, license, disclaimer, create_time) ");
-		query.append("values (:beanId, :lastUpdateDate, :terms, :skippedRecordCount, :totalRecordCount, :limitRecordCount,  :license, :disclaimer, :createTime) ");
+		query.append("(meta_data_id, result_type_cd, last_update_dt, terms, results_skip, results_total, results_limit, license, disclaimer) ");
+		query.append("values (:beanId, :resultTypeCode, :lastUpdateDate, :terms, :skippedRecordCount, :totalRecordCount, :limitRecordCount,  :license, :disclaimer) ");
 		return query.toString();
 	}
 

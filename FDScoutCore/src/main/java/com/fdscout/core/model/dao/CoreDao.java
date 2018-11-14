@@ -21,14 +21,14 @@ public abstract class CoreDao {
 	protected CoreRowMapper rowMapper;
 	protected SqlParameterSource paramSource;
 
-	public long create(CoreBean fdscoutBean) {
+	public long create(CoreBean coreBean) {
 		long beanId = 0l;
 		try {
-			fdscoutBean.setCreateTime(CoreUtility.getCurrentTimestamp());
+			coreBean.setCreateTime(CoreUtility.getCurrentTimestamp());
 			KeyHolder keyHolder = new GeneratedKeyHolder();
-			createNewRow(fdscoutBean, buildCreateQuery(), keyHolder);
+			createNewRow(coreBean, buildCreateQuery(), keyHolder);
 			beanId = keyHolder.getKey().longValue();
-			fdscoutBean.setBeanId(beanId);
+			coreBean.setBeanId(beanId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Logger.getLogger(this.getClass()).fatal(e);

@@ -8,23 +8,49 @@ create table ps_data_dictionary (
     description		varchar(200)
 ) ENGINE=InnoDB;
 
-
+drop table fdscoutc_dev.fds_address;
     create table fdscoutc_dev.fds_address(
        address_id INT not null auto_increment,
-       street_1 VARCHAR(80),
-       street_2 VARCHAR(80),
-       city VARCHAR(50),
-       state VARCHAR(20),
-       country VARCHAR(20),
-       postal_cd VARCHAR(20),
+       street_1 VARCHAR(180),
+       street_2 VARCHAR(180),
+       city VARCHAR(150),
+       state VARCHAR(100),
+       country VARCHAR(120),
+       postal_cd VARCHAR(50),
        create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
        primary key (address_id)
     );
-    create unique index PRIMARY on fdscoutc_dev.fds_address(address_id);
+--    create unique index PRIMARY on fdscoutc_dev.fds_address(address_id);
+    ALTER TABLE fdscoutc_dev.fds_address AUTO_INCREMENT=1101;
+    
+    drop table fdscoutc_dev.fds_recall;
+    create table fdscoutc_dev.fds_recall(
+       recall_id 		INT not null auto_increment,
+       recall_nr 		VARCHAR(20),
+       recalling_firm 	VARCHAR(500),
+       reason 			VARCHAR(5000),
+       recall_type 		VARCHAR(50),
+       ini_firm_notification VARCHAR(4000),
+       status 			VARCHAR(20),
+       classification 	VARCHAR(20),
+       center_class_dt 	date,
+       report_dt		date,
+       term_dt			date,
+       recall_ini_dt	date,
+       event_id			VARCHAR(20),
+       code_info		VARCHAR(20000),
+       more_code_info	VARCHAR(200),
+       distro_pattern	VARCHAR(5000),
+       create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
+       primary key (recall_id)
+    );
+--    drop index idx_recall_id on fdscoutc_dev.fds_recall;
+--    create unique index idx_recall_id on fdscoutc_dev.fds_recall(recall_id);
+    ALTER TABLE fdscoutc_dev.fds_recall AUTO_INCREMENT=1101;
 
-drop table fds_meta_data;
     create table fds_meta_data(
        meta_data_id INT not null auto_increment,
+       result_type_cd tinyint not null,
        last_update_dt DATETIME,
        terms VARCHAR(50),
        results_skip MEDIUMINT,
@@ -36,7 +62,18 @@ drop table fds_meta_data;
        primary key (meta_data_id)
     );
     ALTER TABLE fdscoutc_dev.fds_meta_data AUTO_INCREMENT=1101;
+    ALTER TABLE fdscoutc_dev.fds_meta_data AUTO_INCREMENT=1101;
 
+	drop table fds_product;
+    create table fds_product(
+       product_id INT not null auto_increment,
+       description	varchar(10000),
+       type			varchar(30),
+       quantity		varchar(4000),
+       create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
+       primary key (product_id)
+    );
+    ALTER TABLE fdscoutc_dev.fds_product AUTO_INCREMENT=1101;
 
 	create table fdscoutc_dev.fds_portal_access_log (
 		 log_id				int NOT NULL AUTO_INCREMENT,
@@ -46,6 +83,20 @@ drop table fds_meta_data;
 	) ENGINE=InnoDB;         
 	ALTER TABLE fds_portal_access_log AUTO_INCREMENT=1;
 	
+    create table fds_recall_xref(
+       recall_xref_id INT not null auto_increment,
+       metaData_id	int,
+       product_id	int,
+       address_id	int,
+       recall_id	int,
+       create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
+       primary key (recall_xref_id)
+    );
+    ALTER TABLE fdscoutc_dev.fds_recall_xref AUTO_INCREMENT=1101;
+
+
+
+
 
 
 

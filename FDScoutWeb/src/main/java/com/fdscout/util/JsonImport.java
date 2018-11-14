@@ -7,8 +7,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.fdscout.core.model.bean.FoodRecallBean;
 import com.fdscout.core.model.bean.MetaDataBean;
+import com.fdscout.core.model.bean.MetaDataFoodBean;
+import com.fdscout.web.parser.RecallWrapper;
 
 public class JsonImport {
 
@@ -22,7 +23,7 @@ public class JsonImport {
 			JSONArray metaArray = new JSONArray();
 			metaArray.add(jsonFile.get("meta"));
 			org.json.simple.JSONObject metaDataObject = (org.json.simple.JSONObject) metaArray.get(0);
-				MetaDataBean metaData = new MetaDataBean();
+				MetaDataBean metaData = new MetaDataFoodBean();
 				metaData.setLastUpdateDate(FDScoutUtility.getStrToSqlDate((String)metaDataObject.get("last_updated"), "yyyy-MM-dd"));
 				metaData.setTerms((String)metaDataObject.get("terms"));
 				metaData.setLicense((String)metaDataObject.get("license"));
@@ -47,7 +48,7 @@ public class JsonImport {
 			org.json.simple.JSONArray resultDataArray = (org.json.simple.JSONArray) resultArray.get(0);
 			for (Object result : resultDataArray) {
 				org.json.simple.JSONObject resultObject = (org.json.simple.JSONObject) result;
-				FoodRecallBean foodRecall = new FoodRecallBean();
+				RecallWrapper foodRecall = new RecallWrapper();
 				foodRecall.getRecall().setClassification((String)resultObject.get("classification"));
 				
 				System.out.println(resultObject.get("classification"));

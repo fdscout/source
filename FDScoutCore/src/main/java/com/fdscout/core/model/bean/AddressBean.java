@@ -1,12 +1,13 @@
-package com.fdscout.core.model.entity;
+package com.fdscout.core.model.bean;
 
-public class Address {
+public class AddressBean extends CoreBean {
 	private String address1;
 	private String address2;
 	private String city;
 	private String state;
 	private String country;
 	private String postalCode;
+	
 	public String getAddress1() {
 		return address1;
 	}

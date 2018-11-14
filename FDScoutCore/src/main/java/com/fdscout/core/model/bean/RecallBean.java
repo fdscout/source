@@ -1,8 +1,8 @@
-package com.fdscout.core.model.entity;
+package com.fdscout.core.model.bean;
 
 import java.sql.Date;
 
-public class Recall {
+public class RecallBean extends CoreBean{
 	private String recallNumber;
 	private String recallingFirm;
 	private String reasonForRecall;
