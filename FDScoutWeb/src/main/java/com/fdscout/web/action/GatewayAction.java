@@ -11,7 +11,7 @@ import com.fdscout.context.WebContext;
 import com.fdscout.core.model.service.BrowserConfigService;
 import com.fdscout.core.model.service.PortalAccessLogService;
 import com.fdscout.core.util.entity.CoreMessage;
-import com.fdscout.web.parser.FoodRecallDataParser;
+import com.fdscout.web.parser.DrugRecallDataParser;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
@@ -29,7 +29,8 @@ public class GatewayAction extends FDScoutAction {
 	public String showGatewayPage() {
 		try {
 			WebContext.getServletRequest().getRemoteAddr();
-			new FoodRecallDataParser().parse("c:\\resource\\food-enforcement-0001-of-0001.json");
+//			new FoodRecallDataParser().parse("c:\\resource\\food-enforcement-0001-of-0001.json");
+			new DrugRecallDataParser().parse("c:\\resource\\drug-enforcement-0001-of-0001.json");
 		}
 		catch (Exception e) {
 			portalAccessLogService.logPortalAccess("unknown");

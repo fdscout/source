@@ -28,9 +28,9 @@ drop table fdscoutc_dev.fds_address;
        recall_id 		INT not null auto_increment,
        recall_nr 		VARCHAR(20),
        recalling_firm 	VARCHAR(500),
-       reason 			VARCHAR(5000),
+       reason 			VARCHAR(3000),
        recall_type 		VARCHAR(50),
-       ini_firm_notification VARCHAR(4000),
+       ini_firm_notification VARCHAR(2000),
        status 			VARCHAR(20),
        classification 	VARCHAR(20),
        center_class_dt 	date,
@@ -38,16 +38,17 @@ drop table fdscoutc_dev.fds_address;
        term_dt			date,
        recall_ini_dt	date,
        event_id			VARCHAR(20),
-       code_info		VARCHAR(20000),
-       more_code_info	VARCHAR(200),
-       distro_pattern	VARCHAR(5000),
+       code_info		VARCHAR(25000),
+       more_code_info	VARCHAR(20000),
+       distro_pattern	VARCHAR(2000),
        create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
        primary key (recall_id)
     );
 --    drop index idx_recall_id on fdscoutc_dev.fds_recall;
 --    create unique index idx_recall_id on fdscoutc_dev.fds_recall(recall_id);
     ALTER TABLE fdscoutc_dev.fds_recall AUTO_INCREMENT=1101;
-
+	
+	drop table  fds_meta_data;
     create table fds_meta_data(
        meta_data_id INT not null auto_increment,
        result_type_cd tinyint not null,
@@ -62,12 +63,11 @@ drop table fdscoutc_dev.fds_address;
        primary key (meta_data_id)
     );
     ALTER TABLE fdscoutc_dev.fds_meta_data AUTO_INCREMENT=1101;
-    ALTER TABLE fdscoutc_dev.fds_meta_data AUTO_INCREMENT=1101;
 
 	drop table fds_product;
     create table fds_product(
        product_id INT not null auto_increment,
-       description	varchar(10000),
+       description	varchar(30000),
        type			varchar(30),
        quantity		varchar(4000),
        create_time TIMESTAMP default CURRENT_TIMESTAMP not null,

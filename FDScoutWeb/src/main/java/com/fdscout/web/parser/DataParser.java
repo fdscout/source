@@ -64,6 +64,7 @@ public abstract class DataParser {
 	
 	private RecallBean saveRecall (org.json.simple.JSONObject resultObject) {
 		RecallBean recall = new RecallBean();
+		System.out.print(resultObject.get("code_info").toString().length() + "...");
 		recall.setRecallNumber((String)resultObject.get("recall_number"));
 		recall.setRecallingFirm((String)resultObject.get("recalling_firm"));
 		recall.setReasonForRecall((String)resultObject.get("reason_for_recall"));
@@ -76,8 +77,17 @@ public abstract class DataParser {
 		recall.setTerminationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("termination_date"), "yyyyMMdd"));
 		recall.setRecallInitiationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("recall_initiation_date"), "yyyyMMdd"));
 		recall.setEventId((String)resultObject.get("event_id"));
-		recall.setCodeInfo((String)resultObject.get("code_info"));
-		recall.setMoreCodeInfo((String)resultObject.get("more_code_info"));
+		if (resultObject.get("code_info").toString().length() > 25000) {
+			recall.setCodeInfo(resultObject.get("code_info").toString().substring(0, 25000));
+			recall.setMoreCodeInfo(resultObject.get("code_info").toString().substring(25000));
+			if (resultObject.get("more_code_info") != null) {
+				recall.setMoreCodeInfo(recall.getMoreCodeInfo() + resultObject.get("more_code_info").toString());
+			}
+		}
+		else {
+			recall.setCodeInfo((String)resultObject.get("code_info"));
+			recall.setMoreCodeInfo((String)resultObject.get("more_code_info"));
+		}	
 		recall.setDistributionPattern((String)resultObject.get("distribution_pattern"));
 		((RecallService)CoreContext.getBean("recallService")).save(recall);
 		return recall;
