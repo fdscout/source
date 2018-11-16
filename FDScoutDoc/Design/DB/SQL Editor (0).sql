@@ -23,3 +23,13 @@ order by a.report_dt desc;
 
 select * from fds_recall  where status = 'Ongoing';
 select * from fds_product where description like '%Safeway%' and status = 'Ongoing';
+
+select count(recall_nr) from fds_recall a
+inner join fds_recall_xref b on a.recall_id = b.recall_id
+inner join fds_meta_data c on b.meta_data_id = c.meta_data_id
+and c.result_type_cd = 2
+order by a.report_dt desc;
+
+select max(report_dt) from fds_recall;
+
+

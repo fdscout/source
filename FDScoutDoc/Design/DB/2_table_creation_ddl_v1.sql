@@ -48,6 +48,22 @@ drop table fdscoutc_dev.fds_address;
 --    create unique index idx_recall_id on fdscoutc_dev.fds_recall(recall_id);
     ALTER TABLE fdscoutc_dev.fds_recall AUTO_INCREMENT=1101;
 	
+--	ALTER TABLE fds_recall CHANGE code_info code_info	VARCHAR(25000) COMMENT 'column id - 1';  
+	
+	
+	drop table  fds_recall_info_ext;
+    create table fds_recall_info_ext(
+       recall_info_ext_id INT not null auto_increment,
+	   recall_id int,
+	   column_id tinyint,
+       text VARCHAR(50000),
+       create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
+       FOREIGN KEY (recall_id) REFERENCES fds_recall(recall_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+       primary key (recall_info_ext_id)
+    );
+    ALTER TABLE fdscoutc_dev.fds_recall_info_ext AUTO_INCREMENT=1101;
+	
+	
 	drop table  fds_meta_data;
     create table fds_meta_data(
        meta_data_id INT not null auto_increment,
@@ -90,9 +106,21 @@ drop table fdscoutc_dev.fds_address;
        address_id	int,
        recall_id	int,
        create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
+       FOREIGN KEY (metaData_id) REFERENCES fds_meta_data(meta_data_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+       FOREIGN KEY (product_id) REFERENCES fds_product(product_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+       FOREIGN KEY (address_id) REFERENCES fds_address(address_id) ON UPDATE CASCADE ON DELETE RESTRICT,
        primary key (recall_xref_id)
     );
     ALTER TABLE fdscoutc_dev.fds_recall_xref AUTO_INCREMENT=1101;
+
+
+ALTER TABLE fds_recall_xref CHANGE metaData_id meta_data_id int;  
+
+ALTER TABLE fds_recall_xref add FOREIGN KEY (meta_data_id) REFERENCES fds_meta_data(meta_data_id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+
+
 
 
 

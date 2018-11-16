@@ -127,6 +127,17 @@
    		</property>
 	</bean>
 	
+	<bean id="recallInfoExtService" class="com.fdscout.core.model.service.RecallInfoExtService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.RecallInfoExtDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.RecallInfoExtRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+	
+	
 <!-- 	<bean id="portalAccessLogService" class="com.fdscout.core.service.PortalAccessLogService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
 <!-- 		    <bean class="com.fdscout.core.dao.PortalAccessLogDao" parent="coreDao"> -->

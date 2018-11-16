@@ -1,5 +1,9 @@
 package com.fdscout.core.model.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class RecallDao extends CoreDao {
 
 	@Override
@@ -11,4 +15,15 @@ public class RecallDao extends CoreDao {
 		return query.toString();
 	}
 
+	public List<String> getRecallNumberSet(int recallTypeCode) {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		query.append("select recall_nr from fds_recall a ");
+		query.append("inner join fds_recall_xref b on a.recall_id = b.recall_id ");
+		query.append("inner join fds_meta_data c on b.meta_data_id = c.meta_data_id ");
+		query.append("and c.result_type_cd = :resultTypeCode ");
+		query.append("order by a.report_dt desc "); 
+		paramMap.put("resultTypeCode", recallTypeCode);
+		return namedParamJdbcTemplate.queryForList(query.toString(), paramMap, String.class);
+	}
 }

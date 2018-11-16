@@ -1,5 +1,7 @@
 package com.fdscout.core.model.service;
 
+import java.util.List;
+
 import com.fdscout.core.model.bean.RecallBean;
 import com.fdscout.core.model.dao.RecallDao;
 
@@ -8,4 +10,7 @@ public class RecallService extends CoreService {
 		((RecallDao)getDao()).create(recall);
 	}
 
+	public List<String> getRecallNumberSet(int recallTypeCode) {
+		return ((RecallDao)getDao()).getRecallNumberSet(recallTypeCode);
+	}
 }
