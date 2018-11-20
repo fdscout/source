@@ -1,3 +1,24 @@
+-- review record that have duplicate recall_nr
+select * from 
+(select count(recall_nr) count, recall_nr from fds_recall 
+group by recall_nr
+) c
+where c.count > 1;
+-- ----------------------------------------------
+
+select c.*, a.* from fds_recall a
+inner join fds_recall_xref b on a.recall_id = b.recall_id
+inner join fds_product c on b.product_id = c.product_id
+ where a.report_dt > STR_TO_DATE('11/10/2018', '%m/%d/%Y');
+
+
+
+update fds_recall set recall_nr = recall_id where recall_nr = '';
+
+select count(*) from fds_recall;
+
+
+
 delete from fds_recall;
 delete from fds_product;
 delete from fds_address;
@@ -33,3 +54,8 @@ order by a.report_dt desc;
 select max(report_dt) from fds_recall;
 
 
+
+
+alter table fds_recall add CONSTRAINT recall_nr_unique UNIQUE (recall_nr);
+
+select * 

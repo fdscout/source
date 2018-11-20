@@ -16,9 +16,9 @@
   <div id="header">
     <h1 id="logo"><span class="green">F</span>ood &amp; <span class="green">D</span>rug <span class="green">Scout</span></h1>
     <h2 id="slogan">Stay healthy, live smart</h2>
-    <form method="post" class="searchform" action="#">
+    <form id="searchForm" method="post" class="searchform" action="search.action">
       <p>
-        <input type="text" name="search_query" class="textbox" />
+        <input type="text" name="searchString" class="textbox" />
         <input type="submit" name="search" class="button" value="Search" />
       </p>
     </form>

@@ -16,9 +16,9 @@
 		<put-attribute name="contentBody" value="/jsp/template/contentBody.jsp"/>
 	</definition>
 	
-<!-- 	<definition name="portalMainStaffTrainingsTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
-<!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/staffTrainingConfirmationMain.jsp"/> -->
-<!-- 	</definition> -->
+	<definition name="searchResult" extends="masterTemplate">
+		<put-attribute name="contentBody" value="/jsp/search/recallList.jsp"/>
+	</definition>
 	
 <!-- 	<definition name="portalMainTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
 <!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/portalLogin.jsp"/> -->

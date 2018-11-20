@@ -139,6 +139,8 @@ public abstract class DataParser {
 		
 		JSONParser parser = new JSONParser();
 		int size = 0;
+		int newRecord = 0;
+		int skippedRecord = 0;
 		try {
 //			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader("c:\\resource\\sample.json"));
 			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader(fullFileName));
@@ -159,7 +161,7 @@ public abstract class DataParser {
 				org.json.simple.JSONObject resultObject = (org.json.simple.JSONObject) result;
 				
 				String recallNumber = (String) resultObject.get("recall_number");
-				if (!recallNumberSet.contains(recallNumber)) {
+				if (recallNumber != null && recallNumber.trim().length()!= 0 && !recallNumberSet.contains(recallNumber)) {
 					AddressBean address = saveAddress(resultObject);
 					ProductBean product = saveProduct(resultObject);
 					RecallBean recall = saveRecall(resultObject);
@@ -171,16 +173,19 @@ public abstract class DataParser {
 					((RecallXrefService)CoreContext.getBean("recallXrefService")).save(recallXref);
 					
 					System.out.println(++size + ": "  + recall.getRecallNumber() + " - " + product.getDescription());
-					
+					++newRecord;
 				}
 				else {
-					System.out.println(recallNumber + " has existed, skipping import.");
+					++skippedRecord;
+					System.out.println(++size + ": " + recallNumber + " has existed, skipping import.");
 				}
 			}
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 			Logger.getLogger(this.getClass()).error(e.toString());
 		}
+		System.out.println("Total: " + size + ", new record: " + newRecord + ", skipped record: " + skippedRecord);
+		System.out.println("\n\n\n");
 		return size;
 	}
 }

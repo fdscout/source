@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fdscout.core.model.bean.RecallBean;
+import com.fdscout.core.util.AccessFlag.BeanDaf;
+
 public class RecallDao extends CoreDao {
 
 	@Override
@@ -25,5 +28,17 @@ public class RecallDao extends CoreDao {
 		query.append("order by a.report_dt desc "); 
 		paramMap.put("resultTypeCode", recallTypeCode);
 		return namedParamJdbcTemplate.queryForList(query.toString(), paramMap, String.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<RecallBean> getRecallListByRecallNumber(String recallNumber) {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		query.append("select recall_id, recall_nr, recalling_firm, reason, recall_type, ini_firm_notification, status, classification, center_class_dt, report_dt, term_dt, recall_ini_dt, event_id, code_info, more_code_info, distro_pattern  ");
+		query.append("from fds_recall ");
+		query.append("where recall_nr = :recallNumber ");
+		query.append("order by recall_ini_dt desc ");
+		paramMap.put("recallNumber", recallNumber);		
+		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
 	}
 }

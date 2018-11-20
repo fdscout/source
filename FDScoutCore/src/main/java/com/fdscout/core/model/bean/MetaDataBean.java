@@ -2,7 +2,7 @@ package com.fdscout.core.model.bean;
 
 import java.sql.Date;
 
-public abstract class MetaDataBean extends CoreBean {
+public class MetaDataBean extends CoreBean {
 	private Date lastUpdateDate;
 	private String terms;
 	private String license;

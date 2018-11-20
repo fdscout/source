@@ -8,4 +8,8 @@ public class ProductService extends CoreService {
 		((ProductDao)getDao()).create(product);
 	}
 
+	public ProductBean getProductById(long productId) {
+		return	((ProductDao)getDao()).getProductById(productId);
+
+	}
 }

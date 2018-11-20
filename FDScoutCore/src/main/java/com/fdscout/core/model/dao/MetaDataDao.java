@@ -1,5 +1,11 @@
 package com.fdscout.core.model.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fdscout.core.model.bean.MetaDataBean;
+import com.fdscout.core.util.AccessFlag.BeanDaf;
+
 public class MetaDataDao extends CoreDao {
 
 	@Override
@@ -9,6 +15,17 @@ public class MetaDataDao extends CoreDao {
 		query.append("(meta_data_id, result_type_cd, last_update_dt, terms, results_skip, results_total, results_limit, license, disclaimer) ");
 		query.append("values (:beanId, :resultTypeCode, :lastUpdateDate, :terms, :skippedRecordCount, :totalRecordCount, :limitRecordCount,  :license, :disclaimer) ");
 		return query.toString();
+	}
+
+	@SuppressWarnings("unchecked")
+	public MetaDataBean getMetaDataById(long metaDataId) {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		query.append("select meta_data_id, result_type_cd, last_update_dt, terms, results_skip, results_total, results_limit, license, disclaimer ");
+		query.append("from fds_meta_data ");
+		query.append("where meta_data_id = :metaDataId ");
+		paramMap.put("metaDataId", metaDataId);		
+		return (MetaDataBean)namedParamJdbcTemplate.queryForObject(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
 	}
 
 	//	@SuppressWarnings("unchecked")
