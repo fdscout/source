@@ -10,7 +10,7 @@ public class RecallBean extends CoreBean{
 	private String initialFirmNotification;
 	private String status;
 	private String classification;
-	private Date centerClassificatonDate;
+	private Date centerClassificationDate;
 	private Date reportDate;
 	private Date terminationDate;
 	private Date recallInitiationDate;
@@ -61,11 +61,11 @@ public class RecallBean extends CoreBean{
 	public void setClassification(String classification) {
 		this.classification = classification;
 	}
-	public Date getCenterClassificatonDate() {
-		return centerClassificatonDate;
+	public Date getCenterClassificationDate() {
+		return centerClassificationDate;
 	}
-	public void setCenterClassificatonDate(Date centerClassificatonDate) {
-		this.centerClassificatonDate = centerClassificatonDate;
+	public void setCenterClassificationDate(Date centerClassificationDate) {
+		this.centerClassificationDate = centerClassificationDate;
 	}
 	public Date getReportDate() {
 		return reportDate;

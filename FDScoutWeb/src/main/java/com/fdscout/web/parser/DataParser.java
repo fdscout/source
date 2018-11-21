@@ -59,7 +59,7 @@ public abstract class DataParser {
 
 	private ProductBean saveProduct(org.json.simple.JSONObject resultObject) {
 		ProductBean product = new ProductBean();
-		product.setDescription((String)resultObject.get("product_description"));
+		product.setDescription(((String)resultObject.get("product_description")).replaceAll("¿", "&reg;"));
 		product.setQuantity((String)resultObject.get("product_quantity"));
 		product.setType((String)resultObject.get("product_type"));
 
@@ -78,7 +78,7 @@ public abstract class DataParser {
 		recall.setInitialFirmNotification((String)resultObject.get("initial_firm_notification"));
 		recall.setStatus((String)resultObject.get("status"));
 		recall.setClassification((String)resultObject.get("classification"));
-		recall.setCenterClassificatonDate(CoreUtility.getStrToSqlDate((String)resultObject.get("center_classification_date"), "yyyyMMdd"));
+		recall.setCenterClassificationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("center_classification_date"), "yyyyMMdd"));
 		recall.setReportDate(CoreUtility.getStrToSqlDate((String)resultObject.get("report_date"), "yyyyMMdd"));
 		recall.setTerminationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("termination_date"), "yyyyMMdd"));
 		recall.setRecallInitiationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("recall_initiation_date"), "yyyyMMdd"));

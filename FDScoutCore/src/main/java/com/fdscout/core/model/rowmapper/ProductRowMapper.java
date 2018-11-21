@@ -11,7 +11,7 @@ public class ProductRowMapper extends CoreRowMapper {
 		ProductBean product = new ProductBean();
 		product.setBeanId(rs.getLong("product_id"));
 		product.setType(rs.getString("type"));
-		product.setDescription(rs.getString("description"));
+		product.setDescription(rs.getString("description").replaceAll("¿", "&reg;"));
 		product.setQuantity(rs.getString("quantity"));
 		return product;
 	}

@@ -17,6 +17,7 @@ import com.fdscout.web.handler.SearchHandler;
 @ParentPackage(value ="com.fdscout.default")
 public class SearchAction extends FDScoutAction {
 	private String searchString;
+	private List<RecallSearchResultBean> recallSearchResultList;
 	private SearchHandler searchHandler;
 
 	public void setSearchHandler(SearchHandler searchHandler) {
@@ -29,7 +30,7 @@ public class SearchAction extends FDScoutAction {
 		return SUCCESS;
 	}
 
-	private List<RecallSearchResultBean> recallSearchResultList;
+
 	
     public List<RecallSearchResultBean> getRecallSearchResultList() {
 		return recallSearchResultList;
@@ -37,6 +38,9 @@ public class SearchAction extends FDScoutAction {
 
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
+	}
+	public String getSearchString() {
+		return searchString;
 	}
 
 }

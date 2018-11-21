@@ -36,7 +36,12 @@
         </tx:attributes>
     </tx:advice>	
     
-    <bean id="searchHandler" class="com.fdscout.web.handler.SearchHandler"/>
+    <bean id="searchHandler" class="com.fdscout.web.handler.SearchHandler">
+    	<property name="recallService" ref="recallService"/>
+    	<property name="recallXrefService" ref="recallXrefService"/>
+    	<property name="metaDataService" ref="metaDataService"/>
+    	<property name="productService" ref="productService"/>
+	</bean>
 <!-- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
 <!-- 		<property name="dataSource" ref="dataSource"/> -->
 <!-- 	</bean> -->

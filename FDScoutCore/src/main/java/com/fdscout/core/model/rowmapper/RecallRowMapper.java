@@ -18,7 +18,7 @@ public class RecallRowMapper extends CoreRowMapper {
 		recall.setInitialFirmNotification(rs.getString("ini_firm_notification"));
 		recall.setStatus(rs.getString("status"));
 		recall.setClassification(rs.getString("classification"));
-		recall.setCenterClassificatonDate(rs.getDate("center_class_dt"));
+		recall.setCenterClassificationDate(rs.getDate("center_class_dt"));
 		recall.setReportDate(rs.getDate("report_dt"));
 		recall.setTerminationDate(rs.getDate("term_dt"));
 		recall.setRecallInitiationDate(rs.getDate("recall_ini_dt"));

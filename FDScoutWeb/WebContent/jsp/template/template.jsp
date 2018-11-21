@@ -9,6 +9,7 @@
 <head>
 <title>Food &amp; Drug Scout</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="style/style.css" type="text/css" />
 <link rel="stylesheet" href="style/BrightSide.css" type="text/css" />
 </head>
 <body>
@@ -16,12 +17,12 @@
   <div id="header">
     <h1 id="logo"><span class="green">F</span>ood &amp; <span class="green">D</span>rug <span class="green">Scout</span></h1>
     <h2 id="slogan">Stay healthy, live smart</h2>
-    <form id="searchForm" method="post" class="searchform" action="search.action">
+    <s:form id="searchForm" method="post" class="searchform" action="search" theme="simple">
       <p>
-        <input type="text" name="searchString" class="textbox" />
+        <s:textfield name="searchString" class="textbox" />
         <input type="submit" name="search" class="button" value="Search" />
       </p>
-    </form>
+    </s:form>
     <ul>
       <li id="current"><a href="#"><span>Home</span></a></li>
       <li><a href="#"><span>News</span></a></li>
