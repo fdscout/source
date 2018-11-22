@@ -11,7 +11,7 @@ inner join fds_recall_xref b on a.recall_id = b.recall_id
 inner join fds_product c on b.product_id = c.product_id
  where a.report_dt > STR_TO_DATE('11/10/2018', '%m/%d/%Y');
 
-
+select distinct status from fds_recall;
 
 update fds_recall set recall_nr = recall_id where recall_nr = '';
 
@@ -42,8 +42,20 @@ inner join fds_product c on b.product_id = c.product_id
 where a.status = 'Ongoing'
 order by a.report_dt desc;
 
-select * from fds_recall  where status = 'Ongoing';
-select * from fds_product where description like '%Safeway%' and status = 'Ongoing';
+select a.report_dt, c.description, a.* from fds_recall a
+inner join fds_recall_xref b on a.recall_id = b.recall_id
+inner join fds_product c on b.product_id = c.product_id
+where a.status = 'Ongoing'
+and lower(c.description) like '%lattice%' 
+order by a.report_dt desc;
+--and a.reason like '%coli%' 
+
+select max(report_dt) from fds_recall;
+
+
+
+
+select * from fds_product where description like '%lattice%' and status = 'Ongoing';
 
 select count(recall_nr) from fds_recall a
 inner join fds_recall_xref b on a.recall_id = b.recall_id

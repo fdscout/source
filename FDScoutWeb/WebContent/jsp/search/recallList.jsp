@@ -5,10 +5,14 @@
 <s:iterator value="recallSearchResultList">
 <table>
 	<tr>
-		<td class="body_label">Recall Number</td>
+		<td class="body_label">Recall # <span style="color:black;">${recall.recallNumber}</span></td>
+		<td style="text-align: right;" class="${statusStyle}">&nbsp;${recall.status}&nbsp;</td>
 	</tr>
 	<tr>
-		<td class="body_text">${recall.recallNumber }</td>
+		<td  class="body_label">Classification</td>
+	</tr>
+	<tr>
+		<td class="body_text" title="Classified on <s:date name="recall.centerClassificationDate" format="MM/dd/yyyy"/>">${recall.classification}</td>
 	</tr>
 	<tr>
 		<td  class="body_label">Description</td>
@@ -35,53 +39,41 @@
 		<td class="body_text">${recall.recallingFirm}</td>
 	</tr>
 	<tr>
-		<td  class="body_label">Type of Recall</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.voluntaryOrMandated}</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Initial Notification</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.initialFirmNotification}</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Recall Status</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.status}</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Classification</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.classification}</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Center Classification Date</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.centerClassificationDate}</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Report Date</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.reportDate}</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Termination Date</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.terminationDate}</td>
-	</tr>
-	<tr>
 		<td  class="body_label">Recall initiation Date</td>
 	</tr>
 	<tr>
-		<td class="body_text">${recall.recallInitiationDate}</td>
+		<td class="body_text"><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></td>
+	</tr>	<tr>
+		<td  class="body_label">Report Date</td>
 	</tr>
+	<tr>
+		<td class="body_text">
+			<s:date name="recall.reportDate" format="MM/dd/yyyy"/>
+			<s:if test="recall.terminationDate!=null">
+				(terminated on <s:date name="recall.terminationDate" format="MM/dd/yyyy"/>)
+			</s:if>
+		
+		</td>
+	</tr>
+	<tr>
+		<td  class="body_label">Distribution Pattern</td>
+	</tr>
+	<tr>
+		<td class="body_text">${recall.distributionPattern}</td>
+	</tr>
+<!-- 	<tr> -->
+<!-- 		<td  class="body_label">Type of Recall</td> -->
+<!-- 	</tr> -->
+<!-- 	<tr> -->
+<%-- 		<td class="body_text">${recall.voluntaryOrMandated}</td> --%>
+<!-- 	</tr> -->
+<!-- 	<tr> -->
+<!-- 		<td  class="body_label">Initial Notification</td> -->
+<!-- 	</tr> -->
+<!-- 	<tr> -->
+<%-- 		<td class="body_text">${recall.initialFirmNotification}</td> --%>
+<!-- 	</tr> -->
+
 	<tr>
 		<td  class="body_label">Code Info</td>
 	</tr>
@@ -89,16 +81,7 @@
 		<td class="body_text">${recall.codeInfo}</td>
 	</tr>
 	<tr>
-		<td  class="body_label">More Code Info</td>
-	</tr>
-	<tr>
 		<td class="body_text">${recall.moreCodeInfo}</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Distribution Pattern</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.distributionPattern}</td>
 	</tr>
 
 </table>

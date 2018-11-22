@@ -118,11 +118,29 @@ ALTER TABLE fds_recall_xref CHANGE metaData_id meta_data_id int;
 
 ALTER TABLE fds_recall_xref add FOREIGN KEY (meta_data_id) REFERENCES fds_meta_data(meta_data_id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
+    create table fds_web_dictionary(
+       web_dictionary_id INT not null,
+       index_term	varchar(50),
+       description	varchar(2000),
+       ref_url		varchar(1000),
+       create_time TIMESTAMP default CURRENT_TIMESTAMP not null,
+       primary key (web_dictionary_id)
+    );
 
+insert into fds_web_dictionary (web_dictionary_id, index_term, description, ref_url)
+values (101, 'recall_terminated', 'A recall will be terminated when the FDA determines that all reasonable efforts have been made to remove or correct the violative product in accordance with the recall strategy, and when it is reasonable to assume that the product subject to the recall has been removed and proper disposition or correction has been made commensurate with the degree of hazard of the recalled product.', 'https://www.fda.gov/downloads/ICECI/Inspections/IOM/UCM123513.pdf');  
 
+insert into fds_web_dictionary (web_dictionary_id, index_term, description, ref_url)
+values (102, 'recall_completed', 'For monitoring purposes, the FDA classifies a recall action "Completed" when all outstanding product, which could reasonably be expected is recovered, impounded, or corrected.', 'https://www.fda.gov/downloads/ICECI/Inspections/IOM/UCM123513.pdf');  
 
+insert into fds_web_dictionary (web_dictionary_id, index_term, description, ref_url)
+values (111, 'recall_class_I', 'Class I Recall is a situation in which there is a reasonable probability that the use of, or exposure to, a violative product will cause serious adverse health consequences or death.', 'https://www.fda.gov/downloads/ICECI/Inspections/IOM/UCM123513.pdf');  
 
+insert into fds_web_dictionary (web_dictionary_id, index_term, description, ref_url)
+values (112, 'recall_class_II', 'Class II Recall is a situation in which use of, or exposure to, a violative product may cause temporary or medically reversible adverse health consequences or where the probability of serious adverse health consequences is remote.', 'https://www.fda.gov/downloads/ICECI/Inspections/IOM/UCM123513.pdf');  
 
+insert into fds_web_dictionary (web_dictionary_id, index_term, description, ref_url)
+values (113, 'recall_class_III', 'Class III Recall is a situation in which use of, or exposure to, a violative product is not likely to cause adverse health consequences.', 'https://www.fda.gov/downloads/ICECI/Inspections/IOM/UCM123513.pdf');  
 
 
 

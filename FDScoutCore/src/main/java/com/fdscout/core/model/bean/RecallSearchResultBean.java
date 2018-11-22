@@ -6,6 +6,18 @@ public class RecallSearchResultBean extends CoreBean{
 	private ProductBean product;
 	private MetaDataBean metaData;
 	
+	public String getStatusStyle() {
+		switch (recall.getStatus()) {
+		case "Ongoing":
+			return "status_ongoing";
+		case "Terminated":
+			return "status_terminated";
+		case "Completed":
+			return "status_completed";
+		default:
+			return "";
+		}
+	}
 	public MetaDataBean getMetaData() {
 		return metaData;
 	}

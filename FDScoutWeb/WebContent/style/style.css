@@ -2,7 +2,7 @@
 	font-family: inherit; 
 	font-size: 1.0em; 
 	font-weight: bold;
-	color: gray; 
+	color: olive; 
 	padding-top: 5px;
 }
 
@@ -10,4 +10,22 @@
 	font-size: 1.1em;
 	padding-left: 10px;
 	color: black;
+}
+
+.status_ongoing {
+	color: white; 
+	background: red; 
+	font-weight: bold;
+}
+
+.status_terminated {
+	color: maroon; 
+	background: #BDBDBD; 
+	font-weight: bold;
+}
+
+.status_completed {
+	color: black; 
+	background: #BDBDBD; 
+	font-weight: bold;
 }
