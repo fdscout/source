@@ -87,7 +87,57 @@
    		</property>
 	</bean>
 
+	<bean id="addressService" class="com.fdscout.core.model.service.AddressService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.AddressDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.AddressRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
 
+	<bean id="productService" class="com.fdscout.core.model.service.ProductService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.ProductDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.ProductRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+
+	<bean id="recallService" class="com.fdscout.core.model.service.RecallService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.RecallDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.RecallRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+
+	<bean id="recallXrefService" class="com.fdscout.core.model.service.RecallXrefService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.RecallXrefDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.RecallXrefRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+	
+	<bean id="recallInfoExtService" class="com.fdscout.core.model.service.RecallInfoExtService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.RecallInfoExtDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.RecallInfoExtRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+	
+	
 <!-- 	<bean id="portalAccessLogService" class="com.fdscout.core.service.PortalAccessLogService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
 <!-- 		    <bean class="com.fdscout.core.dao.PortalAccessLogDao" parent="coreDao"> -->

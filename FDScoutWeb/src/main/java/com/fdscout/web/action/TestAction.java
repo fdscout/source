@@ -19,12 +19,12 @@ public class TestAction extends FDScoutAction {
 
 	private static final long serialVersionUID = 1L;
 
-	@Action(value="/test", results={@Result(name="success", type="tiles", location="testTemplate")})
+	@Action(value="/test", results={@Result(name="success", location="/jsp/test.jsp")})
 	public String test() {
 		// access core project
 		System.out.println(CoreUtility.getRandomRxNumber());
 		
-		new JsonImport().testParser();
+//		new JsonImport().testParser();
 		return SUCCESS;	
 	}
 }

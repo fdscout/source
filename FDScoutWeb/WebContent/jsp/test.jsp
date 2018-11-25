@@ -3,7 +3,7 @@
 <head>
 <title>Bright Side of Life</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="style/BrightSide.css" type="text/css" />
+<!-- <link rel="stylesheet" href="style/BrightSide.css" type="text/css" /> -->
 </head>
 <body>
 <div id="wrap">

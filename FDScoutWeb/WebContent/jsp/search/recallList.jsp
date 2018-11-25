@@ -3,63 +3,59 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <s:iterator value="recallSearchResultList">
-<table>
+<table style="width:100%">
 	<tr>
-		<td class="body_label">Recall # <span style="color:black;">${recall.recallNumber}</span></td>
-		<td style="text-align: right;" class="${statusStyle}">&nbsp;${recall.status}&nbsp;</td>
+		<td style="font-weight:bold; background: #BDBDBD; padding-left: 3px;">Recall # <span style="color:black;">${recall.recallNumber}</span></td>
+		<td style="text-align: right; width: 10px;" class="${statusStyle}">&nbsp;${recall.status}&nbsp;</td>
+	</tr>
+</table>
+<table style="width:100%">	
+	<tr>
+		<td  class="body_label" style="width: 50%;">Initiation Date</td>
+		<td  class="body_label">Report Date</td>
+	</tr>
+	<tr>
+		<td class="body_text"><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></td>
+		<td class="body_text"><s:date name="recall.reportDate" format="MM/dd/yyyy"/>
+		</td>
 	</tr>
 	<tr>
 		<td  class="body_label">Classification</td>
+		<td  class="body_label">Termination Date</td>
 	</tr>
 	<tr>
 		<td class="body_text" title="Classified on <s:date name="recall.centerClassificationDate" format="MM/dd/yyyy"/>">${recall.classification}</td>
+		<td class="body_text"><s:date name="recall.terminationDate" format="MM/dd/yyyy"/></td>
 	</tr>
 	<tr>
 		<td  class="body_label">Description</td>
 	</tr>
 	<tr>
-		<td class="body_text">${product.description}</td>
+		<td class="body_text" colspan="2">${product.description}</td>
 	</tr>
 	<tr>
-		<td  class="body_label">Quantity</td>
+		<td  class="body_label" colspan="2">Quantity</td>
 	</tr>
 	<tr>
-		<td class="body_text">${product.quantity}</td>
+		<td class="body_text" colspan="2">${product.quantity}</td>
 	</tr>
 	<tr>
-		<td  class="body_label">Reason For Recall</td>
+		<td  class="body_label" colspan="2">Reason For Recall</td>
 	</tr>
 	<tr>
-		<td class="body_text">${recall.reasonForRecall}</td>
+		<td class="body_text" colspan="2">${recall.reasonForRecall}</td>
 	</tr>
 	<tr>
-		<td  class="body_label">Recalling Firm</td>
+		<td  class="body_label" colspan="2">Recalling Firm</td>
 	</tr>
 	<tr>
-		<td class="body_text">${recall.recallingFirm}</td>
+		<td class="body_text" colspan="2">${recall.recallingFirm}</td>
 	</tr>
 	<tr>
-		<td  class="body_label">Recall initiation Date</td>
+		<td  class="body_label" colspan="2">Distribution Pattern</td>
 	</tr>
 	<tr>
-		<td class="body_text"><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></td>
-	</tr>	<tr>
-		<td  class="body_label">Report Date</td>
-	</tr>
-	<tr>
-		<td class="body_text">
-			<s:date name="recall.reportDate" format="MM/dd/yyyy"/>
-			<s:if test="recall.terminationDate!=null">
-				(terminated on <s:date name="recall.terminationDate" format="MM/dd/yyyy"/>)
-			</s:if>
-		
-		</td>
-	</tr>
-	<tr>
-		<td  class="body_label">Distribution Pattern</td>
-	</tr>
-	<tr>
-		<td class="body_text">${recall.distributionPattern}</td>
+		<td class="body_text" colspan="2">${recall.distributionPattern}</td>
 	</tr>
 <!-- 	<tr> -->
 <!-- 		<td  class="body_label">Type of Recall</td> -->
@@ -75,13 +71,13 @@
 <!-- 	</tr> -->
 
 	<tr>
-		<td  class="body_label">Code Info</td>
+		<td  class="body_label" colspan="2">Code Info</td>
 	</tr>
 	<tr>
-		<td class="body_text">${recall.codeInfo}</td>
+		<td class="body_text" colspan="2">${recall.codeInfo}</td>
 	</tr>
 	<tr>
-		<td class="body_text">${recall.moreCodeInfo}</td>
+		<td class="body_text" colspan="2">${recall.moreCodeInfo}</td>
 	</tr>
 
 </table>
