@@ -8,8 +8,8 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 
-import com.fdscout.core.model.bean.RecallSearchResultBean;
-import com.fdscout.web.handler.SearchHandler;
+import com.fdscout.web.search.SearchCategorizer;
+import com.fdscout.web.search.SearchHandler;
 
 @SuppressWarnings("serial")
 @ResultPath(value="/")
@@ -17,22 +17,23 @@ import com.fdscout.web.handler.SearchHandler;
 @ParentPackage(value ="com.fdscout.default")
 public class SearchAction extends FDScoutAction {
 	private String searchString;
-	private List<RecallSearchResultBean> recallSearchResultList;
-	private SearchHandler searchHandler;
-
-	public void setSearchHandler(SearchHandler searchHandler) {
-		this.searchHandler = searchHandler;
-	}
-
-	@Action(value="/search", results={@Result(name="success", type="tiles", location="searchResult")})
-	public String search() {
-		recallSearchResultList = searchHandler.executeSearch(searchString);
-		return SUCCESS;
-	}
-
-
+	private List<Object> recallSearchResultList;
+//	private SearchHandler searchHandler;
+	private SearchCategorizer searchCategorizer;
 	
-    public List<RecallSearchResultBean> getRecallSearchResultList() {
+	@Action(value="/search", results={@Result(name="singleRecall", type="tiles", location="searchResultSingleRecall"),
+									  @Result(name="noMatchFound", type="tiles", location="noMatchFound")
+									 })
+	public String search() {
+		SearchHandler searchHandler = searchCategorizer.getSearchHandler(searchString);
+		return searchHandler.executeSearch(recallSearchResultList, searchString);
+	}
+
+	public void setSearchCategorizer(SearchCategorizer searchCategorizer) {
+		this.searchCategorizer = searchCategorizer;
+	}
+	
+    public List<Object> getRecallSearchResultList() {
 		return recallSearchResultList;
 	}
 

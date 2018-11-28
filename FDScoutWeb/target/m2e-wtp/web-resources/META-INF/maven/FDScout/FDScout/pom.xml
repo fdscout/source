@@ -176,7 +176,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>[4.3.18,)</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -255,11 +255,11 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
-		<dependency>
-		    <groupId>org.json</groupId>
-		    <artifactId>json</artifactId>
-		    <version>20180813</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.json</groupId> -->
+<!-- 		    <artifactId>json</artifactId> -->
+<!-- 		    <version>20180813</version> -->
+<!-- 		</dependency> -->
  	   <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>

@@ -36,12 +36,19 @@
         </tx:attributes>
     </tx:advice>	
     
-    <bean id="searchHandler" class="com.fdscout.web.handler.SearchHandler">
+    <bean id="searchCategorizer" class="com.fdscout.web.search.SearchCategorizer"/>
+    
+    <bean id="searchHandler" class="com.fdscout.web.search.SearchHandler" abstract="true">
     	<property name="recallService" ref="recallService"/>
     	<property name="recallXrefService" ref="recallXrefService"/>
     	<property name="metaDataService" ref="metaDataService"/>
     	<property name="productService" ref="productService"/>
 	</bean>
+	
+	<bean id="recallNumberSearchHandler"  class="com.fdscout.web.search.RecallNumberSearchHandler" parent="searchHandler"/>
+	<bean id="recallIdSearchHandler"  class="com.fdscout.web.search.RecallIdSearchHandler"  parent="searchHandler"/>
+	<bean id="noMatchSearchHandler"  class="com.fdscout.web.search.NoMatchSearchHandler"  parent="searchHandler"/>
+	
 <!-- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
 <!-- 		<property name="dataSource" ref="dataSource"/> -->
 <!-- 	</bean> -->

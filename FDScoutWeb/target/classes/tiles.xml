@@ -16,8 +16,11 @@
 		<put-attribute name="contentBody" value="/jsp/template/contentBody.jsp"/>
 	</definition>
 	
-	<definition name="searchResult" extends="masterTemplate">
+	<definition name="searchResultSingleRecall" extends="masterTemplate">
 		<put-attribute name="contentBody" value="/jsp/search/recallList.jsp"/>
+	</definition>
+	<definition name="noMatchFound" extends="masterTemplate">
+		<put-attribute name="contentBody" value="/jsp/search/noMatchFound.jsp"/>
 	</definition>
 	
 <!-- 	<definition name="portalMainTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
