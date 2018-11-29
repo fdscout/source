@@ -1,6 +1,5 @@
 package com.fdscout.web.search;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fdscout.core.model.bean.RecallBean;
@@ -8,10 +7,9 @@ import com.fdscout.core.model.bean.RecallSearchResultBean;
 import com.fdscout.core.model.bean.RecallXrefBean;
 
 public class RecallIdSearchHandler extends SearchHandler{
-	
-	public synchronized String executeSearch(List<Object> recallSearchResultList, String searchString) {
-		recallSearchResultList = new ArrayList<Object>();
-		// assume it is recall number
+	@Override
+	public synchronized SearchResult executeSearch(String searchString) {
+		SearchResultRecallDetails searchResultDetails = new SearchResultRecallDetails();
 		List<RecallBean> recallList = getRecallService().getRecallListByRecallId(searchString);
 		for (RecallBean recall : recallList) {
 			RecallSearchResultBean recallSearchResult = new RecallSearchResultBean();
@@ -19,9 +17,10 @@ public class RecallIdSearchHandler extends SearchHandler{
 			recallSearchResult.setRecall(recall);
 			recallSearchResult.setMetaData(getMetaDataService().getMetaDataById(recallXref.getMetaDataId()));
 			recallSearchResult.setProduct(getProductService().getProductById(recallXref.getProductId()));
-			recallSearchResultList.add(recallSearchResult);
+			searchResultDetails.getRecallDetailList().add(recallSearchResult);
 		}
-		return recallList.size() == 0 ? "noMatchFound" : "singleRecall";
+		searchResultDetails.setReturnValue(searchResultDetails.getRecallDetailList().size() == 0 ? "noMatchFound" : "singleRecall");
+		return searchResultDetails;
 	}
 
 

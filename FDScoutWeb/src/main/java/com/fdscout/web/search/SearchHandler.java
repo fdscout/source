@@ -1,7 +1,5 @@
 package com.fdscout.web.search;
 
-import java.util.List;
-
 import com.fdscout.core.model.service.MetaDataService;
 import com.fdscout.core.model.service.ProductService;
 import com.fdscout.core.model.service.RecallService;
@@ -13,7 +11,7 @@ public abstract class SearchHandler {
 	private MetaDataService metaDataService;
 	private ProductService productService;
 	
-	public abstract String executeSearch(List<Object> recallSearchResultList, String searchString);
+	public abstract SearchResult executeSearch(String searchString);
 	
 
 	public RecallService getRecallService() {
