@@ -19,6 +19,10 @@
 	<definition name="searchResultSingleRecall" extends="masterTemplate">
 		<put-attribute name="contentBody" value="/jsp/search/recallList.jsp"/>
 	</definition>
+	<definition name="searchResultRecallSummary" extends="masterTemplate">
+		<put-attribute name="contentBody" value="/jsp/search/recallSummaryList.jsp"/>
+	</definition>
+	
 	<definition name="noMatchFound" extends="masterTemplate">
 		<put-attribute name="contentBody" value="/jsp/search/noMatchFound.jsp"/>
 	</definition>

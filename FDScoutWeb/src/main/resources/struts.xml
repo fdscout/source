@@ -6,7 +6,7 @@
 	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<constant name="struts.devMode" value="false" />
     <constant name="struts.i18n.reload" value="false" /> 
-    <constant name="struts.configuration.xml.reload" value="true" />
+    <constant name="struts.configuration.xml.reload" value="false" />
 	<constant name="struts.convention.result.path" value="/" />
 
 	<package name="com.fdscout.default" namespace="/" extends="struts-default,json-default">

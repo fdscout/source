@@ -47,6 +47,7 @@
 	
 	<bean id="recallNumberSearchHandler"  class="com.fdscout.web.search.RecallNumberSearchHandler" parent="searchHandler"/>
 	<bean id="recallIdSearchHandler"  class="com.fdscout.web.search.RecallIdSearchHandler"  parent="searchHandler"/>
+	<bean id="recallKeyWordSearchHandler"  class="com.fdscout.web.search.RecallKeyWordSearchHandler"  parent="searchHandler"/>
 	<bean id="noMatchSearchHandler"  class="com.fdscout.web.search.NoMatchSearchHandler"  parent="searchHandler"/>
 	
 <!-- 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->

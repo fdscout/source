@@ -22,6 +22,7 @@ public class SearchAction extends FDScoutAction {
 	private SearchCategorizer searchCategorizer;
 	
 	@Action(value="/search", results={@Result(name="singleRecall", type="tiles", location="searchResultSingleRecall"),
+									  @Result(name="recallSummary", type="tiles", location="searchResultRecallSummary"),
 									  @Result(name="noMatchFound", type="tiles", location="noMatchFound")
 									 })
 	public String search() {

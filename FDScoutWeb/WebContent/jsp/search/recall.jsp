@@ -10,6 +10,18 @@
 </table>
 <table style="width:100%">	
 	<tr>
+		<td  class="body_label" colspan="2">Reason For Recall</td>
+	</tr>
+	<tr>
+		<td class="body_text" colspan="2">${recall.reasonForRecall}</td>
+	</tr>
+	<tr>
+		<td  class="body_label" colspan="2">Recalling Firm</td>
+	</tr>
+	<tr>
+		<td class="body_text" colspan="2">${recall.recallingFirm}</td>
+	</tr>
+	<tr>
 		<td  class="body_label" style="width: 50%;">Initiation Date</td>
 		<td  class="body_label">Report Date</td>
 	</tr>
@@ -37,18 +49,6 @@
 	</tr>
 	<tr>
 		<td class="body_text" colspan="2">${product.quantity}</td>
-	</tr>
-	<tr>
-		<td  class="body_label" colspan="2">Reason For Recall</td>
-	</tr>
-	<tr>
-		<td class="body_text" colspan="2">${recall.reasonForRecall}</td>
-	</tr>
-	<tr>
-		<td  class="body_label" colspan="2">Recalling Firm</td>
-	</tr>
-	<tr>
-		<td class="body_text" colspan="2">${recall.recallingFirm}</td>
 	</tr>
 	<tr>
 		<td  class="body_label" colspan="2">Distribution Pattern</td>

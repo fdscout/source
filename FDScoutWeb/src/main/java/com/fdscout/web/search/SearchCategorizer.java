@@ -18,6 +18,9 @@ public class SearchCategorizer {
 		 else if (StringUtils.isNumeric(searchString)) {
 			 return (RecallIdSearchHandler)WebContext.getBean("recallIdSearchHandler");
 		 }
+		 else if (!StringUtils.isBlank(searchString)) {
+			 return (RecallKeyWordSearchHandler)WebContext.getBean("recallKeyWordSearchHandler");
+		 }
 		 return (NoMatchSearchHandler)WebContext.getBean("noMatchSearchHandler");
 	}
 }
