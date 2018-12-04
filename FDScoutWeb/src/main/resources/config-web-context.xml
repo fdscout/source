@@ -22,4 +22,38 @@
 	<import resource="classpath*:config-core-main.xml" />
 	<import resource="classpath:config-web-handler.xml" />
 	<bean class="com.fdscout.context.WebContext"/>
+	
+	
+	<bean id="webDialog" class="com.fdscout.web.util.entity.WebDialog">
+		<property name="id" value="webDialog" />
+		<property name="modal" value="true" />
+		<property name="autoOpen" value="false" />
+		<property name="title" value="Food &amp; Drug Scout" />
+		<property name="width" value="990" />
+		<property name="height" value="700" />
+		<property name="resizable" value="false" />
+		<property name="closeOnEscape" value="true" />
+		<property name="draggable" value="true" />
+		<property name="hideEffect" value="fold" />
+		<property name="showEffect" value="fold" />
+		<property name="position" value="{ my: 'center', at: 'top+150' }" />
+		<property name="onCloseTopics" value="clearPresphereDialogContentOnClose" />
+		<property name="onOpenTopics" value="" />
+		<property name="closeTopics" value="closePresphereDialog"/>
+	</bean>
+	
+	<bean id="compactDialog" parent="webDialog">
+		<property name="id" value="compactDialog" />
+		<property name="width" value="660" />
+		<property name="height" value="530" />
+		<property name="onCloseTopics" value="clearCompactDialogContentOnClose" />
+		<property name="closeTopics" value="closeCompactDialog"/>
+	</bean>
+	
+	<bean id="searchDialog" parent="webDialog">
+		<property name="id" value="searchDialog" />
+		<property name="title" value="SEARCH" />
+		<property name="onCloseTopics" value="clearSearchDialogContentOnClose" />
+		<property name="closeTopics" value="closeSearchDialog"/>
+	</bean>	
 </beans>    

@@ -6,6 +6,8 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 
+import com.fdscout.context.WebAttribute;
+import com.fdscout.context.WebContext;
 import com.fdscout.web.search.SearchCategorizer;
 import com.fdscout.web.search.SearchHandler;
 import com.fdscout.web.search.SearchResult;
@@ -28,8 +30,17 @@ public class SearchAction extends FDScoutAction {
 	public String search() {
 		SearchHandler searchHandler = searchCategorizer.getSearchHandler(searchString);
 		searchResult = searchHandler.executeSearch(searchString);
+		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, searchString);
 		return searchResult.getReturnValue();
 	}
+	
+	@Action(value="/loadLastSearchResult", results={@Result(name="recallSummary", type="tiles", location="searchResultRecallSummary")})
+	public String loadLastSearchResult() {
+		searchString = (String)WebContext.getSession().getAttribute(WebAttribute.SESSION_SEARCHSTRING);
+		return search();
+	}
+
+	
 
 	public void setSearchCategorizer(SearchCategorizer searchCategorizer) {
 		this.searchCategorizer = searchCategorizer;

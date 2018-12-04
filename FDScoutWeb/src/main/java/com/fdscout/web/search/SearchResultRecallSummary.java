@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fdscout.core.model.bean.RecallSearchResultBean;
+import com.fdscout.core.model.bean.RecallSummaryBean;
 
 public class SearchResultRecallSummary implements SearchResult{
-	private List<RecallSearchResultBean> recallSummaryList;
+	private List<RecallSummaryBean> recallSummaryList;
 	private String returnValue;
 	
 	@Override
@@ -18,14 +19,14 @@ public class SearchResultRecallSummary implements SearchResult{
 		this.returnValue = returnValue;
 	}
 
-	public List<RecallSearchResultBean> getRecallSummaryList() {
+	public List<RecallSummaryBean> getRecallSummaryList() {
 		if (recallSummaryList == null) {
-			recallSummaryList = new ArrayList<RecallSearchResultBean>();
+			recallSummaryList = new ArrayList<RecallSummaryBean>();
 		}
 		return recallSummaryList;
 	}
 
-	public void setRecallSummaryList(List<RecallSearchResultBean> recallSummaryList) {
+	public void setRecallSummaryList(List<RecallSummaryBean> recallSummaryList) {
 		this.recallSummaryList = recallSummaryList;
 	}
 }

@@ -1,6 +1,6 @@
 package com.fdscout.web.util.entity;
 
-public class PresphereDialog {
+public class WebDialog {
 	private String id;
 	private boolean modal;
 	private boolean autoOpen;

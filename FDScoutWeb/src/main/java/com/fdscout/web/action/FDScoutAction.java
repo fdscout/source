@@ -13,9 +13,9 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.web.context.ServletContextAware;
 
+import com.fdscout.core.util.entity.CoreException;
 import com.fdscout.web.util.entity.ActionReturnValue;
-import com.fdscout.web.util.entity.PresphereDialog;
-import com.fdscout.web.util.entity.PresphereException;
+import com.fdscout.web.util.entity.WebDialog;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FDScoutAction extends ActionSupport 
@@ -39,10 +39,10 @@ public class FDScoutAction extends ActionSupport
     private String pageTitle;
     private Properties messageProperties;
     private boolean skipPreResultListener;
-    private PresphereException presphereException;
-    private PresphereDialog presphereDialog;
-    private PresphereDialog compactDialog;
-    private PresphereDialog searchDialog;
+    private CoreException presphereException;
+    private WebDialog webDialog;
+    private WebDialog compactDialog;
+    private WebDialog searchDialog;
     private String text;
 	protected Logger logger = Logger.getLogger(getClass());
 
@@ -157,20 +157,12 @@ public class FDScoutAction extends ActionSupport
 		
 	}
 
-	public PresphereException getPresphereException() {
+	public CoreException getPresphereException() {
 		return presphereException;
 	}
 
-	public void setPresphereException(PresphereException presphereException) {
+	public void setPresphereException(CoreException presphereException) {
 		this.presphereException = presphereException;
-	}
-
-	public PresphereDialog getPresphereDialog() {
-		return presphereDialog;
-	}
-
-	public void setPresphereDialog(PresphereDialog presphereDialog) {
-		this.presphereDialog = presphereDialog;
 	}
 
 	public String getText() {
@@ -181,23 +173,31 @@ public class FDScoutAction extends ActionSupport
 		this.text = text;
 	}
 
-	public PresphereDialog getCompactDialog() {
+	public WebDialog getCompactDialog() {
 		return compactDialog;
 	}
 
-	public void setCompactDialog(PresphereDialog compactDialog) {
+	public void setCompactDialog(WebDialog compactDialog) {
 		this.compactDialog = compactDialog;
 	}
 
-	public PresphereDialog getSearchDialog() {
+	public WebDialog getSearchDialog() {
 		return searchDialog;
 	}
 
-	public void setSearchDialog(PresphereDialog searchDialog) {
+	public void setSearchDialog(WebDialog searchDialog) {
 		this.searchDialog = searchDialog;
 	}
 
 	public Object getLockCarrier() {
 		return null;
+	}
+
+	public WebDialog getWebDialog() {
+		return webDialog;
+	}
+
+	public void setWebDialog(WebDialog webDialog) {
+		this.webDialog = webDialog;
 	}
 }

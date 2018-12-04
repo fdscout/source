@@ -20,7 +20,7 @@
     <s:form id="searchForm" method="post" class="searchform" action="search" theme="simple">
       <p>
         <s:textfield name="searchString" class="textbox" />
-        <input type="submit" name="search" class="button" value="Search" />
+        <input type="submit" class="button" value="Search" />
       </p>
     </s:form>
     <ul>
@@ -67,5 +67,11 @@
     </div>
   </div>
 </div>
+	<s:set var="dialog" value="webDialog"/>
+	<jsp:include page="/jsp/shared/webDialog.jsp"/>
+	<s:set var="dialog" value="compactDialog"/>
+	<jsp:include page="/jsp/shared/webDialog.jsp"/>	
+	<s:set var="dialog" value="searchDialog"/>
+	<jsp:include page="/jsp/shared/webDialog.jsp"/>	
 </body>
 </html>

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.fdscout.core.model.bean.RecallBean;
+import com.fdscout.core.model.bean.RecallSummaryBean;
 
 public class RecallRowMapper extends CoreRowMapper {
 
@@ -28,4 +29,13 @@ public class RecallRowMapper extends CoreRowMapper {
 		recall.setDistributionPattern(rs.getString("distro_pattern"));
 		return recall;
 	}
+	
+	@Override
+	protected  Object getBean2(ResultSet rs, int rowCount) throws SQLException{
+		RecallSummaryBean recallSummary = new  RecallSummaryBean();
+		recallSummary.setRecall((RecallBean) getBean1(rs, rowCount));
+		recallSummary.setProductDesc(rs.getString("description"));
+		return recallSummary;
+	}
+
 }

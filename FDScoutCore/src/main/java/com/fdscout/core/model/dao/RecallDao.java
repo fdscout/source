@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fdscout.core.model.bean.RecallBean;
+import com.fdscout.core.model.bean.RecallSummaryBean;
 import com.fdscout.core.util.AccessFlag.BeanDaf;
 
 public class RecallDao extends CoreDao {
@@ -54,17 +55,21 @@ public class RecallDao extends CoreDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<RecallBean> getRecallListByKeyWord(String keyWord) {
+	public List<RecallSummaryBean> getRecallListByKeyWord(String keyWord) {
 		StringBuilder query = new StringBuilder();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		query.append("select recall_id, recall_nr, recalling_firm, reason, recall_type, ini_firm_notification, status, classification, center_class_dt, report_dt, term_dt, recall_ini_dt, event_id, code_info, more_code_info, distro_pattern  ");
-		query.append("from fds_recall ");
-		query.append("where lower(status) = :status ");
-		query.append("and (lower(recalling_firm) like :keyWord or lower(reason) like :keyWord) ");
+		query.append("select a.recall_id, a.recall_nr, a.recalling_firm, a.reason, a.recall_type, a.ini_firm_notification, a.status, a.classification, ");
+		query.append("a.center_class_dt, a.report_dt, a.term_dt, a.recall_ini_dt, a.event_id, a.code_info, a.more_code_info, a.distro_pattern,  ");
+		query.append("c.description ");
+		query.append("from fds_recall a ");
+		query.append("inner join fds_recall_xref b on a.recall_id = b.recall_id ");
+		query.append("inner join fds_product c on b.product_id = c.product_id ");
+		query.append("where lower(a.status) = :status ");
+		query.append("and (lower(a.recalling_firm) like :keyWord or lower(a.reason) like :keyWord) ");
 		query.append("order by recall_ini_dt desc ");
 		paramMap.put("keyWord", "%" + keyWord + "%");		
 		paramMap.put("status", "ongoing");
-		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
+		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_2));
 	}
 
 }

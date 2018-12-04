@@ -3,6 +3,7 @@ package com.fdscout.core.model.service;
 import java.util.List;
 
 import com.fdscout.core.model.bean.RecallBean;
+import com.fdscout.core.model.bean.RecallSummaryBean;
 import com.fdscout.core.model.dao.RecallDao;
 
 public class RecallService extends CoreService {
@@ -22,7 +23,8 @@ public class RecallService extends CoreService {
 		return ((RecallDao)getDao()).getRecallListByRecallId(recallId);
 	}
 
-	public List<RecallBean> getRecallListByKeyWord(String keyWord) {
+	public List<RecallSummaryBean> getRecallListByKeyWord(String keyWord) {
 		return ((RecallDao)getDao()).getRecallListByKeyWord(keyWord);
 	}
+
 }

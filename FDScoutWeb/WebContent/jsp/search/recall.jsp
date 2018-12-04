@@ -10,6 +10,18 @@
 </table>
 <table style="width:100%">	
 	<tr>
+		<td  class="body_label">Description</td>
+	</tr>
+	<tr>
+		<td class="body_text" colspan="2">${product.description}</td>
+	</tr>
+	<tr>
+		<td  class="body_label" colspan="2">Quantity</td>
+	</tr>
+	<tr>
+		<td class="body_text" colspan="2">${product.quantity}</td>
+	</tr>
+	<tr>
 		<td  class="body_label" colspan="2">Reason For Recall</td>
 	</tr>
 	<tr>
@@ -37,18 +49,6 @@
 	<tr>
 		<td class="body_text" title="Classified on <s:date name="recall.centerClassificationDate" format="MM/dd/yyyy"/>">${recall.classification}</td>
 		<td class="body_text"><s:date name="recall.terminationDate" format="MM/dd/yyyy"/></td>
-	</tr>
-	<tr>
-		<td  class="body_label">Description</td>
-	</tr>
-	<tr>
-		<td class="body_text" colspan="2">${product.description}</td>
-	</tr>
-	<tr>
-		<td  class="body_label" colspan="2">Quantity</td>
-	</tr>
-	<tr>
-		<td class="body_text" colspan="2">${product.quantity}</td>
 	</tr>
 	<tr>
 		<td  class="body_label" colspan="2">Distribution Pattern</td>
