@@ -2,6 +2,7 @@ package com.fdscout.web.action;
 
 import java.util.Enumeration;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -29,11 +30,12 @@ public class GatewayAction extends FDScoutAction {
 	public String showGatewayPage() {
 		try {
 			WebContext.getServletRequest().getRemoteAddr();
-//			new FoodRecallDataParser().parse("c:\\resource\\food-enforcement-0001-of-0001.json");
+//			
 //			new FoodRecallDataParser().parse("c:\\resource\\food-enforcement-0001-of-0002.json");
 		}
 		catch (Exception e) {
 			portalAccessLogService.logPortalAccess("unknown");
+			Logger.getLogger(this.getClass()).error(e);
 		}
 		Enumeration<String> headerNames = WebContext.getServletRequest().getHeaderNames();
 		while(headerNames.hasMoreElements()) {
@@ -48,13 +50,8 @@ public class GatewayAction extends FDScoutAction {
 		int minorVersion = Integer.parseInt(browserVersion.getMinorVersion());
 		logger.info("Browswer: " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
 		portalAccessLogService.logPortalAccess(WebContext.getServletRequest().getRemoteAddr());
-		//check for browser compatibility.
-//		if(!browserConfigService.isThisASupportedBrowserVersion(ua)) {
-//			logger.info("Browswer Version Not supported : " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
-//			return "browserError";
-//		} else {
-//			logger.info("Browser version supported...");
-//		}
+
+		
 
 		return SUCCESS;
 	}

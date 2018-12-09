@@ -123,6 +123,7 @@ public abstract class DataParser {
 
 		
 		recall.setDistributionPattern((String)resultObject.get("distribution_pattern"));
+		
 		((RecallService)CoreContext.getBean("recallService")).save(recall);
 	// populate info_ext
 		((RecallInfoExtService)CoreContext.getBean("recallInfoExtService")).save(recallInfoExtList, recall);
@@ -130,17 +131,23 @@ public abstract class DataParser {
 		return recall;
 	}
 	
-	public static void main(String[] args) {
-		new DrugRecallDataParser().parse("c:\\resource\\drug-enforcement-0001-of-0001.json");
+	private RecallBean updateRecall (org.json.simple.JSONObject resultObject) {
+		RecallBean recall = new RecallBean();
+		recall.setRecallNumber((String)resultObject.get("recall_number"));
+		recall.setRecallingFirm((String)resultObject.get("recalling_firm"));
+		recall.setStatus((String)resultObject.get("status"));
+		
+		((RecallService)CoreContext.getBean("recallService")).update(recall);
+		return recall;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public int parse(String fullFileName) {
 		
 		JSONParser parser = new JSONParser();
 		int size = 0;
 		int newRecord = 0;
-		int skippedRecord = 0;
+		int updatededRecord = 0;
 		try {
 //			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader("c:\\resource\\sample.json"));
 			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader(fullFileName));
@@ -176,15 +183,16 @@ public abstract class DataParser {
 					++newRecord;
 				}
 				else {
-					++skippedRecord;
-					System.out.println(++size + ": " + recallNumber + " has existed, skipping import.");
+					updateRecall(resultObject);
+					++updatededRecord;
+					System.out.println(++size + ": " + recallNumber + " has existed, updating the record...");
 				}
 			}
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 			Logger.getLogger(this.getClass()).error(e.toString());
 		}
-		System.out.println("Total: " + size + ", new record: " + newRecord + ", skipped record: " + skippedRecord);
+		System.out.println("Total: " + size + ", new record: " + newRecord + ", updated record: " + updatededRecord);
 		System.out.println("\n\n\n");
 		return size;
 	}

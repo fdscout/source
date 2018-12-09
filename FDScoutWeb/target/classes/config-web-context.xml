@@ -21,6 +21,7 @@
 						">
 	<import resource="classpath*:config-core-main.xml" />
 	<import resource="classpath:config-web-handler.xml" />
+	<import resource="classpath:config-web-scheduler.xml" />
 	<bean class="com.fdscout.context.WebContext"/>
 	
 	

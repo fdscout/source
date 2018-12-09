@@ -11,7 +11,7 @@
 </table>
 <table style="width:100%">	
 	<tr>
-		<td class="body_text" colspan="2">Recall was initiated by <b>${recall.recallingFirm}</b> on <b><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></b></td>
+		<td class="body_text" colspan="2">Initiated on <b><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></b> by <b>${recall.recallingFirm}</b> </td>
 	</tr>
 	<tr>
 		<td  class="body_label" colspan="2">Product</td>

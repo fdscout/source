@@ -1,5 +1,6 @@
 package com.fdscout.core.model.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.fdscout.core.model.bean.RecallBean;
@@ -23,8 +24,16 @@ public class RecallService extends CoreService {
 		return ((RecallDao)getDao()).getRecallListByRecallId(recallId);
 	}
 
+	public List<RecallBean> getRecallListByReportDate(Date reportDate) {
+		return ((RecallDao)getDao()).getRecallListByReportDate(reportDate);
+	}
+
 	public List<RecallSummaryBean> getRecallListByKeyWord(String keyWord) {
 		return ((RecallDao)getDao()).getRecallListByKeyWord(keyWord);
+	}
+	
+	public int update(RecallBean recall) {
+		return ((RecallDao)getDao()).update(recall);
 	}
 
 }

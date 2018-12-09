@@ -28,6 +28,7 @@ public class SearchAction extends FDScoutAction {
 									  @Result(name="noMatchFound", type="tiles", location="noMatchFound")
 									 })
 	public String search() {
+		searchString = searchString.trim();
 		SearchHandler searchHandler = searchCategorizer.getSearchHandler(searchString);
 		searchResult = searchHandler.executeSearch(searchString);
 		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, searchString);

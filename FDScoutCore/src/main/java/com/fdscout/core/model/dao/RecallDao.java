@@ -1,9 +1,11 @@
 package com.fdscout.core.model.dao;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fdscout.core.model.bean.CoreBean;
 import com.fdscout.core.model.bean.RecallBean;
 import com.fdscout.core.model.bean.RecallSummaryBean;
 import com.fdscout.core.util.AccessFlag.BeanDaf;
@@ -19,6 +21,20 @@ public class RecallDao extends CoreDao {
 		return query.toString();
 	}
 
+	@Override
+	public int update(CoreBean coreBean) {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		RecallBean recall = (RecallBean) coreBean;
+		query.append("update fdscoutc_dev.fds_recall ");
+		query.append("set status = :status ");
+		query.append("where recall_nr = :recallNumber and recalling_firm = :recallingFirm ");
+		paramMap.put("recallNumber", recall.getRecallNumber());
+		paramMap.put("recallingFirm", recall.getRecallingFirm());
+		paramMap.put("status", recall.getStatus());
+		return namedParamJdbcTemplate.update(query.toString(), paramMap);
+	}
+	
 	public List<String> getRecallNumberSet(int recallTypeCode) {
 		StringBuilder query = new StringBuilder();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -53,7 +69,18 @@ public class RecallDao extends CoreDao {
 		paramMap.put("recallId", recallId);		
 		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public List<RecallBean> getRecallListByReportDate(Date reportDate) {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		query.append("select recall_id, recall_nr, recalling_firm, reason, recall_type, ini_firm_notification, status, classification, center_class_dt, report_dt, term_dt, recall_ini_dt, event_id, code_info, more_code_info, distro_pattern  ");
+		query.append("from fds_recall ");
+		query.append("where report_dt >= :reportDate ");
+		paramMap.put("reportDate", reportDate);		
+		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<RecallSummaryBean> getRecallListByKeyWord(String keyWord) {
 		StringBuilder query = new StringBuilder();
