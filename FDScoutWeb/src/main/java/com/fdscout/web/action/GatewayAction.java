@@ -8,11 +8,12 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 
+import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
-import com.fdscout.core.model.service.BrowserConfigService;
 import com.fdscout.core.model.service.PortalAccessLogService;
 import com.fdscout.core.util.entity.CoreMessage;
-import com.fdscout.web.parser.FoodRecallDataParser;
+import com.fdscout.web.search.RecallDefaultResultSearchHandler;
+import com.fdscout.web.search.SearchResult;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
@@ -23,14 +24,19 @@ import eu.bitwalker.useragentutils.Version;
 public class GatewayAction extends FDScoutAction {
 	private static final long serialVersionUID = 8324749017672128806L;
 	private PortalAccessLogService portalAccessLogService;
-	private BrowserConfigService browserConfigService;
+	private RecallDefaultResultSearchHandler recallDefaultResultSearchHandler;
+	private SearchResult searchResult;
 	
-    @Action(value="/start", results={@Result(name="success", type="tiles", location="masterTemplate")})
+//	private BrowserConfigService browserConfigService;
+	
+	@Action(value="/start", results={@Result(name="singleRecall", type="tiles", location="searchResultSingleRecall"),
+			  @Result(name="recallSummary", type="tiles", location="searchResultRecallSummary"),
+			  @Result(name="noMatchFound", type="tiles", location="noMatchFound")
+			 })
 //    @Action(value="/start", results={@Result(name="success",  location="/jsp/test.jsp")})
 	public String showGatewayPage() {
 		try {
 			WebContext.getServletRequest().getRemoteAddr();
-//			
 //			new FoodRecallDataParser().parse("c:\\resource\\food-enforcement-0001-of-0002.json");
 		}
 		catch (Exception e) {
@@ -51,24 +57,42 @@ public class GatewayAction extends FDScoutAction {
 		logger.info("Browswer: " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
 		portalAccessLogService.logPortalAccess(WebContext.getServletRequest().getRemoteAddr());
 
-		
-
-		return SUCCESS;
+		return displayHomePage();
 	}
 
+	
+	public String displayHomePage() {
+		searchResult = recallDefaultResultSearchHandler.executeSearch("");
+		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
+		return searchResult.getReturnValue();
+	}
+	
 	public void setPortalAccessLogService(PortalAccessLogService portalAccessLogService) {
 		this.portalAccessLogService = portalAccessLogService;
 	}
 	
 
-	public void setBrowserConfigService(BrowserConfigService browserConfigService) {
-		this.browserConfigService = browserConfigService;
-	}
+//	public void setBrowserConfigService(BrowserConfigService browserConfigService) {
+//		this.browserConfigService = browserConfigService;
+//	}
 
     @Action(value="/loginError", results={@Result(name="success",  type="tiles", location="portalMainTemplate")})
 	public String loginError() {
 		setActionErrors(new CoreMessage().addMessage("ERROR: User name or password is incorrect.  Please try again."));
 		return SUCCESS;
+	}
+
+
+	public void setRecallDefaultResultSearchHandler(RecallDefaultResultSearchHandler recallDefaultResultSearchHandler) {
+		this.recallDefaultResultSearchHandler = recallDefaultResultSearchHandler;
+	}
+
+	public SearchResult getSearchResult() {
+		return searchResult;
+	}
+
+	public void setSearchResult(SearchResult searchResult) {
+		this.searchResult = searchResult;
 	}
 
 }

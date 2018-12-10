@@ -24,7 +24,7 @@
       </p>
     </s:form>
     <ul>
-      <li id="current"><a href="#"><span>Home</span></a></li>
+      <li id="current"><a href="start.action"><span>Home</span></a></li>
       <li><a href="#"><span>News</span></a></li>
 <%--       <li><a href="#"><span>Downloads</span></a></li> --%>
       <li><a href="#"><span>Services</span></a></li>

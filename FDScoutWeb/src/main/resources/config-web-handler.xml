@@ -45,6 +45,7 @@
     	<property name="productService" ref="productService"/>
 	</bean>
 	
+	<bean id="recallDefaultResultSearchHandler"  class="com.fdscout.web.search.RecallDefaultResultSearchHandler" parent="searchHandler"/>
 	<bean id="recallNumberSearchHandler"  class="com.fdscout.web.search.RecallNumberSearchHandler" parent="searchHandler"/>
 	<bean id="recallIdSearchHandler"  class="com.fdscout.web.search.RecallIdSearchHandler"  parent="searchHandler"/>
 	<bean id="recallKeyWordSearchHandler"  class="com.fdscout.web.search.RecallKeyWordSearchHandler"  parent="searchHandler"/>

@@ -71,14 +71,21 @@ public class RecallDao extends CoreDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<RecallBean> getRecallListByReportDate(Date reportDate) {
+	public List<RecallSummaryBean>  getRecallListByReportDate(Date recallIniDate) {
 		StringBuilder query = new StringBuilder();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		query.append("select recall_id, recall_nr, recalling_firm, reason, recall_type, ini_firm_notification, status, classification, center_class_dt, report_dt, term_dt, recall_ini_dt, event_id, code_info, more_code_info, distro_pattern  ");
-		query.append("from fds_recall ");
-		query.append("where report_dt >= :reportDate ");
-		paramMap.put("reportDate", reportDate);		
-		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
+		query.append("select a.recall_id, a.recall_nr, a.recalling_firm, a.reason, a.recall_type, a.ini_firm_notification, a.status, a.classification, ");
+		query.append("a.center_class_dt, a.report_dt, a.term_dt, a.recall_ini_dt, a.event_id, a.code_info, a.more_code_info, a.distro_pattern,  ");
+		query.append("c.description ");
+		query.append("from fds_recall a ");
+		query.append("inner join fds_recall_xref b on a.recall_id = b.recall_id ");
+		query.append("inner join fds_product c on b.product_id = c.product_id ");
+		query.append("where lower(a.status) = :status ");
+		query.append("and a.recall_ini_dt > :recallIniDate ");
+		query.append("order by a.recall_ini_dt desc ");
+		paramMap.put("status", "ongoing");
+		paramMap.put("recallIniDate", recallIniDate);	
+		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_2));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -93,7 +100,7 @@ public class RecallDao extends CoreDao {
 		query.append("inner join fds_product c on b.product_id = c.product_id ");
 		query.append("where lower(a.status) = :status ");
 		query.append("and (lower(a.recalling_firm) like :keyWord or lower(a.reason) like :keyWord) ");
-		query.append("order by recall_ini_dt desc ");
+		query.append("order by a.recall_ini_dt desc ");
 		paramMap.put("keyWord", "%" + keyWord + "%");		
 		paramMap.put("status", "ongoing");
 		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_2));

@@ -24,7 +24,7 @@ public class RecallService extends CoreService {
 		return ((RecallDao)getDao()).getRecallListByRecallId(recallId);
 	}
 
-	public List<RecallBean> getRecallListByReportDate(Date reportDate) {
+	public List<RecallSummaryBean>  getRecallListByReportDate(Date reportDate) {
 		return ((RecallDao)getDao()).getRecallListByReportDate(reportDate);
 	}
 
