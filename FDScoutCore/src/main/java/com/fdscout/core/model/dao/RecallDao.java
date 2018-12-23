@@ -71,7 +71,7 @@ public class RecallDao extends CoreDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<RecallSummaryBean>  getRecallListByReportDate(Date recallIniDate) {
+	public List<RecallSummaryBean>  getRecallListByReportDate(Date reportDate) {
 		StringBuilder query = new StringBuilder();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		query.append("select a.recall_id, a.recall_nr, a.recalling_firm, a.reason, a.recall_type, a.ini_firm_notification, a.status, a.classification, ");
@@ -81,10 +81,10 @@ public class RecallDao extends CoreDao {
 		query.append("inner join fds_recall_xref b on a.recall_id = b.recall_id ");
 		query.append("inner join fds_product c on b.product_id = c.product_id ");
 		query.append("where lower(a.status) = :status ");
-		query.append("and a.recall_ini_dt > :recallIniDate ");
-		query.append("order by a.recall_ini_dt desc ");
+		query.append("and a.report_dt > :recallIniDate ");
+		query.append("order by a.report_dt desc ");
 		paramMap.put("status", "ongoing");
-		paramMap.put("recallIniDate", recallIniDate);	
+		paramMap.put("reportDate", reportDate);	
 		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_2));
 	}
 

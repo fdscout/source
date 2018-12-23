@@ -63,7 +63,7 @@ public class GatewayAction extends FDScoutAction {
 	
 	public String displayHomePage() {
 		searchResult = recallDefaultResultSearchHandler.executeSearch("");
-		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
+//		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
 		return searchResult.getReturnValue();
 	}
 	

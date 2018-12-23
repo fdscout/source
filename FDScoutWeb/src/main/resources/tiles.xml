@@ -26,6 +26,9 @@
 	<definition name="noMatchFound" extends="masterTemplate">
 		<put-attribute name="contentBody" value="/jsp/search/noMatchFound.jsp"/>
 	</definition>
+	<definition name="systemException" extends="masterTemplate">
+		<put-attribute name="contentBody" value="/jsp/errorHandling/exception.jsp"/>
+	</definition>
 	
 <!-- 	<definition name="portalMainTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
 <!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/portalLogin.jsp"/> -->

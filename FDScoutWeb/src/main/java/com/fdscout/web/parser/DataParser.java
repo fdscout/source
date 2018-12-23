@@ -148,6 +148,7 @@ public abstract class DataParser {
 		int size = 0;
 		int newRecord = 0;
 		int updatededRecord = 0;
+		int skippedRecord = 0;
 		try {
 //			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader("c:\\resource\\sample.json"));
 			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader(fullFileName));
@@ -168,7 +169,8 @@ public abstract class DataParser {
 				org.json.simple.JSONObject resultObject = (org.json.simple.JSONObject) result;
 				
 				String recallNumber = (String) resultObject.get("recall_number");
-				if (recallNumber != null && recallNumber.trim().length()!= 0 && !recallNumberSet.contains(recallNumber)) {
+				String status = (String) resultObject.get("status");
+				if (recallNumber != null && recallNumber.trim().length()!= 0 && !recallNumberSet.contains(recallNumber)){
 					AddressBean address = saveAddress(resultObject);
 					ProductBean product = saveProduct(resultObject);
 					RecallBean recall = saveRecall(resultObject);
@@ -182,17 +184,22 @@ public abstract class DataParser {
 					System.out.println(++size + ": "  + recall.getRecallNumber() + " - " + product.getDescription());
 					++newRecord;
 				}
-				else {
+				else if ("Ongoing".equalsIgnoreCase(status)){
 					updateRecall(resultObject);
 					++updatededRecord;
-					System.out.println(++size + ": " + recallNumber + " has existed, updating the record...");
+					System.out.println(++size + ": " + recallNumber + " is " + status + " updating the record...");
+				}
+				else  {
+					++skippedRecord;
+					System.out.println(++size + ": " + recallNumber + " is " + status + ", skiping...");
+					
 				}
 			}
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 			Logger.getLogger(this.getClass()).error(e.toString());
 		}
-		System.out.println("Total: " + size + ", new record: " + newRecord + ", updated record: " + updatededRecord);
+		System.out.println("Total: " + size + ", new record: " + newRecord + ", updated record: " + updatededRecord + ", skipped record: " + skippedRecord);
 		System.out.println("\n\n\n");
 		return size;
 	}

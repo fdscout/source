@@ -7,7 +7,6 @@ import org.apache.struts2.convention.annotation.ResultPath;
 
 import com.fdscout.core.model.service.MetaDataService;
 import com.fdscout.core.util.CoreUtility;
-import com.fdscout.util.JsonImport;
 
 @ResultPath(value="/")
 @ParentPackage(value ="com.fdscout.default")

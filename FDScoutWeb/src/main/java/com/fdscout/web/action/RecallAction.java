@@ -1,7 +1,5 @@
 package com.fdscout.web.action;
 
-import java.util.List;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -9,8 +7,6 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 
 import com.fdscout.core.model.bean.RecallBean;
-import com.fdscout.core.model.bean.RecallSearchResultBean;
-import com.fdscout.core.model.service.RecallService;
 import com.fdscout.web.search.RecallIdSearchHandler;
 import com.fdscout.web.search.SearchResult;
 

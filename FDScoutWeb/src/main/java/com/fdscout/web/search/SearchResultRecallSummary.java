@@ -3,7 +3,6 @@ package com.fdscout.web.search;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fdscout.core.model.bean.RecallSearchResultBean;
 import com.fdscout.core.model.bean.RecallSummaryBean;
 
 public class SearchResultRecallSummary implements SearchResult{

@@ -36,13 +36,13 @@
 			<property name="targetMethod" value="execute"/> 
 			<property name="targetObject">
 				<bean class="com.fdscout.scheduler.RecallImportScheduler">
-<!-- 					<description>Parse recall file and import into FDScout</description> -->
+					<!-- <description>Parse recall file and import into FDScout</description> -->
 					<property name="jobName" value="Parse drug recall file and import into FDScout"/>
 				</bean> 
 			</property> 
 		</bean> 
 	</property> 
- 	<property name="cronExpression" value="0 45 9 ? * MON-SAT" /> 
+ 	<property name="cronExpression" value="0 12 10 ? * MON-SUN" /> 
 	
 </bean> 
 
