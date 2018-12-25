@@ -1,5 +1,7 @@
 package com.fdscout.web.search;
 
+import com.fdscout.context.WebAttribute;
+import com.fdscout.context.WebContext;
 import com.fdscout.core.model.service.MetaDataService;
 import com.fdscout.core.model.service.ProductService;
 import com.fdscout.core.model.service.RecallService;
@@ -11,7 +13,12 @@ public abstract class SearchHandler {
 	private MetaDataService metaDataService;
 	private ProductService productService;
 	
-	public abstract SearchResult executeSearch(String searchString);
+	protected abstract SearchResult executeSearch(String searchString);
+	
+	public final SearchResult getSearchResult(String searchString) {
+		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, searchString);
+		return executeSearch(searchString);
+	};
 	
 
 	public RecallService getRecallService() {

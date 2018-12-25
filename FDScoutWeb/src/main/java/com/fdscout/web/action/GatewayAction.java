@@ -8,7 +8,6 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 
-import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
 import com.fdscout.core.model.service.PortalAccessLogService;
 import com.fdscout.core.util.entity.CoreMessage;

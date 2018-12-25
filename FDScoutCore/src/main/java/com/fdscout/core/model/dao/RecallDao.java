@@ -81,7 +81,7 @@ public class RecallDao extends CoreDao {
 		query.append("inner join fds_recall_xref b on a.recall_id = b.recall_id ");
 		query.append("inner join fds_product c on b.product_id = c.product_id ");
 		query.append("where lower(a.status) = :status ");
-		query.append("and a.report_dt > :recallIniDate ");
+		query.append("and a.report_dt > :reportDate ");
 		query.append("order by a.report_dt desc ");
 		paramMap.put("status", "ongoing");
 		paramMap.put("reportDate", reportDate);	

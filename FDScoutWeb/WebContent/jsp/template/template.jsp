@@ -25,11 +25,9 @@
     </s:form>
     <ul>
       <li id="current"><a href="start.action"><span>Home</span></a></li>
-      <li><a href="#"><span>News</span></a></li>
-<%--       <li><a href="#"><span>Downloads</span></a></li> --%>
-      <li><a href="#"><span>Services</span></a></li>
-      <li><a href="#"><span>Support</span></a></li>
-      <li><a href="#"><span>About</span></a></li>
+      <li><a href="recallMainPage.action"><span>Recalls</span></a></li>
+      <li><a href="adverseEventMainPage.action"><span>Adverse Events</span></a></li>
+      <li><a href="about.action"><span>About Us</span></a></li>
     </ul>
   </div>
   <div id="content-wrap"> <tiles:insertAttribute name="headerPhoto"/>

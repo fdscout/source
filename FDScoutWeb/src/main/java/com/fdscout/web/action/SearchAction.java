@@ -30,8 +30,8 @@ public class SearchAction extends FDScoutAction {
 	public String search() {
 		searchString = searchString.trim();
 		SearchHandler searchHandler = searchCategorizer.getSearchHandler(searchString);
-		searchResult = searchHandler.executeSearch(searchString);
-		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, searchString);
+		searchResult = searchHandler.getSearchResult(searchString);
+//		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, searchString);
 		return searchResult.getReturnValue();
 	}
 	

@@ -11,23 +11,22 @@
 </table>
 <table style="width:100%">	
 	<tr>
-		<td class="body_text" colspan="2">Initiated on <b><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></b> by <b>${recall.recallingFirm}</b> </td>
-	</tr>
-	<tr>
-		<td  class="body_label" colspan="2">Product</td>
+		<td class="body_label">Product</td>
+		<td style="text-align: right;"><a href="loadRecallDetails.action?recall.beanId=${recall.beanId}">[more details]</a></td>
 	</tr>
 	<tr>
 		<td class="body_text" colspan="2">${productShortDesc}</td>
 	</tr>
+	<tr>
+		<td class="body_text" colspan="2">Recall was initiated on <b><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></b> by <b>${recall.recallingFirm}</b> </td>
+	</tr>	
 	<tr>
 		<td  class="body_label" colspan="2">Reason For Recall</td>
 	</tr>
 	<tr>
 		<td class="body_text" colspan="2">${recallReasonShortDesc}</td>
 	</tr>
-	<tr>
-		<td colspan="2" style="text-align: right;"><a href="loadRecallDetails.action?recall.beanId=${recall.beanId}">[more details]</a></td>
-	</tr>
+
 <!-- 	<tr> -->
 <!-- 		<td  class="body_label" colspan="2">Recalling Firm</td> -->
 <!-- 	</tr> -->

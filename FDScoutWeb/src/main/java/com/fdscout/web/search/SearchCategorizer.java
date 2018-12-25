@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
 
 public class SearchCategorizer {
