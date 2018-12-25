@@ -8,6 +8,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
 
+import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
 import com.fdscout.core.model.service.PortalAccessLogService;
 import com.fdscout.core.util.entity.CoreMessage;
@@ -55,7 +56,7 @@ public class GatewayAction extends FDScoutAction {
 		int minorVersion = Integer.parseInt(browserVersion.getMinorVersion());
 		logger.info("Browswer: " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
 		portalAccessLogService.logPortalAccess(WebContext.getServletRequest().getRemoteAddr());
-
+		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
 		return displayHomePage();
 	}
 
