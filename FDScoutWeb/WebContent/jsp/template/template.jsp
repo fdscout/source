@@ -14,47 +14,17 @@
 </head>
 <body>
 <div id="wrap">
-  <div id="header">
-    <h1 id="logo"><span class="green">F</span>ood &amp; <span class="green">D</span>rug <span class="green">Scout</span></h1>
-    <h2 id="slogan">Stay healthy, live smart</h2>
-    <s:form id="searchForm" method="post" class="searchform" action="search" theme="simple">
-      <p>
-        <s:textfield name="searchString" class="textbox" />
-        <input type="submit" class="button" value="Search" />
-      </p>
-    </s:form>
-    <ul>
-      <li id="current"><a href="start.action"><span>Home</span></a></li>
-      <li><a href="recallMainPage.action"><span>Recalls</span></a></li>
-      <li><a href="adverseEventMainPage.action"><span>Adverse Events</span></a></li>
-      <li><a href="about.action"><span>About Us</span></a></li>
-    </ul>
-  </div>
-  <div id="content-wrap"> <tiles:insertAttribute name="headerPhoto"/>
+	<jsp:include page="banner.jsp"/>
+  	<div id="content-wrap"> <tiles:insertAttribute name="headerPhoto"/>
     <div id="sidebar" >
-      <h1>Sidebar Menu</h1>
-      <ul class="sidemenu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#TemplateInfo">Template Info</a></li>
-        <li><a href="#SampleTags">Sample Tags</a></li>
-        <li><a href="#">More Free Templates</a></li>
-        <li><a href="#">Premium Templates</a></li>
-      </ul>
-      <h1>Site Partners</h1>
-      <ul class="sidemenu">
-        <li><a href="#">Dreamhost</a></li>
-        <li><a href="#">4templates</a></li>
-        <li><a href="#">TemplateMonster</a></li>
-        <li><a href="#">Fotolia.com</a></li>
-        <li><a href="#">Text Link Ads</a></li>
-      </ul>
-      <div><tiles:insertAttribute name="lowerLeftBar"/></div>
+		<tiles:insertAttribute name="sideMenu"/>
+      	<div><tiles:insertAttribute name="lowerLeftBar"/></div>
     </div>
     <div id="main"> <a name="TemplateInfo"></a>
     	<tiles:insertAttribute name="contentBody"/>
    </div>
-    <div id="rightbar"><tiles:insertAttribute name="rightBar"/>
-    </div>
+<%--     <div id="rightbar"><tiles:insertAttribute name="rightBar"/> --%>
+<!--     </div> -->
   </div>
   <div id="footer">
     <div class="footer-left">

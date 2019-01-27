@@ -11,10 +11,16 @@
 
 	<definition name="masterTemplate" template="/jsp/template/template.jsp">
 		<put-attribute name="headerPhoto" value="/jsp/template/headerPhoto.jsp"/>
-		<put-attribute name="rightBar" value="/jsp/template/rightBar.jsp"/>
+		<put-attribute name="sideMenu" value="/jsp/home/sideMenu.jsp"/>
 		<put-attribute name="lowerLeftBar" value="/jsp/template/lowerLeftBar.jsp"/>
-		<put-attribute name="contentBody" value="/jsp/template/contentBody.jsp"/>
+<!-- 		<put-attribute name="contentBody" value="/jsp/home/contentBody.jsp"/> -->
 	</definition>
+	
+	<definition name="recallTemplate" extends="masterTemplate">
+		<put-attribute name="sideMenu" value="/jsp/recall/sideMenu.jsp"/>
+		<put-attribute name="contentBody" value="/jsp/recall/contentBody.jsp"/>
+	</definition>
+	
 	
 	<definition name="searchResultSingleRecall" extends="masterTemplate">
 		<put-attribute name="contentBody" value="/jsp/search/recallList.jsp"/>

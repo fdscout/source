@@ -24,6 +24,12 @@ public class RecallAction extends FDScoutAction {
 		searchResult = recallIdSearchHandler.executeSearch(String.valueOf(recall.getBeanId()));
 		return searchResult.getReturnValue();
 	}
+	
+	@Action(value="/recallMainPage", results={@Result(name="recallTemplate", type="tiles", location="recallTemplate")})
+	public String loadRecallTemplate() {
+		return "recallTemplate";
+	}
+	
 
 	public void setRecall(RecallBean recall) {
 		this.recall = recall;

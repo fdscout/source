@@ -1,1 +1,1 @@
-<img src="images/headerphoto.jpg" width="820" height="120" alt="headerphoto" class="no-border" />
+<img src="images/headerphoto.jpg" width="820" height="100" alt="headerphoto" class="no-border" />

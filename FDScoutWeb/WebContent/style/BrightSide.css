@@ -144,7 +144,7 @@ form.searchform {
 }
 form.searchform input.textbox { 
 	margin: 0; 
-	width: 120px;
+	width: 100px;
 	border: 1px solid #9EC630; 
 	background: #FFF;
 	color: #333; 
@@ -209,7 +209,7 @@ form.searchform input.button {
 	float: left;
 	margin-left: 15px;
 	padding: 0;
-	width: 50%;		
+	width: 70%;		
 }
 
 .post-footer {

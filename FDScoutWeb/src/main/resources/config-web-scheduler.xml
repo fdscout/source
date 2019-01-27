@@ -42,7 +42,7 @@
 			</property> 
 		</bean> 
 	</property> 
- 	<property name="cronExpression" value="0 12 10 ? * MON-SUN" /> 
+ 	<property name="cronExpression" value="0 0 10 ? * MON-SUN" /> 
 	
 </bean> 
 
