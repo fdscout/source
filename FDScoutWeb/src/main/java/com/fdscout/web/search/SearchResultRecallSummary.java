@@ -28,4 +28,5 @@ public class SearchResultRecallSummary implements SearchResult{
 	public void setRecallSummaryList(List<RecallSummaryBean> recallSummaryList) {
 		this.recallSummaryList = recallSummaryList;
 	}
+	
 }

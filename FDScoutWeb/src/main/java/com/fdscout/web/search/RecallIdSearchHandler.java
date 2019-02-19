@@ -19,7 +19,7 @@ public class RecallIdSearchHandler extends SearchHandler{
 			recallSearchResult.setProduct(getProductService().getProductById(recallXref.getProductId()));
 			searchResultDetails.getRecallDetailList().add(recallSearchResult);
 		}
-		searchResultDetails.setReturnValue(searchResultDetails.getRecallDetailList().size() == 0 ? "noMatchFound" : "singleRecall");
+		searchResultDetails.setReturnValue(searchResultDetails.getRecallDetailList().size() == 0 ? "recallNoMatchFound" : "singleRecall");
 		return searchResultDetails;
 	}
 

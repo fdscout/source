@@ -19,7 +19,7 @@ public class ExceptionAction extends FDScoutAction {
 	private Exception exception;
 	
 	@Action(value="/logJavaLangException", results={@Result(name="success", type="tiles", location="systemException")})
-	public String showGatewayPage() {
+	public String execute() {
 		currentTime = FDScoutUtility.getCurrentTimestamp();
 		Logger.getLogger(this.getClass()).error(exception.getMessage());
 		return SUCCESS;

@@ -11,7 +11,7 @@ public class RecallKeyWordSearchHandler extends SearchHandler{
 		// assume it is recall number
 		List<RecallSummaryBean> recallSummaryList = getRecallService().getRecallListByKeyWord(searchString);
 		searchResultSummary.setRecallSummaryList(recallSummaryList);
-		searchResultSummary.setReturnValue(searchResultSummary.getRecallSummaryList().size() == 0 ? "noMatchFound" : "recallSummary");
+		searchResultSummary.setReturnValue(searchResultSummary.getRecallSummaryList().size() == 0 ? "recallNoMatchFound" : "recallSummary");
 		return searchResultSummary;
 	}
 

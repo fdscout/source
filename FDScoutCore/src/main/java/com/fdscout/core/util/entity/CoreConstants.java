@@ -9,7 +9,7 @@ public class CoreConstants {
 	public static final int CODE_STATUS_INACTIVE = 0;
 	public static final int CODE_STATUS_CLOSED = 9;
 	
-	
+	public static final String TAG_MOST_RECENT_RECALLS = "#MOST_RECENT_RECALL";
 	//	public static final String QUEUE_BENEFIT_INVESTIGATION = "benefitInvestigationQueue";
 //	public static final String QUEUE_PRIOR_AUTH = "priorAuthQueue";
 //	public static final String QUEUE_DATA_ENTRY = "dataEntryQueue";

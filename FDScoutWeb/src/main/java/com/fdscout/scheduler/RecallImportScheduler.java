@@ -3,11 +3,14 @@ package com.fdscout.scheduler;
 import com.fdscout.web.parser.FoodRecallDataParser;
 import com.fdscout.web.util.tool.PropertyReader;
 
-public class RecallImportScheduler extends AbstractScheduler{
+public abstract class RecallImportScheduler extends AbstractScheduler{
+
+	protected abstract String getDownloadPath();
+	protected abstract String getJsonFileName();
 
 	protected void run() {
-		String filePath  = PropertyReader.get("path.download.zip_file");
-		String jsonFilename  = PropertyReader.get("name.jsonfile.food_recall");
+		String filePath  = getDownloadPath();
+		String jsonFilename  = getJsonFileName();
 
 		new FoodRecallDataParser().parse(filePath + jsonFilename);
 

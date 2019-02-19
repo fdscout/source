@@ -47,17 +47,17 @@ public class RecallDao extends CoreDao {
 		return namedParamJdbcTemplate.queryForList(query.toString(), paramMap, String.class);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<RecallBean> getRecallListByRecallNumber(String recallNumber) {
-		StringBuilder query = new StringBuilder();
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		query.append("select recall_id, recall_nr, recalling_firm, reason, recall_type, ini_firm_notification, status, classification, center_class_dt, report_dt, term_dt, recall_ini_dt, event_id, code_info, more_code_info, distro_pattern  ");
-		query.append("from fds_recall ");
-		query.append("where recall_nr = :recallNumber ");
-		query.append("order by recall_ini_dt desc ");
-		paramMap.put("recallNumber", recallNumber);		
-		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
-	}
+//	@SuppressWarnings("unchecked")
+//	public List<RecallBean> getRecallListByRecallNumber(String recallNumber) {
+//		StringBuilder query = new StringBuilder();
+//		Map<String, Object> paramMap = new HashMap<String, Object>();
+//		query.append("select recall_id, recall_nr, recalling_firm, reason, recall_type, ini_firm_notification, status, classification, center_class_dt, report_dt, term_dt, recall_ini_dt, event_id, code_info, more_code_info, distro_pattern  ");
+//		query.append("from fds_recall ");
+//		query.append("where recall_nr = :recallNumber ");
+//		query.append("order by recall_ini_dt desc ");
+//		paramMap.put("recallNumber", recallNumber);		
+//		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
+//	}
 
 	@SuppressWarnings("unchecked")
 	public List<RecallBean> getRecallListByRecallId(String recallId) {
@@ -103,6 +103,22 @@ public class RecallDao extends CoreDao {
 		query.append("order by a.recall_ini_dt desc ");
 		paramMap.put("keyWord", "%" + keyWord + "%");		
 		paramMap.put("status", "ongoing");
+		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_2));
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<RecallSummaryBean> getRecallListByRecallNumber(String recallNumber) {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		query.append("select a.recall_id, a.recall_nr, a.recalling_firm, a.reason, a.recall_type, a.ini_firm_notification, a.status, a.classification, ");
+		query.append("a.center_class_dt, a.report_dt, a.term_dt, a.recall_ini_dt, a.event_id, a.code_info, a.more_code_info, a.distro_pattern,  ");
+		query.append("c.description ");
+		query.append("from fds_recall a ");
+		query.append("inner join fds_recall_xref b on a.recall_id = b.recall_id ");
+		query.append("inner join fds_product c on b.product_id = c.product_id ");
+		query.append("where a.recall_nr = :recallNumber ");
+		query.append("order by a.recall_ini_dt desc ");
+		paramMap.put("recallNumber", recallNumber);		
 		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_2));
 	}
 

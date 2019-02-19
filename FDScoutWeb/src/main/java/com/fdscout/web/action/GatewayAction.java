@@ -12,8 +12,6 @@ import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
 import com.fdscout.core.model.service.PortalAccessLogService;
 import com.fdscout.core.util.entity.CoreMessage;
-import com.fdscout.web.search.RecallDefaultResultSearchHandler;
-import com.fdscout.web.search.SearchResult;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
@@ -24,15 +22,12 @@ import eu.bitwalker.useragentutils.Version;
 public class GatewayAction extends FDScoutAction {
 	private static final long serialVersionUID = 8324749017672128806L;
 	private PortalAccessLogService portalAccessLogService;
-	private RecallDefaultResultSearchHandler recallDefaultResultSearchHandler;
-	private SearchResult searchResult;
+//	private RecallDefaultResultSearchHandler recallDefaultResultSearchHandler;
+//	private SearchResult searchResult;
 	
 //	private BrowserConfigService browserConfigService;
 	
-	@Action(value="/start", results={@Result(name="singleRecall", type="tiles", location="searchResultSingleRecall"),
-			  @Result(name="recallSummary", type="tiles", location="searchResultRecallSummary"),
-			  @Result(name="noMatchFound", type="tiles", location="noMatchFound")
-			 })
+	@Action(value="/home", results={@Result(name="success", type="tiles", location="homePage")})
 //    @Action(value="/start", results={@Result(name="success",  location="/jsp/test.jsp")})
 	public String showGatewayPage() {
 		try {
@@ -56,16 +51,18 @@ public class GatewayAction extends FDScoutAction {
 		int minorVersion = Integer.parseInt(browserVersion.getMinorVersion());
 		logger.info("Browswer: " + browserName + ", major version: " + majVersion + " minor version="+minorVersion);
 		portalAccessLogService.logPortalAccess(WebContext.getServletRequest().getRemoteAddr());
-		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
-		return displayHomePage();
+		if (WebContext.getSession() != null) {
+			WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
+		}
+		return SUCCESS;
 	}
 
 	
-	public String displayHomePage() {
-		searchResult = recallDefaultResultSearchHandler.executeSearch("");
-//		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
-		return searchResult.getReturnValue();
-	}
+//	public String displayHomePage() {
+//		searchResult = recallDefaultResultSearchHandler.executeSearch("");
+////		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
+//		return searchResult.getReturnValue();
+//	}
 	
 	public void setPortalAccessLogService(PortalAccessLogService portalAccessLogService) {
 		this.portalAccessLogService = portalAccessLogService;
@@ -83,16 +80,16 @@ public class GatewayAction extends FDScoutAction {
 	}
 
 
-	public void setRecallDefaultResultSearchHandler(RecallDefaultResultSearchHandler recallDefaultResultSearchHandler) {
-		this.recallDefaultResultSearchHandler = recallDefaultResultSearchHandler;
-	}
-
-	public SearchResult getSearchResult() {
-		return searchResult;
-	}
-
-	public void setSearchResult(SearchResult searchResult) {
-		this.searchResult = searchResult;
-	}
+//	public void setRecallDefaultResultSearchHandler(RecallDefaultResultSearchHandler recallDefaultResultSearchHandler) {
+//		this.recallDefaultResultSearchHandler = recallDefaultResultSearchHandler;
+//	}
+//
+//	public SearchResult getSearchResult() {
+//		return searchResult;
+//	}
+//
+//	public void setSearchResult(SearchResult searchResult) {
+//		this.searchResult = searchResult;
+//	}
 
 }

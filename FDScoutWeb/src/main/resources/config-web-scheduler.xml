@@ -25,25 +25,40 @@
 <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" id="schedFactoryBean"> 
 	<property name="triggers"> 
 		<list> 
-  			<ref bean="recallImportTrigger"/>
+  			<ref bean="foodRecallImportTrigger"/>
+  			<ref bean="deviceRecallImportTrigger"/>
 		</list> 
 	</property> 
 </bean> 
 
-<bean id="recallImportTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+<bean id="foodRecallImportTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
 	<property name="jobDetail" >
 		<bean  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
 			<property name="targetMethod" value="execute"/> 
 			<property name="targetObject">
-				<bean class="com.fdscout.scheduler.RecallImportScheduler">
+				<bean class="com.fdscout.scheduler.FoodRecallImportScheduler">
 					<!-- <description>Parse recall file and import into FDScout</description> -->
 					<property name="jobName" value="Parse drug recall file and import into FDScout"/>
 				</bean> 
 			</property> 
 		</bean> 
 	</property> 
- 	<property name="cronExpression" value="0 0 10 ? * MON-SUN" /> 
-	
+ 	<property name="cronExpression" value="0 11 22 ? * MON-SUN" /> 
+</bean> 
+
+<bean id="deviceRecallImportTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+	<property name="jobDetail" >
+		<bean  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+			<property name="targetMethod" value="execute"/> 
+			<property name="targetObject">
+				<bean class="com.fdscout.scheduler.DeviceRecallImportScheduler">
+					<!-- <description>Parse recall file and import into FDScout</description> -->
+					<property name="jobName" value="Parse drug recall file and import into FDScout"/>
+				</bean> 
+			</property> 
+		</bean> 
+	</property> 
+ 	<property name="cronExpression" value="0 18 8 ? * MON-SUN" /> 
 </bean> 
 
 </beans>

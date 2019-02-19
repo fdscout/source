@@ -4,15 +4,18 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
+import com.fdscout.core.util.entity.CoreConstants;
 
 public class SearchCategorizer {
 	private Pattern recallNumberPattern = Pattern.compile("[Ff]-\\d\\d\\d\\d-\\d\\d\\d\\d");
 	private int minimumSearchStringLength = 4;
 	
 	public SearchHandler getSearchHandler(String searchString) {
-		if (searchString.length() < minimumSearchStringLength) {
+		if (searchString.equals(CoreConstants.TAG_MOST_RECENT_RECALLS)) {
+			return (RecallDefaultResultSearchHandler)WebContext.getBean("recallDefaultResultSearchHandler");
+		}
+		else if (searchString.length() < minimumSearchStringLength) {
 			return (NoMatchSearchHandler)WebContext.getBean("noMatchSearchHandler");
 		}
 		else if (recallNumberPattern.matcher(searchString).matches()) {

@@ -5,27 +5,26 @@
 <br/>
 <table style="width:100%">
 	<tr>
-		<td style="font-weight:bold; background: #BDBDBD; padding-left: 3px;"><span style="color:black;">${productShortDesc}</span></td>
-		<td style="text-align: right; width: 10px;" class="${statusStyle}">&nbsp;${recall.status}&nbsp;</td>
+		<td style="font-weight:bold; background: #BDBDBD; padding-left: 3px;padding-top: 3px; padding-bottom: 3px;"><span style="color:black;">${productShortDesc}</span></td>
+		<td style="text-align: center; width: 50px;" class="${statusStyle}">&nbsp;<s:date name="recall.reportDate" format="MM/dd/yyyy"/>&nbsp;<br/>${recall.status}</td>
 	</tr>
 </table>
 <table style="width:100%">	
 	<tr>
-		<td class="body_label">Product</td>
+		<td  class="body_label">Reason For Recall</td>
 		<td style="text-align: right;"><a href="loadRecallDetails.action?recall.beanId=${recall.beanId}">[more details]</a></td>
-	</tr>
-	<tr>
-		<td class="body_text" colspan="2">${recall.recallNumber}</td>
-	</tr>
-	<tr>
-		<td class="body_text" colspan="2">Recall was initiated on <b><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></b> by <b>${recall.recallingFirm}</b> </td>
-	</tr>	
-	<tr>
-		<td  class="body_label" colspan="2">Reason For Recall</td>
 	</tr>
 	<tr>
 		<td class="body_text" colspan="2">${recallReasonShortDesc}</td>
 	</tr>
+	<tr>
+		<td class="body_label" colspan="2">Recall #: ${recall.recallNumber}</td>
+		
+	</tr>
+	<tr>
+		<td class="body_text" colspan="2">Initiated on <b><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></b> by <b>${recall.recallingFirm}</b> </td>
+	</tr>	
+
 
 <!-- 	<tr> -->
 <!-- 		<td  class="body_label" colspan="2">Recalling Firm</td> -->

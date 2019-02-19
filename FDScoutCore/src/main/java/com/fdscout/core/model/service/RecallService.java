@@ -16,7 +16,7 @@ public class RecallService extends CoreService {
 		return ((RecallDao)getDao()).getRecallNumberSet(recallTypeCode);
 	}
 	
-	public List<RecallBean> getRecallListByRecallNumber(String recallNumber) {
+	public List<RecallSummaryBean> getRecallListByRecallNumber(String recallNumber) {
 		return ((RecallDao)getDao()).getRecallListByRecallNumber(recallNumber);
 	}
 

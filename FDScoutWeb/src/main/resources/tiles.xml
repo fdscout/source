@@ -15,22 +15,28 @@
 		<put-attribute name="lowerLeftBar" value="/jsp/template/lowerLeftBar.jsp"/>
 <!-- 		<put-attribute name="contentBody" value="/jsp/home/contentBody.jsp"/> -->
 	</definition>
-	
+
+	<definition name="homePage" extends="masterTemplate">
+		<put-attribute name="sideMenu" value="/jsp/home/sideMenu.jsp"/>
+		<put-attribute name="contentBody" value="/jsp/home/contentBody.jsp"/>
+	</definition>
+		
 	<definition name="recallTemplate" extends="masterTemplate">
 		<put-attribute name="sideMenu" value="/jsp/recall/sideMenu.jsp"/>
-		<put-attribute name="contentBody" value="/jsp/recall/contentBody.jsp"/>
+		<put-attribute name="contentBody" value="/jsp/recall/initialLandingPage.jsp"/>
 	</definition>
 	
 	
-	<definition name="searchResultSingleRecall" extends="masterTemplate">
-		<put-attribute name="contentBody" value="/jsp/search/recallList.jsp"/>
-	</definition>
-	<definition name="searchResultRecallSummary" extends="masterTemplate">
-		<put-attribute name="contentBody" value="/jsp/search/recallSummaryList.jsp"/>
+	<definition name="searchResultSingleRecall" extends="recallTemplate">
+		<put-attribute name="contentBody" value="/jsp/recall/recallList.jsp"/>
 	</definition>
 	
-	<definition name="noMatchFound" extends="masterTemplate">
-		<put-attribute name="contentBody" value="/jsp/search/noMatchFound.jsp"/>
+	<definition name="searchResultRecallSummary" extends="recallTemplate">
+		<put-attribute name="contentBody" value="/jsp/recall/recallSummaryList.jsp"/>
+	</definition>
+	
+	<definition name="recallNoMatchFound" extends="recallTemplate">
+		<put-attribute name="contentBody" value="/jsp/recall/noMatchFound.jsp"/>
 	</definition>
 	<definition name="systemException" extends="masterTemplate">
 		<put-attribute name="contentBody" value="/jsp/errorHandling/exception.jsp"/>

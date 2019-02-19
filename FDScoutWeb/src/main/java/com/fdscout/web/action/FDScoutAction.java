@@ -45,6 +45,8 @@ public class FDScoutAction extends ActionSupport
     private WebDialog searchDialog;
     private String text;
 	protected Logger logger = Logger.getLogger(getClass());
+	private String searchString;
+
 
     public void validate() {
     }
@@ -199,5 +201,13 @@ public class FDScoutAction extends ActionSupport
 
 	public void setWebDialog(WebDialog webDialog) {
 		this.webDialog = webDialog;
+	}
+
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
 	}
 }

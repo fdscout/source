@@ -5,7 +5,7 @@ public class RecallSummaryBean extends RecallSearchResultBean{
 	private String disclaimer;
 
 	public String getProductShortDesc() {
-		int numberOfCharToDisplay = 100;
+		int numberOfCharToDisplay = 60;
 		if (productDesc != null) {
 			return productDesc.length() > numberOfCharToDisplay ? (productDesc.substring(0, numberOfCharToDisplay) + "...") : productDesc;
 		}

@@ -4,7 +4,7 @@ public class SearchResultNoMatchFound implements SearchResult {
 
 	@Override
 	public String getReturnValue() {
-		return "noMatchFound";
+		return "recallNoMatchFound";
 	}
 
 }
