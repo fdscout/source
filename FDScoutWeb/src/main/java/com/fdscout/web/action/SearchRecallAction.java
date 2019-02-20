@@ -34,6 +34,9 @@ public class SearchRecallAction extends FDScoutAction {
 		SearchHandler searchHandler = searchCategorizer.getSearchHandler(getSearchString());
 		searchResult = searchHandler.getSearchResult(getSearchString());
 		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, getSearchString());
+		if (CoreConstants.TAG_MOST_RECENT_RECALLS.equals(getSearchString())) {
+			setSearchString("");
+		}
 		return searchResult.getReturnValue();
 	}
 	

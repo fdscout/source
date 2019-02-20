@@ -31,7 +31,7 @@ public class RecallAction extends FDScoutAction {
 //		return searchResult.getReturnValue();
 		return "recallTemplate";
 	}
-
+ 
 	@Action(value="/loadRecallDetails", 
 			results={@Result(name="singleRecall", type="tiles", location="searchResultSingleRecall")})
 	public String loadRecallDetails() {

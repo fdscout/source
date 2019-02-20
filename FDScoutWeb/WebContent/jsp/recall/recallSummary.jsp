@@ -22,7 +22,7 @@
 		
 	</tr>
 	<tr>
-		<td class="body_text" colspan="2">Initiated on <b><s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/></b> by <b>${recall.recallingFirm}</b> </td>
+		<td class="body_text" colspan="2">Initiated on <s:date name="recall.recallInitiationDate" format="MM/dd/yyyy"/> by ${recall.recallingFirm} </td>
 	</tr>	
 
 

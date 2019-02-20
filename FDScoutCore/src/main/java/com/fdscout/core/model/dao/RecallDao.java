@@ -99,8 +99,8 @@ public class RecallDao extends CoreDao {
 		query.append("inner join fds_recall_xref b on a.recall_id = b.recall_id ");
 		query.append("inner join fds_product c on b.product_id = c.product_id ");
 		query.append("where lower(a.status) = :status ");
-		query.append("and (lower(a.recalling_firm) like :keyWord or lower(a.reason) like :keyWord) ");
-		query.append("order by a.recall_ini_dt desc ");
+		query.append("and (lower(a.recalling_firm) like :keyWord or lower(a.reason) like :keyWord or lower(c.description) like :keyWord) ");
+		query.append("order by a.report_dt desc ");
 		paramMap.put("keyWord", "%" + keyWord + "%");		
 		paramMap.put("status", "ongoing");
 		return namedParamJdbcTemplate.query(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_2));

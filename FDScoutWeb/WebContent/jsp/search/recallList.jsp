@@ -6,7 +6,7 @@
 		<a href="loadLastSearchResult.action">[back to search results]</a>
 	</s:if>
 	<s:else>
-		<a href="start.action">[Home]</a>
+		<a href="home.action">[Home]</a>
 	</s:else>
 	<br/><br/>
 </div>

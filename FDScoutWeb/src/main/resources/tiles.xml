@@ -46,6 +46,13 @@
 		<put-attribute name="contentBody" value="/jsp/siteInfo/about.jsp"/>
 	</definition>
 	
+	<definition name="adverseEventTemplate" extends="masterTemplate">
+		<put-attribute name="sideMenu" value="/jsp/adverseEvent/sideMenu.jsp"/>
+		<put-attribute name="contentBody" value="/jsp/adverseEvent/initialLandingPage.jsp"/>
+	</definition>
+
+	
+	
 <!-- 	<definition name="portalMainTemplate" template="/jsp/gateway/portalMainTemplate.jsp"> -->
 <!-- 		<put-attribute name="portalLogin" value="/jsp/gateway/portalLogin.jsp"/> -->
 <!-- 	</definition>	 -->

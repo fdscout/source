@@ -79,6 +79,13 @@
 		<td class="body_text" colspan="2">${recall.moreCodeInfo}</td>
 	</tr>
 	<tr>
+		<td  class="body_label" colspan="2">Disclaimer</td>
+	</tr>
+	<tr>
+		<td class="body_text" colspan="2" style="font-size: 10px;color: gray;">${metaData.disclaimer}</td>
+	</tr>
+	
+	<tr>
 		<td class="body_text" colspan="2">&nbsp;</td>
 	</tr>
 </table>
