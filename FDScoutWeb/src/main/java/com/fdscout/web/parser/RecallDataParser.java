@@ -28,7 +28,7 @@ import com.fdscout.core.util.CoreUtility;
 
 import uk.ltd.getahead.dwr.util.Logger;
 
-public abstract class DataParser {
+public abstract class RecallDataParser {
 	protected abstract MetaDataBean getMetaData();
 	private MetaDataBean saveMetaData(org.json.simple.JSONObject metaDataObject) {
 		MetaDataBean metaData = getMetaData();

@@ -4,6 +4,7 @@ public class CoreConstants {
 	public static final int RECORD_RESULT_TYPE_FOOD = 1;
 	public static final int RECORD_RESULT_TYPE_DRUG = 2;
 	public static final int RECORD_RESULT_TYPE_DEVICE = 3;
+	
 
 	public static final int CODE_STATUS_ACTIVE = 1;
 	public static final int CODE_STATUS_INACTIVE = 0;

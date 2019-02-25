@@ -12,6 +12,7 @@ import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
 import com.fdscout.core.model.service.PortalAccessLogService;
 import com.fdscout.core.util.entity.CoreMessage;
+import com.fdscout.web.parser.FoodRecallDataParser;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
@@ -38,6 +39,9 @@ public class GatewayAction extends FDScoutAction {
 			portalAccessLogService.logPortalAccess("unknown");
 			Logger.getLogger(this.getClass()).error(e);
 		}
+		
+new FoodRecallDataParser().parse("C:\\FDScout\\downloads\\food-event-sample.json");
+		
 		Enumeration<String> headerNames = WebContext.getServletRequest().getHeaderNames();
 		while(headerNames.hasMoreElements()) {
 		  String headerName = (String)headerNames.nextElement();
@@ -57,39 +61,18 @@ public class GatewayAction extends FDScoutAction {
 		return SUCCESS;
 	}
 
-	
-//	public String displayHomePage() {
-//		searchResult = recallDefaultResultSearchHandler.executeSearch("");
-////		WebContext.getSession().setAttribute(WebAttribute.SESSION_SEARCHSTRING, null);
-//		return searchResult.getReturnValue();
-//	}
-	
 	public void setPortalAccessLogService(PortalAccessLogService portalAccessLogService) {
 		this.portalAccessLogService = portalAccessLogService;
 	}
 	
-
-//	public void setBrowserConfigService(BrowserConfigService browserConfigService) {
-//		this.browserConfigService = browserConfigService;
-//	}
-
     @Action(value="/loginError", results={@Result(name="success",  type="tiles", location="portalMainTemplate")})
 	public String loginError() {
 		setActionErrors(new CoreMessage().addMessage("ERROR: User name or password is incorrect.  Please try again."));
 		return SUCCESS;
 	}
 
-
-//	public void setRecallDefaultResultSearchHandler(RecallDefaultResultSearchHandler recallDefaultResultSearchHandler) {
-//		this.recallDefaultResultSearchHandler = recallDefaultResultSearchHandler;
-//	}
-//
-//	public SearchResult getSearchResult() {
-//		return searchResult;
-//	}
-//
-//	public void setSearchResult(SearchResult searchResult) {
-//		this.searchResult = searchResult;
-//	}
+    private void loadFoodEvent() {
+    	
+    }
 
 }
