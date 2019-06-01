@@ -6,6 +6,8 @@ public class CoreConstants {
 	public static final int RECORD_RESULT_TYPE_DEVICE = 3;
 	
 
+	public static final int RECORD_RESULT_TYPE_FOOD_EVENT = 11;
+	
 	public static final int CODE_STATUS_ACTIVE = 1;
 	public static final int CODE_STATUS_INACTIVE = 0;
 	public static final int CODE_STATUS_CLOSED = 9;

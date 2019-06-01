@@ -2,34 +2,30 @@ package com.fdscout.web.parser;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.fdscout.core.context.CoreContext;
-import com.fdscout.core.model.bean.AddressBean;
+import com.fdscout.core.model.bean.FoodEventBean;
+import com.fdscout.core.model.bean.FoodEventReactionXrefBean;
 import com.fdscout.core.model.bean.MetaDataBean;
 import com.fdscout.core.model.bean.ProductBean;
-import com.fdscout.core.model.bean.RecallBean;
-import com.fdscout.core.model.bean.RecallInfoExtBean;
-import com.fdscout.core.model.bean.RecallXrefBean;
-import com.fdscout.core.model.service.AddressService;
+import com.fdscout.core.model.service.FoodEventReactionService;
+import com.fdscout.core.model.service.FoodEventReactionXrefService;
+import com.fdscout.core.model.service.FoodEventService;
 import com.fdscout.core.model.service.MetaDataService;
 import com.fdscout.core.model.service.ProductService;
-import com.fdscout.core.model.service.RecallInfoExtService;
-import com.fdscout.core.model.service.RecallService;
-import com.fdscout.core.model.service.RecallXrefService;
 import com.fdscout.core.util.CoreUtility;
 
 import uk.ltd.getahead.dwr.util.Logger;
 
 public abstract class EventDataParser {
 	abstract protected MetaDataBean getMetaData();
+	abstract protected List<String> getEventNumberSet();
 	
 	@SuppressWarnings("unchecked")
 	public int parse(String fullFileName) {
@@ -42,46 +38,69 @@ public abstract class EventDataParser {
 		try {
 //			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader("c:\\resource\\sample.json"));
 			JSONObject jsonFile = (JSONObject)parser.parse(new FileReader(fullFileName));
-			List<String> recallNumberSet = ((RecallService)CoreContext.getBean("recallService")).getRecallNumberSet(getMetaData().getResultTypeCode());
+			List<String> eventNumberSet = ((FoodEventService)CoreContext.getBean("foodEventService")).getReportNumberSet();
 
 			JSONArray metaArray = new JSONArray();
 			metaArray.add(jsonFile.get("meta"));
 			
 			org.json.simple.JSONObject metaDataObject = (org.json.simple.JSONObject) metaArray.get(0);
-			MetaDataBean metaData = saveMetaData(metaDataObject);
+//			MetaDataBean metaData = saveMetaData(metaDataObject);
 			
 			JSONArray resultArray = new JSONArray();
 			resultArray.add(jsonFile.get("results"));
 			org.json.simple.JSONArray resultDataArray = (org.json.simple.JSONArray) resultArray.get(0);
 	
 			for (Object result : resultDataArray) {
-				RecallXrefBean recallXref = new RecallXrefBean();
+//				FoodEventXrefBean foodFoodEventXref = new FoodEventXrefBean();
 				org.json.simple.JSONObject resultObject = (org.json.simple.JSONObject) result;
 				
-				String recallNumber = (String) resultObject.get("recall_number");
-				String status = (String) resultObject.get("status");
-				if (recallNumber != null && recallNumber.trim().length()!= 0 && !recallNumberSet.contains(recallNumber)){
-					AddressBean address = saveAddress(resultObject);
-					ProductBean product = saveProduct(resultObject);
-					RecallBean recall = saveRecall(resultObject);
+				String reportNumber = (String) resultObject.get("report_number");
+				
+				if (!CoreUtility.isEmpty(reportNumber) && !eventNumberSet.contains(reportNumber)){
+					// food event
+					FoodEventBean foodEvent = new FoodEventBean();
+					foodEvent.setReportNumber(reportNumber);	
+					foodEvent.setCreateDate(CoreUtility.getStrToSqlDate((String)resultObject.get("date_created"), "yyyyMMdd"));
+					foodEvent.setStartDate(CoreUtility.getStrToSqlDate((String)resultObject.get("date_started"), "yyyyMMdd"));
+					JSONObject consumer = (JSONObject) resultObject.get("consumer");
+					if (consumer != null) {
+						foodEvent.setConsumerGender((String)consumer.get("gender"));
+						Object age = consumer.get("age");
+						if (age != null) {
+							foodEvent.setConsumerAge(Integer.parseInt(age.toString()));
+						}
+						foodEvent.setConsumerAgeUnit((String)consumer.get("age_unit"));
+					}
+					((FoodEventService)CoreContext.getBean("foodEventService")).save(foodEvent);
 					
-					recallXref.setMetaDataId(metaData.getBeanId());
-					recallXref.setAddressId(address.getBeanId());
-					recallXref.setProductId(product.getBeanId());
-					recallXref.setRecallId(recall.getBeanId());
-					((RecallXrefService)CoreContext.getBean("recallXrefService")).save(recallXref);
+					// reactions
+					JSONArray reactionArray = (JSONArray) resultObject.get("reactions");
+					for (Object reaction : reactionArray) {
+						System.out.println(reaction.toString());
+						 FoodEventReactionXrefBean foodEventReactionXref = new FoodEventReactionXrefBean();
+						 foodEventReactionXref.setFoodEventReactionId(((FoodEventReactionService)CoreContext.getBean("foodEventReactionService")).getFoodEventReactionId(reaction.toString()));
+						 foodEventReactionXref.setFoodEventId(foodEvent.getBeanId());
+						 ((FoodEventReactionXrefService)CoreContext.getBean("foodEventReactionXrefService")).save(foodEventReactionXref);
+					}
 					
-					System.out.println(++size + ": "  + recall.getRecallNumber() + " - " + product.getDescription());
+					
+					
+//					AddressBean address = saveAddress(resultObject);
+//					ProductBean product = saveProduct(resultObject);
+//					FoodEventBean foodFoodEvent = saveFoodEvent(resultObject);
+//					  
+//					foodFoodEventXref.setMetaDataId(metaData.getBeanId());
+//					foodFoodEventXref.setAddressId(address.getBeanId());
+//					foodFoodEventXref.setProductId(product.getBeanId());
+//					foodFoodEventXref.setFoodEventId(foodFoodEvent.getBeanId());
+//					((FoodEventXrefService)CoreContext.getBean("foodFoodEventXrefService")).save(foodFoodEventXref);
+//					
+//					System.out.println(++size + ": "  + foodFoodEvent.getFoodEventNumber() + " - " + product.getDescription());
 					++newRecord;
-				}
-				else if ("Ongoing".equalsIgnoreCase(status)){
-					updateRecall(resultObject);
-					++updatededRecord;
-					System.out.println(++size + ": " + recallNumber + " is " + status + " updating the record...");
 				}
 				else  {
 					++skippedRecord;
-					System.out.println(++size + ": " + recallNumber + " is " + status + ", skiping...");
+					System.out.println(++size + ": " + reportNumber + " exists, skiping...");
 					
 				}
 			}
@@ -116,17 +135,7 @@ public abstract class EventDataParser {
 		return metaData;
 	}
 
-	private AddressBean saveAddress(org.json.simple.JSONObject resultObject) {
-		AddressBean address = new AddressBean();
-		address.setAddress1((String)resultObject.get("address_1"));
-		address.setAddress2((String)resultObject.get("address_2"));
-		address.setCity((String)resultObject.get("city"));
-		address.setState((String)resultObject.get("state"));
-		address.setCountry((String)resultObject.get("country"));
-		address.setPostalCode((String)resultObject.get("postal_code"));
-		((AddressService)CoreContext.getBean("addressService")).save(address);
-		return address;
-	}
+
 
 	private ProductBean saveProduct(org.json.simple.JSONObject resultObject) {
 		ProductBean product = new ProductBean();
@@ -138,78 +147,10 @@ public abstract class EventDataParser {
 		return product;
 	}
 	
-	private RecallBean saveRecall (org.json.simple.JSONObject resultObject) {
-		List<RecallInfoExtBean> recallInfoExtList = new ArrayList<RecallInfoExtBean>();
-		RecallBean recall = new RecallBean();
-		System.out.print(resultObject.get("code_info").toString().length() + "...");
-		recall.setRecallNumber((String)resultObject.get("recall_number"));
-		recall.setRecallingFirm((String)resultObject.get("recalling_firm"));
-		recall.setReasonForRecall((String)resultObject.get("reason_for_recall"));
-		recall.setVoluntaryOrMandated((String)resultObject.get("voluntary_mandated"));
-		recall.setInitialFirmNotification((String)resultObject.get("initial_firm_notification"));
-		recall.setStatus((String)resultObject.get("status"));
-		recall.setClassification((String)resultObject.get("classification"));
-		recall.setCenterClassificationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("center_classification_date"), "yyyyMMdd"));
-		recall.setReportDate(CoreUtility.getStrToSqlDate((String)resultObject.get("report_date"), "yyyyMMdd"));
-		recall.setTerminationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("termination_date"), "yyyyMMdd"));
-		recall.setRecallInitiationDate(CoreUtility.getStrToSqlDate((String)resultObject.get("recall_initiation_date"), "yyyyMMdd"));
-		recall.setEventId((String)resultObject.get("event_id"));
-		if (resultObject.get("code_info").toString().length() > 25000) {
-			recall.setCodeInfo(resultObject.get("code_info").toString().substring(0, 25000));
-			if (resultObject.get("code_info").toString().length() > 45000) {
-				RecallInfoExtBean codeInfo = new RecallInfoExtBean();
-				codeInfo.setColumnId(1);    // for column code_info
-				codeInfo.setText(resultObject.get("code_info").toString().substring(25000));
-				recallInfoExtList.add(codeInfo);
-			}
-			else {
-				recall.setMoreCodeInfo(resultObject.get("code_info").toString().substring(25000));
-			}
-		}
-		else {
-			recall.setCodeInfo((String)resultObject.get("code_info"));
-		}	
-		if (resultObject.get("more_code_info") != null) {
-			//recall.setMoreCodeInfo(recall.getMoreCodeInfo() + resultObject.get("more_code_info").toString());
-			if (StringUtils.isNotBlank(recall.getMoreCodeInfo())) {
-				RecallInfoExtBean moreCodeInfo = new RecallInfoExtBean();
-				moreCodeInfo.setColumnId(2);    // for column more_code_info
-				moreCodeInfo.setText(resultObject.get("more_code_info").toString());
-				recallInfoExtList.add(moreCodeInfo);
-			}
-			else {
-				if (resultObject.get("more_code_info").toString().length() > 20000) {
-					recall.setMoreCodeInfo(resultObject.get("more_code_info").toString().substring(0, 20000));
-					RecallInfoExtBean moreCodeInfo = new RecallInfoExtBean();
-					moreCodeInfo.setColumnId(2);    // for column code_info
-					moreCodeInfo.setText(resultObject.get("code_info").toString().substring(20000));
-					recallInfoExtList.add(moreCodeInfo);
-					
-				}
-				else {
-					recall.setMoreCodeInfo((String)resultObject.get("more_code_info"));
-				}
-			}
-		}
-
+	private FoodEventBean saveFoodEvent (org.json.simple.JSONObject resultObject) {
 		
-		recall.setDistributionPattern((String)resultObject.get("distribution_pattern"));
-		
-		((RecallService)CoreContext.getBean("recallService")).save(recall);
-	// populate info_ext
-		((RecallInfoExtService)CoreContext.getBean("recallInfoExtService")).save(recallInfoExtList, recall);
-		
-		return recall;
+		return null;
 	}
 	
-	private RecallBean updateRecall (org.json.simple.JSONObject resultObject) {
-		RecallBean recall = new RecallBean();
-		recall.setRecallNumber((String)resultObject.get("recall_number"));
-		recall.setRecallingFirm((String)resultObject.get("recalling_firm"));
-		recall.setStatus((String)resultObject.get("status"));
-		
-		((RecallService)CoreContext.getBean("recallService")).update(recall);
-		return recall;
-	}
 	
 }

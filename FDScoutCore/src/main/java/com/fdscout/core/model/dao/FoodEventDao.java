@@ -1,7 +1,7 @@
 package com.fdscout.core.model.dao;
 
-import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.fdscout.core.model.bean.FoodEventBean;
@@ -29,4 +29,12 @@ public class FoodEventDao extends CoreDao {
 		return (FoodEventBean)namedParamJdbcTemplate.queryForObject(query.toString(), paramMap, getRowMapper().getInstance(BeanDaf.LOAD_BEAN_1));
 	}
 
+	public List<String> getReportNumberSet() {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		query.append("select report_nr ");
+		query.append("from fdscoutc_dev.fds_food_event ");
+		query.append("order by report_nr "); 
+		return namedParamJdbcTemplate.queryForList(query.toString(), paramMap, String.class);
+	}
 }

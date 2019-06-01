@@ -137,7 +137,36 @@
    		</property>
 	</bean>
 	
+	<bean id="foodEventService" class="com.fdscout.core.model.service.FoodEventService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.FoodEventDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.FoodEventRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+
+	<bean id="foodEventReactionService" class="com.fdscout.core.model.service.FoodEventReactionService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.FoodEventReactionDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.FoodEventReactionRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
 	
+	<bean id="foodEventReactionXrefService" class="com.fdscout.core.model.service.FoodEventReactionXrefService" parent="coreService">
+   		<property name="dao">
+		    <bean class="com.fdscout.core.model.dao.FoodEventReactionXrefDao" parent="coreDao">
+ 		        <property name="rowMapper"> 
+	             <bean class="com.fdscout.core.model.rowmapper.FoodEventReactionXrefRowMapper" parent="coreRowMapper"/>
+ 		        </property>  
+			</bean>
+   		</property>
+	</bean>
+
 <!-- 	<bean id="portalAccessLogService" class="com.fdscout.core.service.PortalAccessLogService" parent="coreService"> -->
 <!--    		<property name="dao"> -->
 <!-- 		    <bean class="com.fdscout.core.dao.PortalAccessLogDao" parent="coreDao"> -->

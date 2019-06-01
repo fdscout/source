@@ -12,7 +12,7 @@ import com.fdscout.context.WebAttribute;
 import com.fdscout.context.WebContext;
 import com.fdscout.core.model.service.PortalAccessLogService;
 import com.fdscout.core.util.entity.CoreMessage;
-import com.fdscout.web.parser.FoodRecallDataParser;
+import com.fdscout.web.parser.FoodEventDataParser;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import eu.bitwalker.useragentutils.Version;
@@ -40,7 +40,7 @@ public class GatewayAction extends FDScoutAction {
 			Logger.getLogger(this.getClass()).error(e);
 		}
 		
-new FoodRecallDataParser().parse("C:\\FDScout\\downloads\\food-event-sample.json");
+new FoodEventDataParser().parse("C:\\FDScout\\downloads\\food-event-sample.json");
 		
 		Enumeration<String> headerNames = WebContext.getServletRequest().getHeaderNames();
 		while(headerNames.hasMoreElements()) {
