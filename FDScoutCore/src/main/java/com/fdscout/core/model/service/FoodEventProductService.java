@@ -9,5 +9,8 @@ public class FoodEventProductService extends CoreService {
 		((FoodEventProductDao)getDao()).create(foodEventProduct);
 	}
 	
+	public int deleteFoodEventProducts(long foodEventId) {
+		return ((FoodEventProductDao)getDao()).deleteFoodEventProducts(foodEventId);
+	}
 }	
 

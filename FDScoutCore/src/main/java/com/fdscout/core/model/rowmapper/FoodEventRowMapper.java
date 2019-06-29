@@ -16,6 +16,7 @@ public class FoodEventRowMapper extends CoreRowMapper {
 		foodEvent.setConsumerGender(rs.getString("consumer_gender"));
 		foodEvent.setConsumerAge(rs.getInt("consumer_age"));
 		foodEvent.setConsumerAgeUnit(rs.getString("consumer_age_unit"));
+		foodEvent.setMetaDataId(rs.getLong("meta_data_id"));
 		return foodEvent;
 	}
 }

@@ -1,5 +1,7 @@
 package com.fdscout.core.model.service;
 
+import java.util.List;
+
 import com.fdscout.core.model.bean.FoodEventOutcomeBean;
 import com.fdscout.core.model.dao.FoodEventOutcomeDao;
 
@@ -10,14 +12,18 @@ public class FoodEventOutcomeService extends CoreService {
 	}
 	
 	public long getFoodEventOutcomeId(String outcome) {
-		if (((FoodEventOutcomeDao)getDao()).getFoodEventOutcomeCount(outcome) > 0) {
-			return ((FoodEventOutcomeDao)getDao()).getFoodEventOutcomeId(outcome);
-		}
-		else {
+		switch (((FoodEventOutcomeDao)getDao()).getFoodEventOutcomeCount(outcome)) {
+		case 0:
 			FoodEventOutcomeBean foodEventOutcome = new FoodEventOutcomeBean();
 			foodEventOutcome.setOutcome(outcome);
 			save(foodEventOutcome);
 			return foodEventOutcome.getBeanId();
+		case 1:
+			return ((FoodEventOutcomeDao)getDao()).getFoodEventOutcomeId(outcome);
+		default:
+			List<Long> outcomeIdList = ((FoodEventOutcomeDao)getDao()).getFoodEventOutcomeIdList(outcome);
+			return outcomeIdList.get(0);
+			 
 		}
 	}
 }	

@@ -27,7 +27,10 @@ public abstract class CoreDao {
 			coreBean.setCreateTime(CoreUtility.getCurrentTimestamp());
 			KeyHolder keyHolder = new GeneratedKeyHolder();
 			createNewRow(coreBean, buildCreateQuery(), keyHolder);
-			beanId = keyHolder.getKey().longValue();
+			Number key = keyHolder.getKey();
+			if (key != null) {
+				beanId = keyHolder.getKey().longValue();
+			}	
 			coreBean.setBeanId(beanId);
 		} catch (Exception e) {
 			e.printStackTrace();

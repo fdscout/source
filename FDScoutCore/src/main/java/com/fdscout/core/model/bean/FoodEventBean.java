@@ -3,6 +3,7 @@ package com.fdscout.core.model.bean;
 import java.sql.Date;
 
 public class FoodEventBean extends CoreBean {
+	private long metaDataId;
 	private String reportNumber;
 	private Date createDate;
 	private Date startDate;
@@ -45,6 +46,12 @@ public class FoodEventBean extends CoreBean {
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	public long getMetaDataId() {
+		return metaDataId;
+	}
+	public void setMetaDataId(long metaDataId) {
+		this.metaDataId = metaDataId;
 	}
 	
 }

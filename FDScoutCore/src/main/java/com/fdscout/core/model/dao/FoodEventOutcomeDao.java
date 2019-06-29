@@ -1,6 +1,7 @@
 package com.fdscout.core.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FoodEventOutcomeDao extends CoreDao {
@@ -24,6 +25,16 @@ public class FoodEventOutcomeDao extends CoreDao {
 		return namedParamJdbcTemplate.queryForObject(query.toString(), paramMap, Long.class);
 	}
 
+	public List<Long> getFoodEventOutcomeIdList(String outcome) {
+		StringBuilder query = new StringBuilder();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		query.append("select food_event_outcome_id ");
+		query.append("from fdscoutc_dev.fds_food_event_outcome ");
+		query.append("where outcome_de = :outcome ");
+		query.append("order by create_time ");
+		paramMap.put("outcome", outcome);		
+		return (List<Long>)namedParamJdbcTemplate.queryForList(query.toString(), paramMap, Long.class);
+	}
 	public int getFoodEventOutcomeCount(String outcome) {
 		StringBuilder query = new StringBuilder();
 		Map<String, Object> paramMap = new HashMap<String, Object>();

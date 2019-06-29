@@ -11,14 +11,17 @@ import org.json.simple.parser.ParseException;
 
 import com.fdscout.core.context.CoreContext;
 import com.fdscout.core.model.bean.FoodEventBean;
+import com.fdscout.core.model.bean.FoodEventOutcomeXrefBean;
+import com.fdscout.core.model.bean.FoodEventProductBean;
 import com.fdscout.core.model.bean.FoodEventReactionXrefBean;
 import com.fdscout.core.model.bean.MetaDataBean;
-import com.fdscout.core.model.bean.ProductBean;
+import com.fdscout.core.model.service.FoodEventOutcomeService;
+import com.fdscout.core.model.service.FoodEventOutcomeXrefService;
+import com.fdscout.core.model.service.FoodEventProductService;
 import com.fdscout.core.model.service.FoodEventReactionService;
 import com.fdscout.core.model.service.FoodEventReactionXrefService;
 import com.fdscout.core.model.service.FoodEventService;
 import com.fdscout.core.model.service.MetaDataService;
-import com.fdscout.core.model.service.ProductService;
 import com.fdscout.core.util.CoreUtility;
 
 import uk.ltd.getahead.dwr.util.Logger;
@@ -44,14 +47,13 @@ public abstract class EventDataParser {
 			metaArray.add(jsonFile.get("meta"));
 			
 			org.json.simple.JSONObject metaDataObject = (org.json.simple.JSONObject) metaArray.get(0);
-//			MetaDataBean metaData = saveMetaData(metaDataObject);
+			MetaDataBean metaData = saveMetaData(metaDataObject);
 			
 			JSONArray resultArray = new JSONArray();
 			resultArray.add(jsonFile.get("results"));
 			org.json.simple.JSONArray resultDataArray = (org.json.simple.JSONArray) resultArray.get(0);
 	
 			for (Object result : resultDataArray) {
-//				FoodEventXrefBean foodFoodEventXref = new FoodEventXrefBean();
 				org.json.simple.JSONObject resultObject = (org.json.simple.JSONObject) result;
 				
 				String reportNumber = (String) resultObject.get("report_number");
@@ -59,6 +61,7 @@ public abstract class EventDataParser {
 				if (!CoreUtility.isEmpty(reportNumber) && !eventNumberSet.contains(reportNumber)){
 					// food event
 					FoodEventBean foodEvent = new FoodEventBean();
+					foodEvent.setMetaDataId(metaData.getBeanId());
 					foodEvent.setReportNumber(reportNumber);	
 					foodEvent.setCreateDate(CoreUtility.getStrToSqlDate((String)resultObject.get("date_created"), "yyyyMMdd"));
 					foodEvent.setStartDate(CoreUtility.getStrToSqlDate((String)resultObject.get("date_started"), "yyyyMMdd"));
@@ -83,19 +86,29 @@ public abstract class EventDataParser {
 						 ((FoodEventReactionXrefService)CoreContext.getBean("foodEventReactionXrefService")).save(foodEventReactionXref);
 					}
 					
+					// outcomes
+					JSONArray outcomeArray = (JSONArray) resultObject.get("outcomes");
+					for (Object outcome : outcomeArray) {
+						System.out.println(outcome.toString());
+						 FoodEventOutcomeXrefBean foodEventOutcomeXref = new FoodEventOutcomeXrefBean();
+						 foodEventOutcomeXref.setFoodEventOutcomeId(((FoodEventOutcomeService)CoreContext.getBean("foodEventOutcomeService")).getFoodEventOutcomeId(outcome.toString()));
+						 foodEventOutcomeXref.setFoodEventId(foodEvent.getBeanId());
+						 ((FoodEventOutcomeXrefService)CoreContext.getBean("foodEventOutcomeXrefService")).save(foodEventOutcomeXref);
+					}					
 					
-					
-//					AddressBean address = saveAddress(resultObject);
-//					ProductBean product = saveProduct(resultObject);
-//					FoodEventBean foodFoodEvent = saveFoodEvent(resultObject);
-//					  
-//					foodFoodEventXref.setMetaDataId(metaData.getBeanId());
-//					foodFoodEventXref.setAddressId(address.getBeanId());
-//					foodFoodEventXref.setProductId(product.getBeanId());
-//					foodFoodEventXref.setFoodEventId(foodFoodEvent.getBeanId());
-//					((FoodEventXrefService)CoreContext.getBean("foodFoodEventXrefService")).save(foodFoodEventXref);
-//					
-//					System.out.println(++size + ": "  + foodFoodEvent.getFoodEventNumber() + " - " + product.getDescription());
+					// products
+					((FoodEventProductService)CoreContext.getBean("foodEventProductService")).deleteFoodEventProducts(foodEvent.getBeanId());
+					JSONArray productArray = (JSONArray) resultObject.get("products");
+					for (Object product : productArray) {
+						org.json.simple.JSONObject productObject = (org.json.simple.JSONObject) product;
+						FoodEventProductBean foodEventProduct = new FoodEventProductBean();
+						foodEventProduct.setFoodEventId(foodEvent.getBeanId());
+						foodEventProduct.setIndustryCode((String)productObject.get("industry_code"));
+						foodEventProduct.setNameBrand((String)productObject.get("name_brand"));
+						foodEventProduct.setRole((String)productObject.get("role"));
+						foodEventProduct.setIndustryName((String)productObject.get("industry_name"));
+						((FoodEventProductService)CoreContext.getBean("foodEventProductService")).save(foodEventProduct);
+					}
 					++newRecord;
 				}
 				else  {
@@ -119,7 +132,7 @@ public abstract class EventDataParser {
 	
 	
 	
-	//	protected abstract MetaDataBean getMetaData();
+//	//	protected abstract MetaDataBean getMetaData();
 	private MetaDataBean saveMetaData(org.json.simple.JSONObject metaDataObject) {
 		MetaDataBean metaData = getMetaData();
 		metaData.setLastUpdateDate(CoreUtility.getStrToSqlDate((String)metaDataObject.get("last_updated"), "yyyy-MM-dd"));
@@ -134,23 +147,23 @@ public abstract class EventDataParser {
 		((MetaDataService)CoreContext.getBean("metaDataService")).save(metaData);
 		return metaData;
 	}
-
-
-
-	private ProductBean saveProduct(org.json.simple.JSONObject resultObject) {
-		ProductBean product = new ProductBean();
-		product.setDescription(((String)resultObject.get("product_description")).replaceAll("¿", "&reg;"));
-		product.setQuantity((String)resultObject.get("product_quantity"));
-		product.setType((String)resultObject.get("product_type"));
-
-		((ProductService)CoreContext.getBean("productService")).save(product);
-		return product;
-	}
-	
-	private FoodEventBean saveFoodEvent (org.json.simple.JSONObject resultObject) {
-		
-		return null;
-	}
+//
+//
+//
+//	private ProductBean saveProduct(org.json.simple.JSONObject resultObject) {
+//		ProductBean product = new ProductBean();
+//		product.setDescription(((String)resultObject.get("product_description")).replaceAll("¿", "&reg;"));
+//		product.setQuantity((String)resultObject.get("product_quantity"));
+//		product.setType((String)resultObject.get("product_type"));
+//
+//		((ProductService)CoreContext.getBean("productService")).save(product);
+//		return product;
+//	}
+//	
+//	private FoodEventBean saveFoodEvent (org.json.simple.JSONObject resultObject) {
+//		
+//		return null;
+//	}
 	
 	
 }

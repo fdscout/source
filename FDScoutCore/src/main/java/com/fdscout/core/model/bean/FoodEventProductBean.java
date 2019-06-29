@@ -1,9 +1,10 @@
 package com.fdscout.core.model.bean;
 
 public class FoodEventProductBean extends CoreBean {
-	private long industryId;
+	private String industryCode;
 	private long foodEventId;
 	private String nameBrand;
+	private String industryName;
 	private String role;
 	
 	public String getNameBrand() {
@@ -18,17 +19,24 @@ public class FoodEventProductBean extends CoreBean {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public long getIndustryId() {
-		return industryId;
-	}
-	public void setIndustryId(long industryId) {
-		this.industryId = industryId;
-	}
+
 	public long getFoodEventId() {
 		return foodEventId;
 	}
 	public void setFoodEventId(long foodEventId) {
 		this.foodEventId = foodEventId;
+	}
+	public String getIndustryCode() {
+		return industryCode;
+	}
+	public void setIndustryCode(String industryCode) {
+		this.industryCode = industryCode;
+	}
+	public String getIndustryName() {
+		return industryName;
+	}
+	public void setIndustryName(String industryName) {
+		this.industryName = industryName;
 	}
 
 }
